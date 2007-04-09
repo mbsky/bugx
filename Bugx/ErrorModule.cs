@@ -2,13 +2,11 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.AccessControl;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using ICSharpCode.SharpZipLib.GZip;
-using System.Text.RegularExpressions;
-using System.Collections.Specialized;
 
 namespace Bugx.Web
 {
@@ -36,15 +34,16 @@ namespace Bugx.Web
             SaveRequest(root, context);
             SaveSession(root, context);
             SaveException(root, context);
-            DirectoryInfo destination = new DirectoryInfo(context.Request.MapPath("~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error)));
+            DirectoryInfo destination =
+                new DirectoryInfo(context.Request.MapPath("~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error)));
             if (!destination.Exists)
             {
                 destination.Create();
             }
-            bug.Save(destination.FullName + DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture)+".bugx");
+            bug.Save(destination.FullName + DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx");
         }
 
-        private static void SaveSession(XmlNode root, HttpContext context)
+        static void SaveSession(XmlNode root, HttpContext context)
         {
             XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
             BinaryFormatter serializer = new BinaryFormatter();
@@ -60,7 +59,7 @@ namespace Bugx.Web
                 }
                 Type variableType = value.GetType();
                 variable.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = variableType.AssemblyQualifiedName;
-                if (variableType.IsValueType || variableType.FullName=="System.String")
+                if (variableType.IsValueType || variableType.FullName == "System.String")
                 {
                     variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = Convert.ToString(value, CultureInfo.InvariantCulture);
                 }
@@ -98,15 +97,17 @@ namespace Bugx.Web
         {
             XmlNode exception = root.AppendChild(root.OwnerDocument.CreateElement("exception"));
             using (MemoryStream data = new MemoryStream())
-            using (GZipOutputStream writer = new GZipOutputStream(data))
             {
-                BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(writer, context.Error);
-                writer.Finish();
-                data.Seek(0, SeekOrigin.Begin);
-                byte[] buffer = new byte[data.Length];
-                data.Read(buffer, 0, buffer.Length);
-                exception.AppendChild(root.OwnerDocument.CreateCDataSection(Convert.ToBase64String(buffer, Base64FormattingOptions.None)));
+                using (GZipOutputStream writer = new GZipOutputStream(data))
+                {
+                    BinaryFormatter serializer = new BinaryFormatter();
+                    serializer.Serialize(writer, context.Error);
+                    writer.Finish();
+                    data.Seek(0, SeekOrigin.Begin);
+                    byte[] buffer = new byte[data.Length];
+                    data.Read(buffer, 0, buffer.Length);
+                    exception.AppendChild(root.OwnerDocument.CreateCDataSection(Convert.ToBase64String(buffer, Base64FormattingOptions.None)));
+                }
             }
         }
 

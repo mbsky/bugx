@@ -170,7 +170,7 @@ namespace Bugx.ReBug
         public void Process()
         {
             XmlDocument xml = new BugDocument();
-            xml.Load(@"C:\Documents and Settings\Olivier Bossaer\My Documents\Visual Studio 2005\Projects\Bugx\Bugx.TestSite\bugx\errors\System\DivideByZeroException\3077697825-1797930606\20070402T191529Z.bugx");
+            xml.Load(@"C:\Documents and Settings\Olivier Bossaer\My Documents\Visual Studio 2005\Projects\Bugx\Bugx.TestSite\bugx\errors\System\DivideByZeroException\3077697825-1797930606\20070405T093345Z.bugx");
             HttpWorkerRequest swr = new ReBugWorkerRequest(new Uri(xml.SelectSingleNode("/bugx/url").InnerText),
                                                         xml.SelectSingleNode("/bugx/pathInfo").InnerText,
                                                         HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/queryString")),

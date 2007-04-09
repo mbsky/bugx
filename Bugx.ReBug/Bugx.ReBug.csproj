@@ -5,13 +5,15 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2CA8A692-B4FD-47E8-8E1E-86D1D38157CC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bugx.ReBug</RootNamespace>
     <AssemblyName>Bugx.ReBug</AssemblyName>
-    <StartupObject>Bugx.ReBug.TestCode</StartupObject>
+    <StartupObject>Bugx.ReBug.Program</StartupObject>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,18 +43,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ExceptionDescriptor.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Images\logo.psd" />
     <None Include="key.snk" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TestCode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\bug.ico" />
+    <Content Include="Images\bug128.png" />
+    <Content Include="Images\bug16.png" />
+    <Content Include="Images\bug32.png" />
+    <Content Include="Images\bug48.png" />
+    <Content Include="Images\bug64.png" />
+    <Content Include="Images\ClosedVariableGroup.png" />
+    <Content Include="Images\Licence.txt" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\OpenVariableGroup.png" />
+    <Content Include="Images\Variable.png" />
     <Content Include="Libs\ICSharpCode.SharpZipLib.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +80,17 @@
       <Project>{B01F9377-75E3-410C-A944-A6867D836796}</Project>
       <Name>Bugx</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
