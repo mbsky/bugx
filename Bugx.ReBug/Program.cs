@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Bugx.Replay
+namespace Bugx.ReBug
 {
     static class Program
     {
@@ -14,7 +14,7 @@ namespace Bugx.Replay
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }
