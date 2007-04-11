@@ -4,15 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B01F9377-75E3-410C-A944-A6867D836796}</ProjectGuid>
+    <ProjectGuid>{30AB755F-B05F-4A75-81C3-47230BB42286}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bugx.Web</RootNamespace>
-    <AssemblyName>Bugx.Web</AssemblyName>
-    <StartupObject>
-    </StartupObject>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,24 +28,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.1.271, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BugDocument.cs" />
-    <Compile Include="BugSerializer.cs" />
-    <Compile Include="ErrorModule.cs" />
-    <Compile Include="HttpValueCollection.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="key.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ErrorReport.xslt" />
-    <Content Include="Libs\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Test.xml" />
+    <Compile Include="Sample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
