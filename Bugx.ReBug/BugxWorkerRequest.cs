@@ -1,24 +1,23 @@
 using System;
-using System.Reflection;
-using System.Web;
-using System.Web.Hosting;
-using System.Web.Configuration;
-using System.IO;
-using System.Text;
-using ICSharpCode.SharpZipLib.GZip;
-using System.Xml;
-using System.Runtime.Serialization.Formatters.Binary;
-using Bugx.Web;
 using System.Collections.Generic;
+using System.Text;
+using System.Web.Hosting;
 using System.Web.SessionState;
+using System.Web;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using Bugx.Web;
+using System.IO;
 using System.Globalization;
+using System.Runtime.Serialization;
+
 namespace Bugx.ReBug
 {
-    public class ReBugWorkerRequest : SimpleWorkerRequest
+    public class BugxWorkerRequest : SimpleWorkerRequest
     {
         static Dictionary<string, int> _Headers = new Dictionary<string, int>();
         static string[] _HeaderList = new string[RequestHeaderMaximum];
-        static ReBugWorkerRequest()
+        static BugxWorkerRequest()
         {
             DefineHeader(0, "Cache-Control", "HTTP_CACHE_CONTROL");
             DefineHeader(1, "Connection", "HTTP_CONNECTION");
@@ -68,7 +67,6 @@ namespace Bugx.ReBug
             _Headers[headerName] = index;
         }
 
-        
 
         byte[] PostedData;
         public override string GetHttpVerbName()
@@ -118,7 +116,7 @@ namespace Bugx.ReBug
             if (_SessionVariables != null)
             {
                 HttpSessionState session = HttpContext.Current.Session;
-                BinaryFormatter deserializer = new BinaryFormatter();
+                session.Clear();
                 foreach (XmlNode sessionVariable in _SessionVariables)
                 {
                     try
@@ -130,17 +128,14 @@ namespace Bugx.ReBug
                         }
                         else
                         {
-                            using (Stream reader = new MemoryStream(Convert.FromBase64String(sessionVariable.InnerText)))
-                            {
-                                session[sessionVariable.Attributes["name"].Value] = deserializer.Deserialize(reader);
-                            }
+                            session[sessionVariable.Attributes["name"].Value] = BugSerializer.Deserialize(sessionVariable.InnerText);
                         }
                     }
-                    catch
+                    catch(SerializationException)
                     {
-                     /*
-                      * No error when we deserialize session variable, this only support for some specific exception scenarios
-                      */
+                        /*
+                         * No error when we deserialize session variable, this only support for some specific exception scenarios
+                         */
                     }
                 }
                 _SessionVariables = null;
@@ -152,7 +147,7 @@ namespace Bugx.ReBug
         string _PathInfo;
         HttpValueCollection _HeaderCollection;
         XmlNodeList _SessionVariables;
-        public ReBugWorkerRequest(Uri requestUri, string pathInfo, HttpValueCollection query, HttpValueCollection post, HttpValueCollection headers, XmlNodeList sessionVariables, TextWriter output)
+        public BugxWorkerRequest(Uri requestUri, string pathInfo, HttpValueCollection query, HttpValueCollection post, HttpValueCollection headers, XmlNodeList sessionVariables, TextWriter output)
             : base(requestUri.AbsolutePath.Substring(1), query.ToString(), output)
         {
             _PathInfo = pathInfo;
@@ -163,37 +158,6 @@ namespace Bugx.ReBug
             {
                 PostedData = Encoding.UTF8.GetBytes(post.ToString());
             }
-        }
-    }
-    public class ReBugHost : MarshalByRefObject
-    {
-        public void Process()
-        {
-            XmlDocument xml = new BugDocument();
-            xml.Load(@"C:\Documents and Settings\Olivier Bossaer\My Documents\Visual Studio 2005\Projects\Bugx\Bugx.TestSite\bugx\errors\System\DivideByZeroException\3077697825-1797930606\20070405T093345Z.bugx");
-            HttpWorkerRequest swr = new ReBugWorkerRequest(new Uri(xml.SelectSingleNode("/bugx/url").InnerText),
-                                                        xml.SelectSingleNode("/bugx/pathInfo").InnerText,
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/queryString")),
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/form")),
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/headers")),
-                                                        xml.SelectNodes("/bugx/sessionVariables/add"),
-                                                        Console.Out);
-            //System.Diagnostics.Debugger.Break();
-            HttpRuntime.ProcessRequest(swr);
-        }
-    }
-    class TestCode
-    {
-        [STAThread]
-        static void Main()
-        {
-            Console.ReadLine();
-            DirectoryInfo webPath = new DirectoryInfo(Environment.CurrentDirectory).Parent;
-            ReBugHost host = (ReBugHost)ApplicationHost.CreateApplicationHost(
-                                                           typeof(ReBugHost),
-                                                           "/",
-                                                           webPath.FullName);
-            host.Process();
         }
     }
 }

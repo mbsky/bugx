@@ -43,10 +43,10 @@ namespace Bugx.ReBug
             this.VariableTree = new System.Windows.Forms.TreeView();
             this.Images = new System.Windows.Forms.ImageList(this.components);
             this.Url = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.ReBug = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             BugScenario = new System.Windows.Forms.GroupBox();
             BugFileLabel = new System.Windows.Forms.Label();
             ExceptionInfo = new System.Windows.Forms.GroupBox();
@@ -57,8 +57,8 @@ namespace Bugx.ReBug
             BugScenario.SuspendLayout();
             ExceptionInfo.SuspendLayout();
             EnvironmentInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             CommandPannel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BugScenario
@@ -193,20 +193,6 @@ namespace Bugx.ReBug
             UrlLabel.TabIndex = 0;
             UrlLabel.Text = "URL :";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(378, 90);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // OpenFile
-            // 
-            this.OpenFile.Filter = "Bugx Files|*.bugx";
-            // 
             // CommandPannel
             // 
             CommandPannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -221,12 +207,14 @@ namespace Bugx.ReBug
             // 
             // ReBug
             // 
+            this.ReBug.Enabled = false;
             this.ReBug.Location = new System.Drawing.Point(6, 5);
             this.ReBug.Name = "ReBug";
             this.ReBug.Size = new System.Drawing.Size(75, 23);
             this.ReBug.TabIndex = 1;
             this.ReBug.Text = "ReBug !";
             this.ReBug.UseVisualStyleBackColor = true;
+            this.ReBug.Click += new System.EventHandler(this.ReBug_Click);
             // 
             // CloseButton
             // 
@@ -236,6 +224,21 @@ namespace Bugx.ReBug
             this.CloseButton.TabIndex = 0;
             this.CloseButton.Text = "Close";
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(378, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // OpenFile
+            // 
+            this.OpenFile.Filter = "Bugx Files|*.bugx";
             // 
             // MainForm
             // 
@@ -248,7 +251,7 @@ namespace Bugx.ReBug
             this.Controls.Add(BugScenario);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(780, 700);
+            this.MinimumSize = new System.Drawing.Size(780, 734);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReBug";
@@ -257,8 +260,8 @@ namespace Bugx.ReBug
             ExceptionInfo.ResumeLayout(false);
             EnvironmentInfo.ResumeLayout(false);
             EnvironmentInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             CommandPannel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

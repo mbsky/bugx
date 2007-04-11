@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Bugx.ReBug
 {
@@ -146,7 +147,7 @@ namespace Bugx.ReBug
         /// <param name="exception">The exception.</param>
         public ExceptionDescriptor(Exception exception)
         {
-            this._Exception = exception;
+            _Exception = exception;
         }
 
         #region Default methods

@@ -1,26 +1,21 @@
 using System;
 using System.Web.UI;
+using Bugx.Test.Model;
 
 public partial class _Default : Page
 {
-    [Serializable]
-    public class tmp
-    {
-        public string _a;
-        public string _b;
-        public tmp(string a, string b)
-        {
-            _a = a;
-            _b = b;
-        }
-    }
     public int? SessionValue
     {
         get{ return (int?) Session["SessionValue"]; }
-        set { Session["SessionValue"] = value;
-            Session["TestValue"] = new tmp("lol", "hehe");
-        }
+        set { Session["SessionValue"] = value; }
     }
+
+    public Category CurrentCategory
+    {
+        get{ return (Category) Session["CurrentCategory"]; }
+        set { Session["CurrentCategory"] = value; }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack && SessionValue == null)
@@ -30,6 +25,7 @@ public partial class _Default : Page
         if (SessionValue == null)
         {
             SessionValue = 125;
+            CurrentCategory = Sample.BuildCategory();
         }
         
     }

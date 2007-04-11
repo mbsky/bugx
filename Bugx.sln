@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Bugx.TestSite\", "Bugx.TestSite", "{D15521D0-4769-4228-9413-2A3A7D2BC1A6}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Bugx.TestSite\", "Bugx.TestSite\", "{D15521D0-4769-4228-9413-2A3A7D2BC1A6}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{B01F9377-75E3-410C-A944-A6867D836796}|Bugx.Web.dll;"
+		ProjectReferences = "{B01F9377-75E3-410C-A944-A6867D836796}|Bugx.Web.dll;{30AB755F-B05F-4A75-81C3-47230BB42286}|Model.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Bugx.TestSite"
 		Debug.AspNetCompiler.PhysicalPath = "..\Bugx\Bugx.TestSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Bugx.TestSite\"
@@ -29,6 +29,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugx", "Bugx\Bugx.csproj", 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugx.ReBug", "Bugx.ReBug\Bugx.ReBug.csproj", "{2CA8A692-B4FD-47E8-8E1E-86D1D38157CC}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{30AB755F-B05F-4A75-81C3-47230BB42286}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -74,6 +80,16 @@ Global
 		{2CA8A692-B4FD-47E8-8E1E-86D1D38157CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CA8A692-B4FD-47E8-8E1E-86D1D38157CC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2CA8A692-B4FD-47E8-8E1E-86D1D38157CC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Release|.NET.ActiveCfg = Release|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{30AB755F-B05F-4A75-81C3-47230BB42286}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

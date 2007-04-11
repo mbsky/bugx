@@ -111,10 +111,38 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Creates the collection from XML node.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns></returns>
         public static HttpValueCollection CreateCollectionFromXmlNode(XmlNode node)
         {
             HttpValueCollection result = new HttpValueCollection();
-            LoadCollectionFromXmlNode(result, node);
+            if (node != null)
+            {
+                LoadCollectionFromXmlNode(result, node);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Creates the collection from URL encoded.
+        /// </summary>
+        /// <param name="urlEncoded">The URL encoded.</param>
+        /// <returns></returns>
+        public static HttpValueCollection CreateCollectionFromUrlEncoded(string urlEncoded)
+        {
+            if (string.IsNullOrEmpty(urlEncoded))
+            {
+                return new HttpValueCollection();
+            }
+            HttpValueCollection result = new HttpValueCollection();
+            foreach (string entry in urlEncoded.Split('&'))
+            {
+                string[] nameValue = entry.Split('=');
+                result[HttpUtility.UrlDecode(nameValue[0])] = HttpUtility.UrlDecode(nameValue[1]);
+            }
             return result;
         }
 
@@ -147,5 +175,7 @@ namespace Bugx.Web
                 node.AppendChild(node.OwnerDocument.CreateElement(key)).InnerText = collection[key];
             }
         }
+
+        
     }
 }

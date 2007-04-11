@@ -12,10 +12,17 @@ namespace Bugx.Web
 {
     public class ErrorModule : IHttpModule
     {
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"></see>.
+        /// </summary>
         public void Dispose()
         {
         }
 
+        /// <summary>
+        /// Initializes a module and prepares it to handle requests.
+        /// </summary>
+        /// <param name="context">An <see cref="T:System.Web.HttpApplication"></see> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
         public void Init(HttpApplication context)
         {
             if (context == null)
@@ -25,8 +32,32 @@ namespace Bugx.Web
             context.Error += new EventHandler(Application_Error);
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this context is a re-bug.
+        /// </summary>
+        static bool _IsReBug;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this context is a re-bug.
+        /// </summary>
+        /// <value><c>true</c> if this context is a re-bug; otherwise, <c>false</c>.</value>
+        public static bool IsReBug
+        {
+            get { return _IsReBug; }
+            set { _IsReBug = value; }
+        }
+
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         static void Application_Error(object sender, EventArgs e)
         {
+            if (IsReBug)
+            {//Error handling is disabled.
+                return;
+            }
             HttpContext context = ((HttpApplication) sender).Context;
             BugDocument bug = new BugDocument();
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
@@ -43,6 +74,11 @@ namespace Bugx.Web
             bug.Save(destination.FullName + DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx");
         }
 
+        /// <summary>
+        /// Saves the session.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveSession(XmlNode root, HttpContext context)
         {
             XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
@@ -59,30 +95,33 @@ namespace Bugx.Web
                 }
                 Type variableType = value.GetType();
                 variable.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = variableType.AssemblyQualifiedName;
-                if (variableType.IsValueType || variableType.FullName == "System.String")
+                if (variableType.IsValueType || variableType == typeof(string))
                 {
                     variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = Convert.ToString(value, CultureInfo.InvariantCulture);
                 }
                 else if (variableType.IsSerializable)
                 {
-                    using (MemoryStream stream = new MemoryStream())
-                    {
-                        serializer.Serialize(stream, value);
-                        stream.Seek(0, SeekOrigin.Begin);
-                        byte[] buffer = new byte[stream.Length];
-                        stream.Read(buffer, 0, buffer.Length);
-                        variable.AppendChild(root.OwnerDocument.CreateCDataSection(Convert.ToBase64String(buffer)));
-                    }
+                    variable.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(value)));
                 }
             }
         }
 
+        /// <summary>
+        /// Saves the URL.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveUrl(XmlNode root, HttpContext context)
         {
             root.AppendChild(root.OwnerDocument.CreateElement("url")).AppendChild(root.OwnerDocument.CreateCDataSection(context.Request.Url.ToString()));
             root.AppendChild(root.OwnerDocument.CreateElement("pathInfo")).AppendChild(root.OwnerDocument.CreateCDataSection(context.Request.PathInfo));
         }
 
+        /// <summary>
+        /// Saves the request.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveRequest(XmlNode root, HttpContext context)
         {
             HttpValueCollection.SaveCollectionToXmlNode(context.Request.QueryString,
@@ -93,6 +132,11 @@ namespace Bugx.Web
                                                         root.AppendChild(root.OwnerDocument.CreateElement("headers")));
         }
 
+        /// <summary>
+        /// Saves the exception.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveException(XmlNode root, HttpContext context)
         {
             XmlNode exception = root.AppendChild(root.OwnerDocument.CreateElement("exception"));
@@ -111,6 +155,11 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Builds the unique identifier.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns></returns>
         static string BuildUniqueIdentifier(Exception exception)
         {
             StringBuilder messageHash = new StringBuilder();
@@ -124,6 +173,11 @@ namespace Bugx.Web
             return string.Format(CultureInfo.InvariantCulture, "{0}-{1}", (uint) messageHash.ToString().GetHashCode(), (uint) stackHash.ToString().GetHashCode());
         }
 
+        /// <summary>
+        /// Removes the debug information from stack trace.
+        /// </summary>
+        /// <param name="stackTrace">The stack trace.</param>
+        /// <returns></returns>
         static string RemoveDebugInformationFromStackTrace(string stackTrace)
         {
             return Regex.Replace(stackTrace, @"\) in \w\:[/\\].+", ")");
