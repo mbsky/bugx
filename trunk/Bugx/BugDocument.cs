@@ -1,7 +1,6 @@
 using System.IO;
 using System.Xml;
-using ICSharpCode.SharpZipLib.GZip;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using System.IO.Compression;
 
 namespace Bugx.Web
 {
@@ -14,9 +13,10 @@ namespace Bugx.Web
         /// <exception cref="T:System.Xml.XmlException">The operation would not result in a well formed XML document (for example, no document element or duplicate XML declarations). </exception>
         public override void Save(Stream outStream)
         {
-            DeflaterOutputStream stream = new GZipOutputStream(outStream);
-            base.Save(stream);
-            stream.Finish();
+            using (Stream stream = new GZipStream(outStream, CompressionMode.Compress, true))
+            {
+                base.Save(stream);
+            }
         }
 
         /// <summary>
@@ -28,10 +28,7 @@ namespace Bugx.Web
         {
             using (Stream file = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
-                using (Stream stream = new GZipOutputStream(file))
-                {
-                    base.Save(stream);
-                }
+                Save(file);
             }
         }
 
@@ -44,10 +41,7 @@ namespace Bugx.Web
         {
             using (Stream file = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite))
             {
-                using (Stream stream = new GZipInputStream(file))
-                {
-                    base.Load(stream);
-                }
+                Load(file);
             }
         }
 
@@ -58,8 +52,10 @@ namespace Bugx.Web
         /// <exception cref="T:System.Xml.XmlException">There is a load or parse error in the XML. In this case, the document remains empty. </exception>
         public override void Load(Stream inStream)
         {
-            Stream stream = new GZipInputStream(inStream);
-            base.Load(stream);
+            using (Stream stream = new GZipStream(inStream, CompressionMode.Decompress, true))
+            {
+                this.Load(stream);
+            }
         }
     }
 }
