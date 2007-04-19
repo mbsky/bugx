@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
-using ICSharpCode.SharpZipLib.GZip;
 
 namespace Bugx.Web
 {
@@ -139,20 +138,8 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveException(XmlNode root, HttpContext context)
         {
-            XmlNode exception = root.AppendChild(root.OwnerDocument.CreateElement("exception"));
-            using (MemoryStream data = new MemoryStream())
-            {
-                using (GZipOutputStream writer = new GZipOutputStream(data))
-                {
-                    BinaryFormatter serializer = new BinaryFormatter();
-                    serializer.Serialize(writer, context.Error);
-                    writer.Finish();
-                    data.Seek(0, SeekOrigin.Begin);
-                    byte[] buffer = new byte[data.Length];
-                    data.Read(buffer, 0, buffer.Length);
-                    exception.AppendChild(root.OwnerDocument.CreateCDataSection(Convert.ToBase64String(buffer, Base64FormattingOptions.None)));
-                }
-            }
+            root.AppendChild(root.OwnerDocument.CreateElement("exception"))
+                .AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(context.Error)));
         }
 
         /// <summary>

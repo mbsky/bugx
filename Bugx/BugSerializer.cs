@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using ICSharpCode.SharpZipLib.GZip;
+using System.IO.Compression;
 
 namespace Bugx.Web
 {
@@ -15,10 +15,11 @@ namespace Bugx.Web
         public static string Serialize(object graph)
         {
             using (MemoryStream serializedData = new MemoryStream())
-            using (GZipOutputStream writer = new GZipOutputStream(serializedData))
             {
-                new BinaryFormatter().Serialize(writer, graph);
-                writer.Finish();
+                using (Stream writer = new GZipStream(serializedData, CompressionMode.Compress, true))
+                {
+                    new BinaryFormatter().Serialize(writer, graph);
+                }
                 return Convert.ToBase64String(serializedData.ToArray());
             }
         }
@@ -33,8 +34,8 @@ namespace Bugx.Web
         /// <exception cref="System.ArgumentNullException">The serializationStream is null.</exception>
         public static object Deserialize(string serializedData)
         {
-            using (MemoryStream buffer = new MemoryStream(Convert.FromBase64String(serializedData)))
-            using (GZipInputStream reader = new GZipInputStream(buffer))
+            using (Stream buffer = new MemoryStream(Convert.FromBase64String(serializedData)))
+            using (Stream reader = new GZipStream(buffer, CompressionMode.Decompress))
             {
                 return new BinaryFormatter().Deserialize(reader);
             }
