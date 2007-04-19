@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -41,6 +41,7 @@
     <Compile Include="BugDocument.cs" />
     <Compile Include="BugSerializer.cs" />
     <Compile Include="ErrorModule.cs" />
+    <Compile Include="Properties\FxCop.cs" />
     <Compile Include="HttpValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="key.snk" />
