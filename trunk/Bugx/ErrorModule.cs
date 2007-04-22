@@ -28,6 +28,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
+using System.Collections;
 
 namespace Bugx.Web
 {
@@ -84,6 +85,7 @@ namespace Bugx.Web
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
             SaveUrl(root, context);
             SaveRequest(root, context);
+            SaveCache(root, context);
             SaveSession(root, context);
             SaveException(root, context);
             DirectoryInfo destination =
@@ -96,6 +98,37 @@ namespace Bugx.Web
         }
 
         /// <summary>
+        /// Saves the cache.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
+        static void SaveCache(XmlNode root, HttpContext context)
+        {
+            XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
+            foreach (DictionaryEntry entry in context.Cache)
+            {
+                string key = entry.Key.ToString();
+                XmlNode variable = session.AppendChild(root.OwnerDocument.CreateElement("add"));
+                variable.Attributes.Append(root.OwnerDocument.CreateAttribute("name")).Value = key;
+                if (entry.Value == null)
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = "null";
+                    continue;
+                }
+                Type variableType = entry.Value.GetType();
+                variable.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = variableType.AssemblyQualifiedName;
+                if (variableType.IsValueType || variableType == typeof(string))
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = Convert.ToString(entry.Value, CultureInfo.InvariantCulture);
+                }
+                else if (variableType.IsSerializable)
+                {
+                    variable.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(entry.Value)));
+                }
+            }
+        }
+
+        /// <summary>
         /// Saves the session.
         /// </summary>
         /// <param name="root">The root.</param>
@@ -103,7 +136,7 @@ namespace Bugx.Web
         static void SaveSession(XmlNode root, HttpContext context)
         {
             XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
-            foreach (string key in HttpContext.Current.Session.Keys)
+            foreach (string key in context.Session.Keys)
             {
                 XmlNode variable = session.AppendChild(root.OwnerDocument.CreateElement("add"));
                 variable.Attributes.Append(root.OwnerDocument.CreateAttribute("name")).Value = key;
