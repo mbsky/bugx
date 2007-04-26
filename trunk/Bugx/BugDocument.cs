@@ -78,7 +78,7 @@ namespace Bugx.Web
         {
             using (Stream stream = new GZipStream(inStream, CompressionMode.Decompress, true))
             {
-                this.Load(stream);
+                base.Load(stream);
             }
         }
     }
