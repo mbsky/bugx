@@ -23,7 +23,6 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 
 using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 using Bugx.Web;
@@ -92,7 +91,6 @@ namespace Bugx.ReBug
             BugFile.Text = fileName;
             XmlDocument xml = new BugDocument();
             xml.Load(fileName);
-            ExceptionExplorer.SelectedObject = new ExceptionDescriptor((Exception)BugSerializer.Deserialize(xml.SelectSingleNode("/bugx/exception").InnerText));
             Url.Text = xml.SelectSingleNode("/bugx/url").InnerText;
             LoadVariables(xml);
             ReBug.Enabled = true;
@@ -114,15 +112,54 @@ namespace Bugx.ReBug
             XmlNode cookie = xml.SelectSingleNode("/bugx/headers/Cookie");
             if (cookie != null)
             {
-                FillValues(HttpValueCollection.CreateCollectionFromUrlEncoded(cookie.InnerText),
+                FillValues(HttpValueCollection.CreateCollectionFromCookieHeader(cookie.InnerText),
                            VariableTree.Nodes.Add("Cookies", "Cookies", "ClosedVariableGroup", "ClosedVariableGroup"));
                 
             }
             FillValues(HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/headers")),
                        VariableTree.Nodes.Add("Headers", "Headers", "ClosedVariableGroup", "ClosedVariableGroup"));
+            
+            FillValues(xml.SelectSingleNode("/bugx/sessionVariables"),
+                       VariableTree.Nodes.Add("Session", "Session", "ClosedVariableGroup", "ClosedVariableGroup"));
+
+            FillValues(xml.SelectSingleNode("/bugx/chacheVariables"),
+                       VariableTree.Nodes.Add("Cache", "Cache", "ClosedVariableGroup", "ClosedVariableGroup"));
 
             VariableTree.ExpandAll();
             VariableTree.Nodes[0].EnsureVisible();
+
+            XmlNode exception = xml.SelectSingleNode("/bugx/exception");
+            if (exception != null)
+            {
+                ExceptionExplorer.SelectedObject = new ExceptionDescriptor((Exception)BugSerializer.Deserialize(exception.InnerText));
+                VariableTree.Nodes.Add("Exception", "Exception", "Variable", "Variable").Tag = new ObjectInspector("Exception", ExceptionExplorer.SelectedObject);
+            }
+        }
+
+        /// <summary>
+        /// Fills the values.
+        /// </summary>
+        /// <param name="xmlNode">The XML node.</param>
+        /// <param name="treeNode">The tree node.</param>
+        static void FillValues(XmlNode xmlNode, TreeNode treeNode)
+        {
+            if (xmlNode == null)
+            {
+                treeNode.Remove();
+                return;
+            }
+            foreach (XmlNode node in xmlNode.SelectNodes("add"))
+            {
+                if (node.Attributes["value"] != null)
+                {
+                    treeNode.Nodes.Add(node.Attributes["name"].Value, node.Attributes["name"].Value + ": " + node.Attributes["value"].Value, "Variable", "Variable");
+                }
+                else
+                {
+                    treeNode.Nodes.Add(node.Attributes["name"].Value, node.Attributes["name"].Value + ": " + node.Attributes["type"].Value, "Variable", "Variable")
+                                  .Tag = new ObjectInspector(node.Attributes["name"].Value, BugSerializer.Deserialize(node.InnerText));
+                }
+            }
         }
 
         /// <summary>
@@ -132,7 +169,7 @@ namespace Bugx.ReBug
         /// <param name="treeNode">The tree node.</param>
         static void FillValues(HttpValueCollection nameValue, TreeNode treeNode)
         {
-            if (nameValue.Count == 0)
+            if (nameValue == null || nameValue.Count == 0)
             {
                 treeNode.Remove();
                 return;
@@ -200,6 +237,21 @@ namespace Bugx.ReBug
             {
                 Host.Process(BugFile.Text);
                 MessageBox.Show(this, Texts.BugComplete, Texts.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Handles the AfterSelect event of the VariableTree control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.TreeViewEventArgs"/> instance containing the event data.</param>
+        private void VariableTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            ObjectInspector objectInspector = e.Node.Tag as ObjectInspector;
+            if (objectInspector != null)
+            {
+                ExceptionExplorer.SelectedObject = objectInspector.Object;
+                ExceptionInfo.Text = objectInspector.Description + " :";
             }
         }
         #endregion

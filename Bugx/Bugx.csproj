@@ -41,6 +41,7 @@
     <Compile Include="BugDocument.cs" />
     <Compile Include="BugSerializer.cs" />
     <Compile Include="ErrorModule.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Properties\FxCop.cs" />
     <Compile Include="HttpValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

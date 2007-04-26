@@ -22,6 +22,7 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
 
 using System;
+using System.Web;
 using System.Web.UI;
 using Bugx.Test.Model;
 
@@ -41,6 +42,8 @@ public partial class _Default : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Response.AppendCookie(new HttpCookie("Cookie1Name", "Cookie1Value"));
+        Response.AppendCookie(new HttpCookie("CookieSpecial", "test&lol;coucou"));
         if (IsPostBack && SessionValue == null)
         {
             throw new Exception("Session expired");

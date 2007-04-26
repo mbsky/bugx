@@ -31,7 +31,6 @@ namespace Bugx.ReBug
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.GroupBox BugScenario;
             System.Windows.Forms.Label BugFileLabel;
-            System.Windows.Forms.GroupBox ExceptionInfo;
             System.Windows.Forms.GroupBox EnvironmentInfo;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.Label label1;
@@ -39,6 +38,7 @@ namespace Bugx.ReBug
             System.Windows.Forms.Panel CommandPannel;
             this.LoadBugFile = new System.Windows.Forms.Button();
             this.BugFile = new System.Windows.Forms.Label();
+            this.ExceptionInfo = new System.Windows.Forms.GroupBox();
             this.ExceptionExplorer = new System.Windows.Forms.PropertyGrid();
             this.VariableTree = new System.Windows.Forms.TreeView();
             this.Images = new System.Windows.Forms.ImageList(this.components);
@@ -49,13 +49,12 @@ namespace Bugx.ReBug
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             BugScenario = new System.Windows.Forms.GroupBox();
             BugFileLabel = new System.Windows.Forms.Label();
-            ExceptionInfo = new System.Windows.Forms.GroupBox();
             EnvironmentInfo = new System.Windows.Forms.GroupBox();
             label1 = new System.Windows.Forms.Label();
             UrlLabel = new System.Windows.Forms.Label();
             CommandPannel = new System.Windows.Forms.Panel();
             BugScenario.SuspendLayout();
-            ExceptionInfo.SuspendLayout();
+            this.ExceptionInfo.SuspendLayout();
             EnvironmentInfo.SuspendLayout();
             CommandPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -107,15 +106,15 @@ namespace Bugx.ReBug
             // 
             // ExceptionInfo
             // 
-            ExceptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.ExceptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            ExceptionInfo.Controls.Add(this.ExceptionExplorer);
-            ExceptionInfo.Location = new System.Drawing.Point(12, 375);
-            ExceptionInfo.Name = "ExceptionInfo";
-            ExceptionInfo.Size = new System.Drawing.Size(748, 279);
-            ExceptionInfo.TabIndex = 3;
-            ExceptionInfo.TabStop = false;
-            ExceptionInfo.Text = "Exception :";
+            this.ExceptionInfo.Controls.Add(this.ExceptionExplorer);
+            this.ExceptionInfo.Location = new System.Drawing.Point(12, 375);
+            this.ExceptionInfo.Name = "ExceptionInfo";
+            this.ExceptionInfo.Size = new System.Drawing.Size(748, 279);
+            this.ExceptionInfo.TabIndex = 3;
+            this.ExceptionInfo.TabStop = false;
+            this.ExceptionInfo.Text = "Exception :";
             // 
             // ExceptionExplorer
             // 
@@ -156,6 +155,7 @@ namespace Bugx.ReBug
             this.VariableTree.SelectedImageIndex = 0;
             this.VariableTree.Size = new System.Drawing.Size(663, 159);
             this.VariableTree.TabIndex = 3;
+            this.VariableTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.VariableTree_AfterSelect);
             // 
             // Images
             // 
@@ -247,7 +247,7 @@ namespace Bugx.ReBug
             this.ClientSize = new System.Drawing.Size(772, 700);
             this.Controls.Add(CommandPannel);
             this.Controls.Add(EnvironmentInfo);
-            this.Controls.Add(ExceptionInfo);
+            this.Controls.Add(this.ExceptionInfo);
             this.Controls.Add(BugScenario);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -257,7 +257,7 @@ namespace Bugx.ReBug
             this.Text = "ReBug";
             BugScenario.ResumeLayout(false);
             BugScenario.PerformLayout();
-            ExceptionInfo.ResumeLayout(false);
+            this.ExceptionInfo.ResumeLayout(false);
             EnvironmentInfo.ResumeLayout(false);
             EnvironmentInfo.PerformLayout();
             CommandPannel.ResumeLayout(false);
@@ -279,6 +279,7 @@ namespace Bugx.ReBug
         private System.Windows.Forms.ImageList Images;
         private System.Windows.Forms.Button ReBug;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.GroupBox ExceptionInfo;
     }
 }
 
