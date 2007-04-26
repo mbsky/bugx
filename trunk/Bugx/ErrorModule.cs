@@ -29,6 +29,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using System.Collections;
+using BugEventHandler = System.EventHandler<Bugx.Web.BugEventArgs>;
 
 namespace Bugx.Web
 {
@@ -83,18 +84,36 @@ namespace Bugx.Web
             HttpContext context = ((HttpApplication) sender).Context;
             BugDocument bug = new BugDocument();
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
+            BugEventArgs bugEventArgs = new BugEventArgs();
+            bugEventArgs.Bug = bug;
             SaveUrl(root, context);
             SaveRequest(root, context);
             SaveCache(root, context);
             SaveSession(root, context);
             SaveException(root, context);
-            DirectoryInfo destination =
-                new DirectoryInfo(context.Request.MapPath("~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error)));
+            OnError(bugEventArgs);
+            string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error);
+            DirectoryInfo destination = new DirectoryInfo(context.Request.MapPath(bugVirtualPath));
             if (!destination.Exists)
             {
                 destination.Create();
             }
-            bug.Save(destination.FullName + DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx");
+            string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
+            bug.Save(destination.FullName + fileName);
+            bugEventArgs.BugUri = BuildBugUri(bugVirtualPath + "/" + fileName);
+            OnErrorComplete(bugEventArgs);
+        }
+
+        static Uri BuildBugUri(string bugVirtualPath)
+        {
+            HttpContext context = HttpContext.Current;
+            string applicationPath = context.Request.ApplicationPath;
+            if (!applicationPath.EndsWith("/"))
+            {
+                applicationPath += "/";
+            }
+            bugVirtualPath =  new Uri(context.Request.Url, bugVirtualPath.Replace("~/", applicationPath)).ToString();
+            return new Uri(Regex.Replace(bugVirtualPath, "^(https?)://", "bugx://$1/", RegexOptions.IgnoreCase));
         }
 
         /// <summary>
@@ -104,7 +123,7 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveCache(XmlNode root, HttpContext context)
         {
-            XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
+            XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("cacheVariables"));
             foreach (DictionaryEntry entry in context.Cache)
             {
                 string key = entry.Key.ToString();
@@ -222,6 +241,40 @@ namespace Bugx.Web
         static string RemoveDebugInformationFromStackTrace(string stackTrace)
         {
             return Regex.Replace(stackTrace, @"\) in \w\:[/\\].+", ")");
+        }
+
+        public static BugEventHandler Error;
+
+        /// <summary>
+        /// Raises the error event.
+        /// </summary>
+        /// <param name="e">The <see cref="Bugx.Web.BugEventArgs"/> instance containing the event data.</param>
+        static void OnError(BugEventArgs e)
+        {
+            if (Error != null)
+            {
+                try
+                {
+                    Error(HttpContext.Current.ApplicationInstance, e);
+                }catch{}
+            }
+        }
+
+        public static BugEventHandler ErrorComplete;
+
+        /// <summary>
+        /// Raises the error complete event.
+        /// </summary>
+        /// <param name="e">The <see cref="Bugx.Web.BugEventArgs"/> instance containing the event data.</param>
+        static void OnErrorComplete(BugEventArgs e)
+        {
+            if (ErrorComplete != null)
+            {
+                try
+                {
+                    ErrorComplete(HttpContext.Current.ApplicationInstance, e);
+                }catch{}
+            }
         }
     }
 }

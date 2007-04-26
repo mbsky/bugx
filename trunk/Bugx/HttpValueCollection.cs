@@ -163,8 +163,50 @@ namespace Bugx.Web
             HttpValueCollection result = new HttpValueCollection();
             foreach (string entry in urlEncoded.Split('&'))
             {
+                if (entry.Trim().Length == 0)
+                {
+                    continue;
+                }
                 string[] nameValue = entry.Split('=');
-                result[HttpUtility.UrlDecode(nameValue[0])] = HttpUtility.UrlDecode(nameValue[1]);
+                if (nameValue.Length == 1)
+                {
+                    result[HttpUtility.UrlDecode(nameValue[0])] = string.Empty;
+                }
+                else
+                {
+                    result[HttpUtility.UrlDecode(nameValue[0])] = HttpUtility.UrlDecode(nameValue[1]);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Creates the collection from cookie header.
+        /// </summary>
+        /// <param name="cookieHeader">The cookie header.</param>
+        /// <returns></returns>
+        public static HttpValueCollection CreateCollectionFromCookieHeader(string cookieHeader)
+        {
+            if (string.IsNullOrEmpty(cookieHeader))
+            {
+                return new HttpValueCollection();
+            }
+            HttpValueCollection result = new HttpValueCollection();
+            foreach (string entry in cookieHeader.Split(';'))
+            {
+                if (entry.Trim().Length == 0)
+                {
+                    continue;
+                }
+                string[] nameValue = entry.Split('=');
+                if (nameValue.Length == 1)
+                {
+                    result[nameValue[0].Trim()] = string.Empty;
+                }
+                else
+                {
+                    result[nameValue[0].Trim()] = string.Join("=", nameValue, 1, nameValue.Length - 1);
+                }
             }
             return result;
         }

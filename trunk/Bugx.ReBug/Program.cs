@@ -65,11 +65,22 @@ namespace Bugx.ReBug
         /// <returns></returns>
         private static string Download(Uri fileName)
         {
-            fileName = new Uri(Regex.Replace(fileName.ToString(), @"bugx://(\w+)/(.+)", "$1://$2", RegexOptions.IgnoreCase));
+            fileName = new Uri(Regex.Replace(fileName.ToString(), @"^bugx://(\w+)/", "$1://", RegexOptions.IgnoreCase));
             string destinationFile = DetermineDestinationFile(fileName);
             if (!File.Exists(destinationFile))
             {
-                Download(fileName, destinationFile);
+                try
+                {
+                    Download(fileName, destinationFile);
+                }
+                catch(WebException exception)
+                {
+                    if (exception.Status != WebExceptionStatus.ProtocolError)
+                    {
+                        throw;
+                    }
+                    return string.Empty;
+                }
             }
             return destinationFile;
         }
@@ -120,6 +131,7 @@ namespace Bugx.ReBug
             Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx", string.Empty, "URL: bugx Protocol");
             Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx", "URL Protocol", string.Empty);
             Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx\shell\open\command", string.Empty, string.Format("\"{0}\" \"%1\"", new Uri(Assembly.GetCallingAssembly().CodeBase).LocalPath));
+            Registry.SetValue(@"HKEY_CLASSES_ROOT\.bugx", string.Empty, "bugx");
         }
     }
 }
