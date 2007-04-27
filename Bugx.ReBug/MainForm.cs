@@ -134,6 +134,9 @@ namespace Bugx.ReBug
                 ExceptionExplorer.SelectedObject = new ExceptionDescriptor((Exception)BugSerializer.Deserialize(exception.InnerText));
                 VariableTree.Nodes.Add("Exception", "Exception", "Variable", "Variable").Tag = new ObjectInspector("Exception", ExceptionExplorer.SelectedObject);
             }
+            ReBugContext context = new ReBugContext(xml);
+            context.Headers["lol"] = "125";
+            ExceptionExplorer.SelectedObject = new PropertyGridInspector(context);
         }
 
         /// <summary>
@@ -235,7 +238,7 @@ namespace Bugx.ReBug
             }
             if (Debugger.IsAttached)
             {
-                Host.Process(BugFile.Text);
+                Host.Process(BugFile.Text, new ReBugContext(null));
                 MessageBox.Show(this, Texts.BugComplete, Texts.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

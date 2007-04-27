@@ -27,10 +27,12 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using System.Runtime.Serialization;
+using System.Diagnostics;
 
 namespace Bugx.Web
 {
     [Serializable]
+    [DebuggerDisplay("Count = {Count}")]
     public class HttpValueCollection : NameValueCollection
     {
         /// <summary>

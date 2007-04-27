@@ -30,7 +30,7 @@ namespace Bugx.ReBug
 {
     public class BugxHost : MarshalByRefObject
     {
-        public void Process(string fileName)
+        public void Process(string fileName, ReBugContext context)
         {
             ErrorModule.IsReBug = true;
             XmlDocument xml = new BugDocument();
