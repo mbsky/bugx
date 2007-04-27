@@ -102,23 +102,23 @@ namespace Bugx.ReBug
         }
         public override string GetLocalAddress()
         {
-            return _RequestUri.Host;
+            return _Context.Url.Host;
         }
         public override int GetLocalPort()
         {
-            return _RequestUri.Port;
+            return _Context.Url.Port;
         }
         public override string GetProtocol()
         {
-            return _RequestUri.Scheme;
+            return _Context.Url.Scheme;
         }
         public override bool IsSecure()
         {
-            return string.Compare(_RequestUri.Scheme, "https", true, CultureInfo.InvariantCulture) == 0;
+            return string.Compare(_Context.Url.Scheme, "https", true, CultureInfo.InvariantCulture) == 0;
         }
         public override string GetPathInfo()
         {
-            return _PathInfo;
+            return _Context.PathInfo;
         }
         public override bool IsEntireEntityBodyIsPreloaded()
         {
@@ -134,52 +134,27 @@ namespace Bugx.ReBug
             return PostedData;
         }
 
+        bool _IsInitialized;
+
         public override string GetKnownRequestHeader(int index)
         {
-            if (_SessionVariables != null)
+            if (!_IsInitialized)
             {
-                HttpSessionState session = HttpContext.Current.Session;
-                session.Clear();
-                foreach (XmlNode sessionVariable in _SessionVariables)
-                {
-                    try
-                    {
-                        Type type = Type.GetType(sessionVariable.Attributes["type"].Value);
-                        if (type != null && (type.IsValueType || type == typeof(string)))
-                        {
-                            session[sessionVariable.Attributes["name"].Value] = Convert.ChangeType(sessionVariable.Attributes["value"].Value, type, CultureInfo.InvariantCulture);
-                        }
-                        else
-                        {
-                            session[sessionVariable.Attributes["name"].Value] = BugSerializer.Deserialize(sessionVariable.InnerText);
-                        }
-                    }
-                    catch(SerializationException)
-                    {
-                        /*
-                         * No error when we deserialize session variable, this only support for some specific exception scenarios
-                         */
-                    }
-                }
-                _SessionVariables = null;
+                _IsInitialized = true;
+                _Context.RestoreEnvironment();
             }
-            return _HeaderCollection[_HeaderList[index]];
+            return _Context.Headers[_HeaderList[index]];
         }
 
-        Uri _RequestUri;
-        string _PathInfo;
-        HttpValueCollection _HeaderCollection;
-        XmlNodeList _SessionVariables;
-        public BugxWorkerRequest(Uri requestUri, string pathInfo, HttpValueCollection query, HttpValueCollection post, HttpValueCollection headers, XmlNodeList sessionVariables, TextWriter output)
-            : base(requestUri.AbsolutePath.Substring(1), query.ToString(), output)
+        ReBugContext _Context;
+
+        public BugxWorkerRequest(ReBugContext context, TextWriter output)
+            : base(context.Url.AbsolutePath.Substring(1), context.QueryString.ToString(), output)
         {
-            _PathInfo = pathInfo;
-            _RequestUri = requestUri;
-            _HeaderCollection = headers;
-            _SessionVariables = sessionVariables;
-            if (post.Count > 0)
+            _Context = context;
+            if (context.Form.Count > 0)
             {
-                PostedData = Encoding.UTF8.GetBytes(post.ToString());
+                PostedData = Encoding.UTF8.GetBytes(context.Form.ToString());
             }
         }
     }
