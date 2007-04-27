@@ -28,35 +28,24 @@ namespace Bugx.ReBug
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.GroupBox BugScenario;
             System.Windows.Forms.Label BugFileLabel;
-            System.Windows.Forms.GroupBox EnvironmentInfo;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label UrlLabel;
             System.Windows.Forms.Panel CommandPannel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LoadBugFile = new System.Windows.Forms.Button();
             this.BugFile = new System.Windows.Forms.Label();
-            this.ExceptionInfo = new System.Windows.Forms.GroupBox();
-            this.ExceptionExplorer = new System.Windows.Forms.PropertyGrid();
-            this.VariableTree = new System.Windows.Forms.TreeView();
-            this.Images = new System.Windows.Forms.ImageList(this.components);
-            this.Url = new System.Windows.Forms.Label();
             this.ReBug = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.ExceptionInfo = new System.Windows.Forms.GroupBox();
+            this.ExceptionExplorer = new System.Windows.Forms.PropertyGrid();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             BugScenario = new System.Windows.Forms.GroupBox();
             BugFileLabel = new System.Windows.Forms.Label();
-            EnvironmentInfo = new System.Windows.Forms.GroupBox();
-            label1 = new System.Windows.Forms.Label();
-            UrlLabel = new System.Windows.Forms.Label();
             CommandPannel = new System.Windows.Forms.Panel();
             BugScenario.SuspendLayout();
-            this.ExceptionInfo.SuspendLayout();
-            EnvironmentInfo.SuspendLayout();
             CommandPannel.SuspendLayout();
+            this.ExceptionInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,95 +93,6 @@ namespace Bugx.ReBug
             BugFileLabel.TabIndex = 0;
             BugFileLabel.Text = "Bug File :";
             // 
-            // ExceptionInfo
-            // 
-            this.ExceptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExceptionInfo.Controls.Add(this.ExceptionExplorer);
-            this.ExceptionInfo.Location = new System.Drawing.Point(12, 375);
-            this.ExceptionInfo.Name = "ExceptionInfo";
-            this.ExceptionInfo.Size = new System.Drawing.Size(748, 279);
-            this.ExceptionInfo.TabIndex = 3;
-            this.ExceptionInfo.TabStop = false;
-            this.ExceptionInfo.Text = "Exception :";
-            // 
-            // ExceptionExplorer
-            // 
-            this.ExceptionExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExceptionExplorer.Location = new System.Drawing.Point(12, 19);
-            this.ExceptionExplorer.Name = "ExceptionExplorer";
-            this.ExceptionExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.ExceptionExplorer.Size = new System.Drawing.Size(730, 254);
-            this.ExceptionExplorer.TabIndex = 1;
-            // 
-            // EnvironmentInfo
-            // 
-            EnvironmentInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            EnvironmentInfo.Controls.Add(this.VariableTree);
-            EnvironmentInfo.Controls.Add(label1);
-            EnvironmentInfo.Controls.Add(this.Url);
-            EnvironmentInfo.Controls.Add(UrlLabel);
-            EnvironmentInfo.Location = new System.Drawing.Point(12, 162);
-            EnvironmentInfo.Name = "EnvironmentInfo";
-            EnvironmentInfo.Size = new System.Drawing.Size(748, 207);
-            EnvironmentInfo.TabIndex = 4;
-            EnvironmentInfo.TabStop = false;
-            EnvironmentInfo.Text = "Environment :";
-            // 
-            // VariableTree
-            // 
-            this.VariableTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.VariableTree.ImageIndex = 0;
-            this.VariableTree.ImageList = this.Images;
-            this.VariableTree.Location = new System.Drawing.Point(79, 42);
-            this.VariableTree.Name = "VariableTree";
-            this.VariableTree.SelectedImageIndex = 0;
-            this.VariableTree.Size = new System.Drawing.Size(663, 159);
-            this.VariableTree.TabIndex = 3;
-            this.VariableTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.VariableTree_AfterSelect);
-            // 
-            // Images
-            // 
-            this.Images.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Images.ImageStream")));
-            this.Images.TransparentColor = System.Drawing.Color.Transparent;
-            this.Images.Images.SetKeyName(0, "ClosedVariableGroup");
-            this.Images.Images.SetKeyName(1, "OpenVariableGroup");
-            this.Images.Images.SetKeyName(2, "Variable");
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(7, 42);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(56, 13);
-            label1.TabIndex = 2;
-            label1.Text = "Variables :";
-            // 
-            // Url
-            // 
-            this.Url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.Url.AutoEllipsis = true;
-            this.Url.Location = new System.Drawing.Point(76, 20);
-            this.Url.Name = "Url";
-            this.Url.Size = new System.Drawing.Size(666, 12);
-            this.Url.TabIndex = 1;
-            // 
-            // UrlLabel
-            // 
-            UrlLabel.AutoSize = true;
-            UrlLabel.Location = new System.Drawing.Point(7, 20);
-            UrlLabel.Name = "UrlLabel";
-            UrlLabel.Size = new System.Drawing.Size(35, 13);
-            UrlLabel.TabIndex = 0;
-            UrlLabel.Text = "URL :";
-            // 
             // CommandPannel
             // 
             CommandPannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -226,6 +126,29 @@ namespace Bugx.ReBug
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // ExceptionInfo
+            // 
+            this.ExceptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExceptionInfo.Controls.Add(this.ExceptionExplorer);
+            this.ExceptionInfo.Location = new System.Drawing.Point(12, 162);
+            this.ExceptionInfo.Name = "ExceptionInfo";
+            this.ExceptionInfo.Size = new System.Drawing.Size(748, 492);
+            this.ExceptionInfo.TabIndex = 3;
+            this.ExceptionInfo.TabStop = false;
+            this.ExceptionInfo.Text = "Exception :";
+            // 
+            // ExceptionExplorer
+            // 
+            this.ExceptionExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExceptionExplorer.Location = new System.Drawing.Point(12, 19);
+            this.ExceptionExplorer.Name = "ExceptionExplorer";
+            this.ExceptionExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
+            this.ExceptionExplorer.Size = new System.Drawing.Size(730, 467);
+            this.ExceptionExplorer.TabIndex = 1;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -246,7 +169,6 @@ namespace Bugx.ReBug
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 700);
             this.Controls.Add(CommandPannel);
-            this.Controls.Add(EnvironmentInfo);
             this.Controls.Add(this.ExceptionInfo);
             this.Controls.Add(BugScenario);
             this.Controls.Add(this.pictureBox1);
@@ -257,10 +179,8 @@ namespace Bugx.ReBug
             this.Text = "ReBug";
             BugScenario.ResumeLayout(false);
             BugScenario.PerformLayout();
-            this.ExceptionInfo.ResumeLayout(false);
-            EnvironmentInfo.ResumeLayout(false);
-            EnvironmentInfo.PerformLayout();
             CommandPannel.ResumeLayout(false);
+            this.ExceptionInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -274,9 +194,6 @@ namespace Bugx.ReBug
         private System.Windows.Forms.Button LoadBugFile;
         private System.Windows.Forms.Label BugFile;
         private System.Windows.Forms.PropertyGrid ExceptionExplorer;
-        private System.Windows.Forms.Label Url;
-        private System.Windows.Forms.TreeView VariableTree;
-        private System.Windows.Forms.ImageList Images;
         private System.Windows.Forms.Button ReBug;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.GroupBox ExceptionInfo;

@@ -23,6 +23,7 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Bugx.Test.Model
 {
@@ -57,6 +58,7 @@ namespace Bugx.Test.Model
     }
 
     [Serializable]
+    [DebuggerDisplay("Product {Id}: {Name}")]
     public class Product
     {
         int? _Id;

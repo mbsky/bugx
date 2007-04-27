@@ -30,18 +30,10 @@ namespace Bugx.ReBug
 {
     public class BugxHost : MarshalByRefObject
     {
-        public void Process(string fileName, ReBugContext context)
+        public void Process(ReBugContext context)
         {
             ErrorModule.IsReBug = true;
-            XmlDocument xml = new BugDocument();
-            xml.Load(fileName);
-            HttpWorkerRequest swr = new BugxWorkerRequest(new Uri(xml.SelectSingleNode("/bugx/url").InnerText),
-                                                        xml.SelectSingleNode("/bugx/pathInfo").InnerText,
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/queryString")),
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/form")),
-                                                        HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/headers")),
-                                                        xml.SelectNodes("/bugx/sessionVariables/add"),
-                                                        Console.Out);
+            HttpWorkerRequest swr = new BugxWorkerRequest(context, Console.Out);
             HttpRuntime.ProcessRequest(swr);
         }
 
