@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -40,6 +41,9 @@
   <ItemGroup>
     <Compile Include="BugDocument.cs" />
     <Compile Include="BugSerializer.cs" />
+    <Compile Include="Configuration\BugxConfiguration.cs" />
+    <Compile Include="Configuration\DataToSave.cs" />
+    <Compile Include="Configuration\XmlSectionHandler.cs" />
     <Compile Include="ErrorModule.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Properties\FxCop.cs" />

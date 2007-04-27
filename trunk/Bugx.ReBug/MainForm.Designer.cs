@@ -123,7 +123,7 @@ namespace Bugx.ReBug
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.ExceptionExplorer.Location = new System.Drawing.Point(12, 19);
             this.ExceptionExplorer.Name = "ExceptionExplorer";
-            this.ExceptionExplorer.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
+            this.ExceptionExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
             this.ExceptionExplorer.Size = new System.Drawing.Size(730, 254);
             this.ExceptionExplorer.TabIndex = 1;
             // 
