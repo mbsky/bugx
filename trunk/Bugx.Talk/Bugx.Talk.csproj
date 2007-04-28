@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\jabber-net.dll" />
+    <Content Include="libs\jabber-net.dll.license.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Texts.resx">
