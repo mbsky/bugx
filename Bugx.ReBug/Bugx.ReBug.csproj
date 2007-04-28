@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="BugxHost.cs" />
     <Compile Include="BugxWorkerRequest.cs" />
-    <Compile Include="ExceptionDescriptor.cs" />
+    <Compile Include="PropertyGridInspector.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,11 +76,8 @@
     <Content Include="Images\bug32.png" />
     <Content Include="Images\bug48.png" />
     <Content Include="Images\bug64.png" />
-    <Content Include="Images\ClosedVariableGroup.png" />
     <Content Include="Images\Licence.txt" />
     <Content Include="Images\Logo.png" />
-    <Content Include="Images\OpenVariableGroup.png" />
-    <Content Include="Images\Variable.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bugx\Bugx.csproj">
