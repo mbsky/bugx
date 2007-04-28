@@ -31,21 +31,22 @@ namespace Bugx.ReBug
             System.Windows.Forms.GroupBox BugScenario;
             System.Windows.Forms.Label BugFileLabel;
             System.Windows.Forms.Panel CommandPannel;
+            System.Windows.Forms.GroupBox ContextInfo;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LoadBugFile = new System.Windows.Forms.Button();
             this.BugFile = new System.Windows.Forms.Label();
             this.ReBug = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.ExceptionInfo = new System.Windows.Forms.GroupBox();
-            this.ExceptionExplorer = new System.Windows.Forms.PropertyGrid();
+            this.ContextExplorer = new System.Windows.Forms.PropertyGrid();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             BugScenario = new System.Windows.Forms.GroupBox();
             BugFileLabel = new System.Windows.Forms.Label();
             CommandPannel = new System.Windows.Forms.Panel();
+            ContextInfo = new System.Windows.Forms.GroupBox();
             BugScenario.SuspendLayout();
             CommandPannel.SuspendLayout();
-            this.ExceptionInfo.SuspendLayout();
+            ContextInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,28 +127,28 @@ namespace Bugx.ReBug
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // ExceptionInfo
+            // ContextInfo
             // 
-            this.ExceptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            ContextInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExceptionInfo.Controls.Add(this.ExceptionExplorer);
-            this.ExceptionInfo.Location = new System.Drawing.Point(12, 162);
-            this.ExceptionInfo.Name = "ExceptionInfo";
-            this.ExceptionInfo.Size = new System.Drawing.Size(748, 492);
-            this.ExceptionInfo.TabIndex = 3;
-            this.ExceptionInfo.TabStop = false;
-            this.ExceptionInfo.Text = "Exception :";
+            ContextInfo.Controls.Add(this.ContextExplorer);
+            ContextInfo.Location = new System.Drawing.Point(12, 162);
+            ContextInfo.Name = "ContextInfo";
+            ContextInfo.Size = new System.Drawing.Size(748, 492);
+            ContextInfo.TabIndex = 3;
+            ContextInfo.TabStop = false;
+            ContextInfo.Text = "Context :";
             // 
-            // ExceptionExplorer
+            // ContextExplorer
             // 
-            this.ExceptionExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.ContextExplorer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExceptionExplorer.Location = new System.Drawing.Point(12, 19);
-            this.ExceptionExplorer.Name = "ExceptionExplorer";
-            this.ExceptionExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.ExceptionExplorer.Size = new System.Drawing.Size(730, 467);
-            this.ExceptionExplorer.TabIndex = 1;
+            this.ContextExplorer.Location = new System.Drawing.Point(12, 19);
+            this.ContextExplorer.Name = "ContextExplorer";
+            this.ContextExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
+            this.ContextExplorer.Size = new System.Drawing.Size(730, 467);
+            this.ContextExplorer.TabIndex = 1;
             // 
             // pictureBox1
             // 
@@ -169,7 +170,7 @@ namespace Bugx.ReBug
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 700);
             this.Controls.Add(CommandPannel);
-            this.Controls.Add(this.ExceptionInfo);
+            this.Controls.Add(ContextInfo);
             this.Controls.Add(BugScenario);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -180,7 +181,7 @@ namespace Bugx.ReBug
             BugScenario.ResumeLayout(false);
             BugScenario.PerformLayout();
             CommandPannel.ResumeLayout(false);
-            this.ExceptionInfo.ResumeLayout(false);
+            ContextInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,10 +194,9 @@ namespace Bugx.ReBug
         private System.Windows.Forms.OpenFileDialog OpenFile;
         private System.Windows.Forms.Button LoadBugFile;
         private System.Windows.Forms.Label BugFile;
-        private System.Windows.Forms.PropertyGrid ExceptionExplorer;
+        private System.Windows.Forms.PropertyGrid ContextExplorer;
         private System.Windows.Forms.Button ReBug;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.GroupBox ExceptionInfo;
     }
 }
 

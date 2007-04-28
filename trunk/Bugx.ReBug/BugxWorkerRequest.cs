@@ -21,18 +21,11 @@ the library `BUGx' (An Asp.Net Bug Tracking tool) written
 by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
 
-using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Web.Hosting;
-using System.Web.SessionState;
-using System.Web;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml;
-using Bugx.Web;
 using System.IO;
 using System.Globalization;
-using System.Runtime.Serialization;
 
 namespace Bugx.ReBug
 {
