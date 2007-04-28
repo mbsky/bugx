@@ -94,7 +94,7 @@ namespace Bugx.ReBug
             XmlDocument xml = new BugDocument();
             xml.Load(fileName);
             CurrentContext = ReBugContext.Create(xml);
-            ExceptionExplorer.SelectedObject = new PropertyGridInspector(CurrentContext);
+            ContextExplorer.SelectedObject = new PropertyGridInspector(CurrentContext);
             ReBug.Enabled = true;
         }
         #endregion
