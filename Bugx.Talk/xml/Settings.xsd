@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="Settings"
+                  targetNamespace="http://www.wavenet.be/bugx/talk/Settings.xsd"
+                  elementFormDefault="qualified"
+                  xmlns="http://www.wavenet.be/bugx/talk/Settings.xsd"
+                  xmlns:mstns="http://www.wavenet.be/bugx/talk/Settings.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="bugx.talk">
+    <xsd:annotation>
+      <xsd:documentation>
+        Bugx Talk configuration
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="network" type="Network" >
+          <xsd:annotation>
+            <xsd:documentation>Network configuration</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="subscriptions" type="Subscriptions" >
+          <xsd:unique name="Mail-address-should-be-unique">
+            <xsd:selector xpath="mstns:subscription" />
+            <xsd:field xpath="." />
+          </xsd:unique>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="Network">
+    <xsd:all>
+      <xsd:element name="user" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            Username to log into XMPP service
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="password" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            Password to log into XMPP service
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="server" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            Server to log into XMPP service (eg:gmail.com)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="networkHost" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>
+            NetworkHost to log into XMPP service (eg:talk.google.com)
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="Subscriptions">
+    <xsd:annotation>
+      <xsd:documentation>Contains all user who want to receive bug information</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="subscription" type="xsd:string" minOccurs="0" maxOccurs="unbounded" >
+        <xsd:annotation>
+          <xsd:documentation>Username</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

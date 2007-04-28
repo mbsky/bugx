@@ -243,7 +243,7 @@ namespace Bugx.Web
             return Regex.Replace(stackTrace, @"\) in \w\:[/\\].+", ")");
         }
 
-        public static BugEventHandler Error;
+        public static event BugEventHandler Error;
 
         /// <summary>
         /// Raises the error event.
@@ -260,7 +260,7 @@ namespace Bugx.Web
             }
         }
 
-        public static BugEventHandler ErrorComplete;
+        public static event BugEventHandler ErrorComplete;
 
         /// <summary>
         /// Raises the error complete event.
