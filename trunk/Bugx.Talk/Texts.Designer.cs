@@ -62,7 +62,9 @@ namespace Bugx.Talk {
         
         /// <summary>
         ///   Looks up a localized string similar to Hello {0},
-        ///I&apos;m sorry but i don&apos;t recognize your command [&quot;{1}&quot;] :&apos;(.
+        ///I&apos;m sorry but i don&apos;t recognize your command [&quot;{1}&quot;] :&apos;(
+        ///
+        ///Send ?/help to have a complete set of available commands.
         /// </summary>
         internal static string ErrorUnknownCommand {
             get {
@@ -85,7 +87,8 @@ namespace Bugx.Talk {
         ///I can help you for following commands:
         /// - *Subscribe* : Subscribe to Bugx list
         /// - *Unsubscribe* : Stop receiving Bugx information
-        /// - ? / *help*: Give you these information.
+        /// - *Subscribers* : List all subscribers
+        /// - ? / *help*: Give you these information
         ///What can I do for you? :-D.
         /// </summary>
         internal static string InfoHelpComplete {
@@ -106,11 +109,29 @@ namespace Bugx.Talk {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscribers:{0}.
+        /// </summary>
+        internal static string InfoSubscribers {
+            get {
+                return ResourceManager.GetString("InfoSubscribers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are now unsubscribed for this Bugx list..
         /// </summary>
         internal static string InfoUnsubscribeComplete {
             get {
                 return ResourceManager.GetString("InfoUnsubscribeComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no subscriber.
+        /// </summary>
+        internal static string NoSubscribers {
+            get {
+                return ResourceManager.GetString("NoSubscribers", resourceCulture);
             }
         }
         

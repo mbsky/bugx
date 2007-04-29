@@ -22,7 +22,6 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
 
 using System;
-using System.IO;
 using System.Web;
 using jabber.client;
 using jabber.protocol.client;
@@ -30,6 +29,7 @@ using bedrock.net;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using Bugx.Web;
+using System.Text;
 
 namespace Bugx.Talk
 {
@@ -72,6 +72,10 @@ namespace Bugx.Talk
         /// <param name="context">An <see cref="T:System.Web.HttpApplication"></see> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
         public void Init(HttpApplication context)
         {
+            if (ErrorModule.IsReBug)
+            {//Disable bot when it's a ReBug
+                return;
+            }
             if (_Bot != null)
             {
                 _Bot.Dispose();
@@ -119,22 +123,40 @@ namespace Bugx.Talk
 
         void Bot_OnMessage(object sender, Message msg)
         {
-            if (msg.Type != MessageType.chat)
+            if (msg.Type != MessageType.chat || string.IsNullOrEmpty(msg.Body))
             {
                 return;
             }
             string userAddress = string.Format(CultureInfo.InvariantCulture, "{0}@{1}", msg.From.User, msg.From.Server).ToLowerInvariant();
-            switch(msg.Body.ToLowerInvariant())
+            switch (msg.Body.ToLowerInvariant().Trim())
             {
                 case "subscribe":
                     SubscriptionManager.Instance.Add(userAddress);
                     _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribeComplete, msg.From.User, msg.Body, BotVersion));
                     break;
-                
+
                 case "unsubscribe":
                     SubscriptionManager.Instance.Remove(userAddress);
                     _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoUnsubscribeComplete, msg.From.User, msg.Body, BotVersion));
-                    break;                
+                    break;
+
+                case "subscribers":
+                    string list;
+                    if (SubscriptionManager.Instance.Count > 0)
+                    {
+                        StringBuilder listDetail = new StringBuilder();
+                        foreach (string user in SubscriptionManager.Instance)
+                        {
+                            listDetail.AppendFormat("\r\n- {0}", user);
+                        }
+                        list = listDetail.ToString();
+                    }
+                    else
+                    {
+                        list = Texts.NoSubscribers;
+                    }
+                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribers, list));
+                    break;
 
                 case "help":
                 case "?":

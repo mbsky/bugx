@@ -119,7 +119,9 @@
   </resheader>
   <data name="ErrorUnknownCommand" xml:space="preserve">
     <value>Hello {0},
-I'm sorry but i don't recognize your command ["{1}"] :'(</value>
+I'm sorry but i don't recognize your command ["{1}"] :'(
+
+Send ?/help to have a complete set of available commands</value>
   </data>
   <data name="InfoHelpComplete" xml:space="preserve">
     <value>Welcome {0},
@@ -127,7 +129,8 @@ I'm Bugx Talk version {2}.
 I can help you for following commands:
  - *Subscribe* : Subscribe to Bugx list
  - *Unsubscribe* : Stop receiving Bugx information
- - ? / *help*: Give you these information.
+ - *Subscribers* : List all subscribers
+ - ? / *help*: Give you these information
 What can I do for you? :-D</value>
   </data>
   <data name="InfoSubscribeComplete" xml:space="preserve">
@@ -137,6 +140,12 @@ _Note: If you want to stop receiving these messages, simply tell me *Unsubscribe
   </data>
   <data name="InfoUnsubscribeComplete" xml:space="preserve">
     <value>You are now unsubscribed for this Bugx list.</value>
+  </data>
+  <data name="InfoSubscribers" xml:space="preserve">
+    <value>Subscribers:{0}</value>
+  </data>
+  <data name="NoSubscribers" xml:space="preserve">
+    <value>There is no subscriber</value>
   </data>
   <data name="WarningErrorInProduction" xml:space="preserve">
     <value>Error in production:
