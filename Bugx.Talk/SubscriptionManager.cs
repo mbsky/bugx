@@ -28,7 +28,6 @@ using System.Xml.XPath;
 using System.Web.Caching;
 using System.Globalization;
 using System.Xml;
-using System.Xml.Schema;
 
 namespace Bugx.Talk
 {
@@ -144,16 +143,10 @@ namespace Bugx.Talk
             using (FileStream file = new FileStream(_SettingFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 XmlDocument document = new XmlDocument();
-                if (file.Length > 0)
-                {
-                    document.Load(file);
-                }
-                if (document.DocumentElement == null)
-                {
-                    document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", string.Empty));
-                    document.AppendChild(document.CreateElement("subscriptions"));
-                }
-                document.DocumentElement.AppendChild(document.CreateElement("subscription")).InnerText = item;
+                document.Load(file);
+                XmlNamespaceManager namespaceManager = new XmlNamespaceManager(document.NameTable);
+                namespaceManager.AddNamespace("bugx", XmlNameSpace);
+                document.SelectSingleNode("/bugx:bugx.talk/bugx:subscriptions", namespaceManager).AppendChild(document.CreateElement("subscription", XmlNameSpace)).InnerText = item;
                 file.SetLength(0);
                 document.Save(file);
             }
@@ -185,7 +178,9 @@ namespace Bugx.Talk
                 XmlDocument document = new XmlDocument();
                 document.Load(file);
                 XPathNavigator xpath = document.CreateNavigator();
-                foreach (XPathNavigator node in xpath.Select(string.Format(CultureInfo.InvariantCulture, "/subscriptions/subscription[.='{0}']", name)))
+                XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xpath.NameTable);
+                namespaceManager.AddNamespace("bugx", XmlNameSpace);
+                foreach (XPathNavigator node in xpath.Select(string.Format(CultureInfo.InvariantCulture, "/bugx:bugx.talk/bugx:subscriptions/bugx:subscription[.='{0}']", name), namespaceManager))
                 {
                     node.DeleteSelf();
                 }

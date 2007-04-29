@@ -62,9 +62,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="xml\Settings.xsd">
+    <EmbeddedResource Include="xml\Settings.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <None Include="xml\Settings.xsx">
       <DependentUpon>Settings.xsd</DependentUpon>
     </None>
