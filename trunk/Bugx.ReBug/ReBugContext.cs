@@ -32,6 +32,8 @@ using System.Web;
 using System.Web.SessionState;
 using System.Configuration;
 using System.Reflection;
+using System.Globalization;
+using System.Threading;
 
 namespace Bugx.ReBug
 {
@@ -105,7 +107,16 @@ namespace Bugx.ReBug
                 ConstructorInfo constructor = custom.GetConstructor(BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.NonPublic, null, new Type[] {typeof (XmlDocument)}, null);
                 if (constructor != null)
                 {
-                    return (ReBugContext)constructor.Invoke(new object[] { bug });
+                    CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                    try
+                    {
+                        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+                        return (ReBugContext) constructor.Invoke(new object[] {bug});
+                    }
+                    finally
+                    {
+                        Thread.CurrentThread.CurrentCulture = currentCulture;
+                    }
                 }
             }
             return new ReBugContext(bug);
@@ -128,9 +139,13 @@ namespace Bugx.ReBug
                 {
                     data = Convert.ChangeType(node.Attributes["value"].Value, Type.GetType(node.Attributes["type"].Value));
                 }
-                else
+                else if (!string.IsNullOrEmpty(node.InnerText))
                 {
                     data = BugSerializer.Deserialize(node.InnerText);
+                }
+                else
+                {
+                    continue;
                 }
                 result[node.Attributes["name"].Value] = data;
             }
@@ -152,9 +167,13 @@ namespace Bugx.ReBug
                 {
                     data = Convert.ChangeType(node.Attributes["value"].Value, Type.GetType(node.Attributes["type"].Value));
                 }
-                else
+                else if (!string.IsNullOrEmpty(node.InnerText))
                 {
                     data = BugSerializer.Deserialize(node.InnerText);
+                }
+                else
+                {
+                    continue;
                 }
                 if (node.Attributes["nameType"] != null)
                 {
@@ -345,7 +364,7 @@ namespace Bugx.ReBug
                 contextItems[key] = Context[key];
             }
             HttpApplicationState application = context.Application;
-            foreach (string key in application.Keys)
+            foreach (string key in Application.Keys)
             {
                 application[key] = Application[key];
             }

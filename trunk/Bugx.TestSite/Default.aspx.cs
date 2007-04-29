@@ -52,7 +52,10 @@ public partial class _Default : Page
         {
             SessionValue = 125;
             CurrentCategory = Sample.BuildCategory();
+            Application["lol"] = DateTime.Now;
         }
+        Context.Items["Test"] = "coucou";
+        Context.Items[DateTime.Now] = "Now";
         
     }
 

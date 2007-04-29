@@ -88,8 +88,10 @@ namespace Bugx.Web
             bugEventArgs.Bug = bug;
             SaveUrl(root, context);
             SaveRequest(root, context);
-            SaveCache(root, context);
             SaveSession(root, context);
+            SaveCache(root, context);
+            SaveContext(root, context);
+            SaveApplication(root, context);
             SaveException(root, context);
             OnError(bugEventArgs);
             string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error);
@@ -102,6 +104,71 @@ namespace Bugx.Web
             bug.Save(destination.FullName + fileName);
             bugEventArgs.BugUri = BuildBugUri(bugVirtualPath + "/" + fileName);
             OnErrorComplete(bugEventArgs);
+        }
+
+        static void SaveContext(XmlNode root, HttpContext context)
+        {
+            XmlNode contextNode = root.AppendChild(root.OwnerDocument.CreateElement("contextVariables"));
+            foreach (DictionaryEntry entry in context.Items)
+            {
+                Type keyType = entry.Key.GetType();
+                XmlNode variable = contextNode.AppendChild(root.OwnerDocument.CreateElement("add"));
+                if (keyType.IsValueType || keyType == typeof(string))
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("nameType")).Value = keyType.AssemblyQualifiedName;
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("name")).Value = Convert.ToString(entry.Key, CultureInfo.InvariantCulture);
+                }
+                else if (keyType.IsSerializable)
+                {
+                    variable.AppendChild(root.OwnerDocument.CreateElement("key")).AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(entry.Key)));
+                }
+                else
+                {
+                    variable.ParentNode.RemoveChild(variable);
+                    continue;
+                }
+                if (entry.Value == null)
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = "null";
+                    continue;
+                }
+                Type variableType = entry.Value.GetType();
+                variable.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = variableType.AssemblyQualifiedName;
+                if (variableType.IsValueType || variableType == typeof(string))
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = Convert.ToString(entry.Value, CultureInfo.InvariantCulture);
+                }
+                else if (variableType.IsSerializable)
+                {
+                    variable.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(entry.Value)));
+                }
+            }
+        }
+
+        static void SaveApplication(XmlNode root, HttpContext context)
+        {
+            XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("applicationVariables"));
+            foreach (string key in context.Application.Keys)
+            {
+                XmlNode variable = session.AppendChild(root.OwnerDocument.CreateElement("add"));
+                variable.Attributes.Append(root.OwnerDocument.CreateAttribute("name")).Value = key;
+                object value = context.Application[key];
+                if (value == null)
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = "null";
+                    continue;
+                }
+                Type variableType = value.GetType();
+                variable.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = variableType.AssemblyQualifiedName;
+                if (variableType.IsValueType || variableType == typeof(string))
+                {
+                    variable.Attributes.Append(root.OwnerDocument.CreateAttribute("value")).Value = Convert.ToString(value, CultureInfo.InvariantCulture);
+                }
+                else if (variableType.IsSerializable)
+                {
+                    variable.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(value)));
+                }
+            }
         }
 
         static Uri BuildBugUri(string bugVirtualPath)
