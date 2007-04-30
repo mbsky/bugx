@@ -30,11 +30,121 @@ using System.Web;
 using System.Xml;
 using System.Collections;
 using BugEventHandler = System.EventHandler<Bugx.Web.BugEventArgs>;
+using Bugx.Web.Configuration;
+using System.Collections.Generic;
 
 namespace Bugx.Web
 {
     public class ErrorModule : IHttpModule
     {
+        #region ExceptionTracking
+        class ExceptionTracking
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ExceptionTracking"/> class.
+            /// </summary>
+            ExceptionTracking()
+            {
+            }
+
+            #region Fields
+            /// <summary>
+            /// Gets the time stamp.
+            /// </summary>
+            int _TimeStamp = Now;
+
+            /// <summary>
+            /// Gets the count.
+            /// </summary>
+            int _Count = 1;
+
+            /// <summary>
+            /// Contains all error to track.
+            /// </summary>
+            static Dictionary<string, ExceptionTracking> _Items = new Dictionary<string, ExceptionTracking>();
+            #endregion
+
+            #region Properties
+            /// <summary>
+            /// Gets the time stamp.
+            /// </summary>
+            /// <value>The time stamp.</value>
+            public int TimeStamp
+            {
+                get
+                {
+                    return _TimeStamp;
+                }
+            }
+
+            /// <summary>
+            /// Gets the count.
+            /// </summary>
+            /// <value>The count.</value>
+            public int Count
+            {
+                get
+                {
+                    return _Count;
+                }
+            }
+            #endregion
+
+            #region Implementation
+
+            /// <summary>
+            /// Gets the now.
+            /// </summary>
+            /// <value>The now.</value>
+            static int Now
+            {
+                get
+                {
+                    return (int)new TimeSpan(DateTime.Now.Ticks).TotalMinutes;
+                }
+            }
+
+            /// <summary>
+            /// Cleans the tracking.
+            /// </summary>
+            static void CleanTracking()
+            {
+                int now = Now - 1;
+                List<string> keyToRemove = new List<string>();
+                foreach (KeyValuePair<string, ExceptionTracking> trackingInfo in _Items)
+                {
+                    if (trackingInfo.Value.TimeStamp < now)
+                    {
+                        keyToRemove.Add(trackingInfo.Key);
+                    }
+                }
+                foreach (string key in keyToRemove)
+                {
+                    _Items.Remove(key);
+                }
+            }
+
+            /// <summary>
+            /// Gets the specified <see cref="ExceptionTracking"/>.
+            /// </summary>
+            /// <param name="key">The key.</param>
+            /// <returns>The specified ExceptionTracking or a new one for this exception.</returns>
+            public static ExceptionTracking Get(string key)
+            {
+                CleanTracking();
+                ExceptionTracking tracking;
+                if (_Items.TryGetValue(key, out tracking))
+                {
+                    tracking._TimeStamp = Now;
+                    tracking._Count++;
+                    return tracking;
+                }
+                return new ExceptionTracking();
+            }
+            #endregion
+        } 
+        #endregion
+
         /// <summary>
         /// Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"></see>.
         /// </summary>
@@ -86,15 +196,34 @@ namespace Bugx.Web
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
             BugEventArgs bugEventArgs = new BugEventArgs();
             bugEventArgs.Bug = bug;
+            DataToSave dataToSave = BugxConfiguration.DataToSave;
+            string errorId = BuildUniqueIdentifier(context.Error);
+            //Minimum data to save.
             SaveUrl(root, context);
             SaveRequest(root, context);
-            SaveSession(root, context);
-            SaveCache(root, context);
-            SaveContext(root, context);
-            SaveApplication(root, context);
-            SaveException(root, context);
+
+            if ((dataToSave & DataToSave.Session) != 0)
+            {
+                SaveSession(root, context);
+            }
+            if ((dataToSave & DataToSave.Cache) != 0)
+            {
+                SaveCache(root, context);
+            }
+            if ((dataToSave & DataToSave.Context) != 0)
+            {
+                SaveContext(root, context);
+            }
+            if ((dataToSave & DataToSave.Application) != 0)
+            {
+                SaveApplication(root, context);
+            }
+            if ((dataToSave & DataToSave.Exception) != 0)
+            {
+                SaveException(root, context);
+            }
             OnError(bugEventArgs);
-            string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + BuildUniqueIdentifier(context.Error);
+            string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + errorId;
             DirectoryInfo destination = new DirectoryInfo(context.Request.MapPath(bugVirtualPath));
             if (!destination.Exists)
             {
@@ -103,9 +232,32 @@ namespace Bugx.Web
             string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
             bug.Save(destination.FullName + fileName);
             bugEventArgs.BugUri = BuildBugUri(bugVirtualPath + "/" + fileName);
-            OnErrorComplete(bugEventArgs);
+            if (MaySendErrorComplete(errorId))
+            {
+                OnErrorComplete(bugEventArgs);
+            }
         }
 
+        /// <summary>
+        /// Mays send <c>ErrorComplete</c> event.
+        /// </summary>
+        /// <param name="errorId">The error id.</param>
+        /// <returns></returns>
+        static bool MaySendErrorComplete(string errorId)
+        {
+            int? maxErrorReportingPerMinute = BugxConfiguration.MaxErrorReportingPerMinute;
+            if (maxErrorReportingPerMinute == null)
+            {//No rules about notification.
+                return true;
+            }
+            return ExceptionTracking.Get(errorId).Count <= maxErrorReportingPerMinute.Value;
+        }
+
+        /// <summary>
+        /// Saves the context.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveContext(XmlNode root, HttpContext context)
         {
             XmlNode contextNode = root.AppendChild(root.OwnerDocument.CreateElement("contextVariables"));
@@ -145,6 +297,11 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Saves the application.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
         static void SaveApplication(XmlNode root, HttpContext context)
         {
             XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("applicationVariables"));
@@ -171,6 +328,11 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Builds the bug URI.
+        /// </summary>
+        /// <param name="bugVirtualPath">The bug virtual path.</param>
+        /// <returns></returns>
         static Uri BuildBugUri(string bugVirtualPath)
         {
             HttpContext context = HttpContext.Current;
@@ -310,6 +472,9 @@ namespace Bugx.Web
             return Regex.Replace(stackTrace, @"\) in \w\:[/\\].+", ")");
         }
 
+        /// <summary>
+        /// Raises the error event.
+        /// </summary>
         public static event BugEventHandler Error;
 
         /// <summary>
@@ -327,6 +492,9 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Raises the error complete event.
+        /// </summary>
         public static event BugEventHandler ErrorComplete;
 
         /// <summary>

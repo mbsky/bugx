@@ -239,7 +239,10 @@ namespace Bugx.Web
             }
             foreach (string key in collection.AllKeys)
             {
-                node.AppendChild(node.OwnerDocument.CreateElement(key)).InnerText = collection[key];
+                if (!string.IsNullOrEmpty(key))
+                {
+                    node.AppendChild(node.OwnerDocument.CreateElement(key)).InnerText = collection[key];
+                }
             }
         }
     }
