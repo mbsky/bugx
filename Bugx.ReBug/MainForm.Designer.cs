@@ -129,7 +129,8 @@ namespace Bugx.ReBug
             // 
             // ContextInfo
             // 
-            ContextInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            ContextInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             ContextInfo.Controls.Add(this.ContextExplorer);
             ContextInfo.Location = new System.Drawing.Point(12, 162);
