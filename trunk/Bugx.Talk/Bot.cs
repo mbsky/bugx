@@ -66,24 +66,23 @@ namespace Bugx.Talk
             }
         }
 
+        static bool _Initialized;
         /// <summary>
         /// Initializes a module and prepares it to handle requests.
         /// </summary>
         /// <param name="context">An <see cref="T:System.Web.HttpApplication"></see> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
         public void Init(HttpApplication context)
         {
-            if (ErrorModule.IsReBug)
-            {//Disable bot when it's a ReBug
+            if (ErrorModule.IsReBug || _Initialized)
+            {//Disable bot when it's a ReBug or if module is already initialized
                 return;
             }
-            if (_Bot != null)
-            {
-                _Bot.Dispose();
-            }
+            _Initialized = true;
             SubscriptionManager.LoadSettings();
             _Bot = new JabberClient();
             _Bot.OnMessage += new MessageHandler(Bot_OnMessage);
             _Bot.OnAuthenticate += new bedrock.ObjectHandler(Bot_OnAuthenticate);
+
             AsyncSocket.UntrustedRootOK = true;
             ErrorModule.ErrorComplete += new EventHandler<BugEventArgs>(ErrorModule_ErrorComplete);
 
