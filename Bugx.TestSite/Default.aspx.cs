@@ -25,6 +25,7 @@ using System;
 using System.Web;
 using System.Web.UI;
 using Bugx.Test.Model;
+using System.Web.Caching;
 
 public partial class _Default : Page
 {
@@ -53,6 +54,7 @@ public partial class _Default : Page
             SessionValue = 125;
             CurrentCategory = Sample.BuildCategory();
             Application["lol"] = DateTime.Now;
+            Cache.Add("TestCache", CurrentCategory, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 0, 1, 0, 0), CacheItemPriority.Normal, null);
         }
         Context.Items["Test"] = "coucou";
         Context.Items[DateTime.Now] = "Now";
