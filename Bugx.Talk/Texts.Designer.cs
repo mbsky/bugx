@@ -88,7 +88,7 @@ namespace Bugx.Talk {
         /// - *Subscribe* : Subscribe to Bugx list
         /// - *Unsubscribe* : Stop receiving Bugx information
         /// - *Subscribers* : List all subscribers
-        /// - ? / *help*: Give you these information
+        /// - ? _or_ *help*: Give you these information
         ///What can I do for you? :-D.
         /// </summary>
         internal static string InfoHelpComplete {
@@ -99,7 +99,7 @@ namespace Bugx.Talk {
         
         /// <summary>
         ///   Looks up a localized string similar to Welcome {0},
-        ///I will give you all information on bad things append here.
+        ///I will give you all information on bad things appening here.
         ///_Note: If you want to stop receiving these messages, simply tell me *Unsubscribe*_.
         /// </summary>
         internal static string InfoSubscribeComplete {

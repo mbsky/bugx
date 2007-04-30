@@ -130,12 +130,12 @@ I can help you for following commands:
  - *Subscribe* : Subscribe to Bugx list
  - *Unsubscribe* : Stop receiving Bugx information
  - *Subscribers* : List all subscribers
- - ? / *help*: Give you these information
+ - ? _or_ *help*: Give you these information
 What can I do for you? :-D</value>
   </data>
   <data name="InfoSubscribeComplete" xml:space="preserve">
     <value>Welcome {0},
-I will give you all information on bad things append here.
+I will give you all information on bad things appening here.
 _Note: If you want to stop receiving these messages, simply tell me *Unsubscribe*_</value>
   </data>
   <data name="InfoUnsubscribeComplete" xml:space="preserve">
