@@ -49,6 +49,12 @@
     <Compile Include="Properties\FxCop.cs" />
     <Compile Include="HttpValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Configuration\Xml\ConfigurationSection.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configuration\Xml\ConfigurationSection.xsx">
+      <DependentUpon>ConfigurationSection.xsd</DependentUpon>
+    </None>
     <None Include="key.snk" />
   </ItemGroup>
   <ItemGroup>

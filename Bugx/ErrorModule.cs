@@ -232,7 +232,7 @@ namespace Bugx.Web
             string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
             bug.Save(destination.FullName + fileName);
             bugEventArgs.BugUri = BuildBugUri(bugVirtualPath + "/" + fileName);
-            if (MaySendErrorComplete(errorId))
+            if (MaySendErrorComplete(errorId) && !BugxConfiguration.ShouldBeFiltered(errorId))
             {
                 OnErrorComplete(bugEventArgs);
             }
