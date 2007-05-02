@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="configuration"
+                  targetNamespace="http://www.wavenet.be/bugx/web/configuration.xsd"
+                  elementFormDefault="qualified"
+                  xmlns="http://www.wavenet.be/bugx/web/configuration.xsd"
+                  xmlns:mstns="http://www.wavenet.be/bugx/web/configuration.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="bugx">
+    <xsd:annotation>
+      <xsd:documentation>Bugx configuration section</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:all minOccurs="0" maxOccurs="1">
+        <xsd:element name="dataToSave" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Determine all information Bugx can record. Possible values: None, Session, Cache, Context, Exception, Application, All</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="maxErrorReportingPerMinute" type="xsd:int">
+          <xsd:annotation>
+            <xsd:documentation>Maximum error notification for the same error inside a sliding window of 1 minute. (if not defined default is unlimited)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="filters" type="Filters" >
+          <xsd:unique name="Filter_should_be_unique">
+            <xsd:selector xpath="mstns:filter" />
+            <xsd:field xpath="." />
+          </xsd:unique>
+        </xsd:element>
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="Filters">
+    <xsd:annotation>
+      <xsd:documentation>The filter collection</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="filter" type="NotEmptyString">
+        <xsd:annotation>
+          <xsd:documentation>A filter is a regular expression; When it match the current Error ID then bugx will not raise ErrorComplete event then no notification for this error.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:simpleType name="NotEmptyString">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

@@ -1,13 +1,34 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Configuration;
 using System.Xml;
+using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace Bugx.Web.Configuration
 {
     public static class BugxConfiguration
     {
+        /// <summary>
+        /// XML Namespace URI.
+        /// </summary>
+        const string XmlNamespace = "http://www.wavenet.be/bugx/web/configuration.xsd";
+
+        /// <summary>
+        /// XML namespace manager.
+        /// </summary>
+        static readonly XmlNamespaceManager NamespaceManager = LoadNamespace();
+
+        /// <summary>
+        /// Loads the namespace.
+        /// </summary>
+        /// <returns></returns>
+        static XmlNamespaceManager LoadNamespace()
+        {
+            XmlNamespaceManager xmlNamespace = new XmlNamespaceManager(new XmlDocument().NameTable);
+            xmlNamespace.AddNamespace("bugx", XmlNamespace);
+            return xmlNamespace;
+        }
+
         /// <summary>
         /// Gets the configuration.
         /// </summary>
@@ -20,8 +41,8 @@ namespace Bugx.Web.Configuration
                 if (result == null)
                 {//Load default values.
                     XmlDocument document = new XmlDocument();
-                    result = document.AppendChild(document.CreateElement("bugx"));
-                    result.AppendChild(document.CreateElement("dataToSave")).InnerText = "All";
+                    result = document.AppendChild(document.CreateElement("bugx", XmlNamespace));
+                    result.AppendChild(document.CreateElement("dataToSave", XmlNamespace)).InnerText = "All";
                 }
                 return result;
             }
@@ -35,7 +56,7 @@ namespace Bugx.Web.Configuration
         {
             get
             {
-                XmlNode dataToSave = Configuration.SelectSingleNode("dataToSave");
+                XmlNode dataToSave = Configuration.SelectSingleNode("bugx:dataToSave", NamespaceManager);
                 if (dataToSave != null)
                 {
                     try
@@ -56,7 +77,7 @@ namespace Bugx.Web.Configuration
         {
             get
             {
-                XmlNode maxErrorReportingPerMinute = Configuration.SelectSingleNode("maxErrorReportingPerMinute");
+                XmlNode maxErrorReportingPerMinute = Configuration.SelectSingleNode("bugx:maxErrorReportingPerMinute", NamespaceManager);
                 if (maxErrorReportingPerMinute != null)
                 {
                     int result;
@@ -67,6 +88,44 @@ namespace Bugx.Web.Configuration
                 }
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets the filters.
+        /// </summary>
+        /// <value>The filters.</value>
+        public static StringCollection Filters
+        {
+            get
+            {
+                StringCollection result = new StringCollection();
+                foreach (XmlNode filter in Configuration.SelectNodes("bugx:filters/bugx:filter", NamespaceManager))
+                {
+                    string filterText = filter.InnerText;
+                    if (!string.IsNullOrEmpty(filterText))
+                    {
+                        result.Add(filterText);
+                    }
+                }
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Determines if specified error ID should be filtered.
+        /// </summary>
+        /// <param name="errorId">The error id.</param>
+        /// <returns><c>true</c> if specified error ID should be filtered; Otherwise <c>false</c></returns>
+        public static bool ShouldBeFiltered(string errorId)
+        {
+            foreach (XmlNode filter in Configuration.SelectNodes("bugx:filters/bugx:filter", NamespaceManager))
+            {
+                if (Regex.IsMatch(errorId, filter.InnerText, RegexOptions.IgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
