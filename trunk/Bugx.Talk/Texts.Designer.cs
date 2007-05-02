@@ -136,8 +136,13 @@ namespace Bugx.Talk {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error in production:
-        ///You can find information at: {0}.
+        ///   Looks up a localized string similar to 
+        ///      *Error from*: {0}
+        ///*Message*: {1}
+        ///*Type*: {2}
+        ///*Assembly*: {3}
+        ///*Report*: {4}
+        ///    .
         /// </summary>
         internal static string WarningErrorInProduction {
             get {

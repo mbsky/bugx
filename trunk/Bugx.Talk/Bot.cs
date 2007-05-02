@@ -104,11 +104,38 @@ namespace Bugx.Talk
         /// <param name="e">The <see cref="Bugx.Web.BugEventArgs"/> instance containing the event data.</param>
         void ErrorModule_ErrorComplete(object sender, BugEventArgs e)
         {
-            string message = string.Format(CultureInfo.InvariantCulture, Texts.WarningErrorInProduction, e.BugUri);
+            HttpContext context = HttpContext.Current;
+            Exception exception = context.Error.GetBaseException();
+            string message = string.Format(CultureInfo.InvariantCulture, 
+                                           Texts.WarningErrorInProduction, 
+                                           context.Request.Url,
+                                           exception.Message,
+                                           exception.GetType().FullName,
+                                           GetReleventSource(context.Error),
+                                           e.BugUri);
             foreach (string user in SubscriptionManager.Instance)
             {
                 _Bot.Message(user, message);
             }
+        }
+
+        /// <summary>
+        /// Gets the relevent source.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        /// <returns></returns>
+        static string  GetReleventSource(Exception exception)
+        {
+            if (exception == null)
+            {
+                return null;
+            }
+            string result = GetReleventSource(exception.InnerException);
+            if (string.IsNullOrEmpty(result) && !exception.Source.StartsWith("System"))
+            {
+                return exception.Source;
+            }
+            return  result;
         }
 
         void Bot_OnAuthenticate(object sender)

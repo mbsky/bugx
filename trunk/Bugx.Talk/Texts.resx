@@ -148,8 +148,13 @@ _Note: If you want to stop receiving these messages, simply tell me *Unsubscribe
     <value>There is no subscriber</value>
   </data>
   <data name="WarningErrorInProduction" xml:space="preserve">
-    <value>Error in production:
-You can find information at: {0}</value>
+    <value>
+      <![CDATA[*Error from*: {0}
+*Message*: {1}
+*Type*: {2}
+*Assembly*: {3}
+*Report*: {4}]]>
+    </value>
   </data>
   <data name="InfoApplicationRestart" xml:space="preserve">
     <value>Application has restarted.</value>
