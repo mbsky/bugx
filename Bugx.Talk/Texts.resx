@@ -121,22 +121,29 @@
     <value>Hello {0},
 I'm sorry but i don't recognize your command ["{1}"] :'(
 
-Send ?/help to have a complete set of available commands</value>
+Send /? _or_ /help to have a complete set of available commands</value>
+  </data>
+  <data name="ErrorNoChatAvailable" xml:space="preserve">
+    <value>_I think you're talking alone_ ^^;.
+_Perhaps you should ask for /help_</value>
+  </data>
+  <data name="ErrorChatWhenNotSubscribed" xml:space="preserve">
+    <value>If you want to send a message to all subscribers, you must /*subscribe* to bugx list.</value>
   </data>
   <data name="InfoHelpComplete" xml:space="preserve">
     <value>Welcome {0},
 I'm Bugx Talk version {2}.
 I can help you for following commands:
- - *Subscribe* : Subscribe to Bugx list
- - *Unsubscribe* : Stop receiving Bugx information
- - *Subscribers* : List all subscribers
- - ? _or_ *help*: Give you these information
+ - /*Subscribe* : Subscribe to Bugx list
+ - /*Unsubscribe* : Stop receiving Bugx information
+ - /*Subscribers* : List all subscribers
+ - /? _or_ /*help*: Give you these information
 What can I do for you? :-D</value>
   </data>
   <data name="InfoSubscribeComplete" xml:space="preserve">
     <value>Welcome {0},
 I will give you all information on bad things appening here.
-_Note: If you want to stop receiving these messages, simply tell me *Unsubscribe*_</value>
+_Note: If you want to stop receiving these messages, simply tell me /*Unsubscribe*_</value>
   </data>
   <data name="InfoUnsubscribeComplete" xml:space="preserve">
     <value>You are now unsubscribed for this Bugx list.</value>

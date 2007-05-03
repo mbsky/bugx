@@ -30,6 +30,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using Bugx.Web;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Bugx.Talk
 {
@@ -82,6 +83,7 @@ namespace Bugx.Talk
             _Bot = new JabberClient();
             _Bot.OnMessage += new MessageHandler(Bot_OnMessage);
             _Bot.OnAuthenticate += new bedrock.ObjectHandler(Bot_OnAuthenticate);
+            _Bot.OnPresence += new PresenceHandler(_Bot_OnPresence);
 
             AsyncSocket.UntrustedRootOK = true;
             ErrorModule.ErrorComplete += new EventHandler<BugEventArgs>(ErrorModule_ErrorComplete);
@@ -95,6 +97,21 @@ namespace Bugx.Talk
             _Bot.AutoStartTLS = true;
 
             _Bot.Connect();
+        }
+
+        Dictionary<string, PresenceType> _Presence = new Dictionary<string, PresenceType>();
+
+        void _Bot_OnPresence(object sender, Presence pres)
+        {
+            string user = pres.From.ToString();
+            if (pres.Type == PresenceType.unavailable || pres.Show == "away")
+            {
+                _Presence.Remove(user);
+            }
+            else
+            {
+                _Presence[user] = pres.Type;
+            }
         }
 
         /// <summary>
@@ -154,16 +171,64 @@ namespace Bugx.Talk
                 return;
             }
             string userAddress = string.Format(CultureInfo.InvariantCulture, "{0}@{1}", msg.From.User, msg.From.Server).ToLowerInvariant();
-            switch (msg.Body.ToLowerInvariant().Trim())
+            if (!ProcessCommand(msg))
+            {
+                if (!SubscriptionManager.Instance.Contains(userAddress))
+                {
+                    _Bot.Message(msg.From.ToString(), Texts.ErrorChatWhenNotSubscribed);
+                    return;
+                }
+                List<string> users = GetBroadcastList();
+                if (users.Count == 1)
+                {
+                    _Bot.Message(msg.From.ToString(), Texts.ErrorNoChatAvailable);
+                    return;
+                }
+                foreach (string user in users)
+                {
+                    if (string.Compare(user, userAddress, true) != 0)
+                    {
+                        _Bot.Message(user, string.Format(CultureInfo.InvariantCulture, "*{0}*: {1}", msg.From.User, msg.Body));
+                    }
+                }
+            }
+        }
+
+        List<string> GetBroadcastList()
+        {
+            List<string> result = new List<string>();
+            foreach (string user in SubscriptionManager.Instance)
+            {
+                foreach (KeyValuePair<string, PresenceType> availableUser in _Presence)
+                {
+                    if (availableUser.Key.StartsWith(user, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        result.Add(user);
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        bool ProcessCommand(Message msg)
+        {
+            string userAddress = string.Format(CultureInfo.InvariantCulture, "{0}@{1}", msg.From.User, msg.From.Server).ToLowerInvariant();
+            string command = msg.Body.ToLowerInvariant().Trim();
+            if (!command.StartsWith("/"))
+            {
+                return false;
+            }
+            switch (command.Substring(1))
             {
                 case "subscribe":
                     SubscriptionManager.Instance.Add(userAddress);
-                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribeComplete, msg.From.User, msg.Body, BotVersion));
+                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribeComplete, msg.From.User, msg.Body, BotVersion));
                     break;
 
                 case "unsubscribe":
                     SubscriptionManager.Instance.Remove(userAddress);
-                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoUnsubscribeComplete, msg.From.User, msg.Body, BotVersion));
+                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoUnsubscribeComplete, msg.From.User, msg.Body, BotVersion));
                     break;
 
                 case "subscribers":
@@ -181,18 +246,19 @@ namespace Bugx.Talk
                     {
                         list = Texts.NoSubscribers;
                     }
-                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribers, list));
+                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribers, list));
                     break;
 
                 case "help":
                 case "?":
-                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.InfoHelpComplete, msg.From.User, msg.Body, BotVersion));
+                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoHelpComplete, msg.From.User, msg.Body, BotVersion));
                     break;
 
                 default:
-                    _Bot.Message(userAddress, string.Format(CultureInfo.InvariantCulture, Texts.ErrorUnknownCommand, msg.From.User, msg.Body, BotVersion));
+                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.ErrorUnknownCommand, msg.From.User, msg.Body, BotVersion));
                     break;
             }
+            return true;
         }
 
         /// <summary>
