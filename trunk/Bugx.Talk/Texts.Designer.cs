@@ -61,10 +61,29 @@ namespace Bugx.Talk {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you want to send a message to all subscribers, you must /*subscribe* to bugx list..
+        /// </summary>
+        internal static string ErrorChatWhenNotSubscribed {
+            get {
+                return ResourceManager.GetString("ErrorChatWhenNotSubscribed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _I think you&apos;re talking alone_ ^^;.
+        ///_Perhaps you should ask for /help_.
+        /// </summary>
+        internal static string ErrorNoChatAvailable {
+            get {
+                return ResourceManager.GetString("ErrorNoChatAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello {0},
         ///I&apos;m sorry but i don&apos;t recognize your command [&quot;{1}&quot;] :&apos;(
         ///
-        ///Send ?/help to have a complete set of available commands.
+        ///Send /? _or_ /help to have a complete set of available commands.
         /// </summary>
         internal static string ErrorUnknownCommand {
             get {
@@ -85,10 +104,10 @@ namespace Bugx.Talk {
         ///   Looks up a localized string similar to Welcome {0},
         ///I&apos;m Bugx Talk version {2}.
         ///I can help you for following commands:
-        /// - *Subscribe* : Subscribe to Bugx list
-        /// - *Unsubscribe* : Stop receiving Bugx information
-        /// - *Subscribers* : List all subscribers
-        /// - ? _or_ *help*: Give you these information
+        /// - /*Subscribe* : Subscribe to Bugx list
+        /// - /*Unsubscribe* : Stop receiving Bugx information
+        /// - /*Subscribers* : List all subscribers
+        /// - /? _or_ /*help*: Give you these information
         ///What can I do for you? :-D.
         /// </summary>
         internal static string InfoHelpComplete {
@@ -100,7 +119,7 @@ namespace Bugx.Talk {
         /// <summary>
         ///   Looks up a localized string similar to Welcome {0},
         ///I will give you all information on bad things appening here.
-        ///_Note: If you want to stop receiving these messages, simply tell me *Unsubscribe*_.
+        ///_Note: If you want to stop receiving these messages, simply tell me /*Unsubscribe*_.
         /// </summary>
         internal static string InfoSubscribeComplete {
             get {
