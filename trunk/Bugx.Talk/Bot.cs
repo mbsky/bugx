@@ -31,6 +31,7 @@ using System.Text.RegularExpressions;
 using Bugx.Web;
 using System.Text;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Bugx.Talk
 {
@@ -108,7 +109,7 @@ namespace Bugx.Talk
             {
                 _Presence.Remove(user);
             }
-            else
+            else if (user.Contains("/"))
             {
                 _Presence[user] = pres.Type;
             }
@@ -128,7 +129,7 @@ namespace Bugx.Talk
                                            context.Request.Url,
                                            exception.Message,
                                            exception.GetType().FullName,
-                                           GetReleventSource(context.Error),
+                                           GetRelevantSource(context.Error)??exception.Source,
                                            e.BugUri);
             foreach (string user in SubscriptionManager.Instance)
             {
@@ -141,18 +142,46 @@ namespace Bugx.Talk
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns></returns>
-        static string  GetReleventSource(Exception exception)
+        static string  GetRelevantSource(Exception exception)
         {
             if (exception == null)
             {
                 return null;
             }
-            string result = GetReleventSource(exception.InnerException);
-            if (string.IsNullOrEmpty(result) && !exception.Source.StartsWith("System"))
+            string result = GetRelevantSource(exception.InnerException);
+            if (string.IsNullOrEmpty(result))
             {
-                return exception.Source;
+                Match firstReleventLine = Regex.Match(exception.StackTrace, @"\sat (?!System)(?<Type>.+)\.[^(\s]+\(");
+                if (!firstReleventLine.Success)
+                {
+                    return null;
+                }
+                Type type = FindType(firstReleventLine.Groups["Type"].Value);
+                if (type == null)
+                {
+                    return null;
+                }
+                return type.Assembly.FullName.Split(',')[0];
             }
             return  result;
+        }
+
+        /// <summary>
+        /// Finds the type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        static Type FindType(string type)
+        {
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type result = assembly.GetType(type);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+            return null;
         }
 
         void Bot_OnAuthenticate(object sender)
