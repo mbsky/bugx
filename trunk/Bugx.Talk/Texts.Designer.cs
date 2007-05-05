@@ -61,6 +61,25 @@ namespace Bugx.Talk {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *Application is shutting down*.
+        ///Reason: _{0}_..
+        /// </summary>
+        internal static string ApplicationIsShuttingDown {
+            get {
+                return ResourceManager.GetString("ApplicationIsShuttingDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command complete..
+        /// </summary>
+        internal static string CommandComplete {
+            get {
+                return ResourceManager.GetString("CommandComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you want to send a message to all subscribers, you must /*subscribe* to bugx list.
         ///_Tell me /*help* for more information_.
         /// </summary>
@@ -108,6 +127,8 @@ namespace Bugx.Talk {
         /// - /*Subscribe* : Subscribe to Bugx list
         /// - /*Unsubscribe* : Stop receiving Bugx information
         /// - /*Subscribers* : List all subscribers
+        /// - /*Announcement* : Show a short message in bot status
+        /// - /*Recycle* : Enable you to restart application pool
         /// - /? _or_ /*help*: Give you these information
         ///What can I do for you? :-D.
         /// </summary>
@@ -152,6 +173,132 @@ namespace Bugx.Talk {
         internal static string NoSubscribers {
             get {
                 return ResourceManager.GetString("NoSubscribers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the Bin folder or files contained in it..
+        /// </summary>
+        internal static string ShutdownBinDirChangeOrDirectoryRename {
+            get {
+                return ResourceManager.GetString("ShutdownBinDirChangeOrDirectoryRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the App_Browsers folder or files contained in it..
+        /// </summary>
+        internal static string ShutdownBrowsersDirChangeOrDirectoryRename {
+            get {
+                return ResourceManager.GetString("ShutdownBrowsersDirChangeOrDirectoryRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to Global.asax..
+        /// </summary>
+        internal static string ShutdownChangeInGlobalAsax {
+            get {
+                return ResourceManager.GetString("ShutdownChangeInGlobalAsax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change in the code access security policy file..
+        /// </summary>
+        internal static string ShutdownChangeInSecurityPolicyFile {
+            get {
+                return ResourceManager.GetString("ShutdownChangeInSecurityPolicyFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the App_Code folder or files contained in it..
+        /// </summary>
+        internal static string ShutdownCodeDirChangeOrDirectoryRename {
+            get {
+                return ResourceManager.GetString("ShutdownCodeDirChangeOrDirectoryRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the application level configuration..
+        /// </summary>
+        internal static string ShutdownConfigurationChange {
+            get {
+                return ResourceManager.GetString("ShutdownConfigurationChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of the hosting environment..
+        /// </summary>
+        internal static string ShutdownHostingEnvironment {
+            get {
+                return ResourceManager.GetString("ShutdownHostingEnvironment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a call to System.Web.HttpRuntime.Close()..
+        /// </summary>
+        internal static string ShutdownHttpRuntimeClose {
+            get {
+                return ResourceManager.GetString("ShutdownHttpRuntimeClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of an application initialization error..
+        /// </summary>
+        internal static string ShutdownInitializationError {
+            get {
+                return ResourceManager.GetString("ShutdownInitializationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of the maximum number of dynamic recompiles of resources limit..
+        /// </summary>
+        internal static string ShutdownMaxRecompilationsReached {
+            get {
+                return ResourceManager.GetString("ShutdownMaxRecompilationsReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Shutdown reason provided..
+        /// </summary>
+        internal static string ShutdownNone {
+            get {
+                return ResourceManager.GetString("ShutdownNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the physical path for the application..
+        /// </summary>
+        internal static string ShutdownPhysicalApplicationPathChanged {
+            get {
+                return ResourceManager.GetString("ShutdownPhysicalApplicationPathChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a change to the App_GlobalResources folder or files contained in it..
+        /// </summary>
+        internal static string ShutdownResourcesDirChangeOrDirectoryRename {
+            get {
+                return ResourceManager.GetString("ShutdownResourcesDirChangeOrDirectoryRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application shut down because of a call to System.Web.HttpRuntime.UnloadAppDomain()..
+        /// </summary>
+        internal static string ShutdownUnloadAppDomainCalled {
+            get {
+                return ResourceManager.GetString("ShutdownUnloadAppDomainCalled", resourceCulture);
             }
         }
         

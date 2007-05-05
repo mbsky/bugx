@@ -21,8 +21,8 @@ the library `BUGx' (An Asp.Net Bug Tracking tool) written
 by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Web;
+using System.Web.Hosting;
 
 namespace Bugx.Web
 {
@@ -39,8 +39,8 @@ namespace Bugx.Web
         /// <value>The bug URI.</value>
         public Uri BugUri
         {
-            get { return this._BugUri; }
-            set { this._BugUri = value; }
+            get { return _BugUri; }
+            set { _BugUri = value; }
         }
 
         /// <summary>
@@ -54,8 +54,40 @@ namespace Bugx.Web
         /// <value>The bug.</value>
         public BugDocument Bug
         {
-            get { return this._Bug; }
-            set { this._Bug = value; }
+            get { return _Bug; }
+            set { _Bug = value; }
+        }
+
+    }
+
+    public class ApplicationUnloadEventArgs: EventArgs
+    {
+        /// <summary>
+        /// Gets the reason.
+        /// </summary>
+        ApplicationShutdownReason _Reason;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationUnloadEventArgs"/> class.
+        /// </summary>
+        /// <param name="reason">The reason.</param>
+        public ApplicationUnloadEventArgs(ApplicationShutdownReason reason)
+        {
+            _Reason = reason;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationUnloadEventArgs"/> class.
+        /// </summary>
+        public ApplicationUnloadEventArgs() : this(HostingEnvironment.ShutdownReason){}
+
+        /// <summary>
+        /// Gets the reason.
+        /// </summary>
+        /// <value>The reason.</value>
+        public ApplicationShutdownReason Reason
+        {
+            get { return _Reason; }
         }
 
     }

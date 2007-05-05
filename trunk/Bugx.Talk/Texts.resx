@@ -131,6 +131,13 @@ _Perhaps you should ask for /help_</value>
     <value>If you want to send a message to all subscribers, you must /*subscribe* to bugx list.
 _Tell me /*help* for more information_</value>
   </data>
+  <data name="ApplicationIsShuttingDown" xml:space="preserve">
+    <value>*Application is shutting down*.
+Reason: _{0}_.</value>
+  </data>
+  <data name="CommandComplete" xml:space="preserve">
+    <value>Command complete.</value>
+  </data>
   <data name="InfoHelpComplete" xml:space="preserve">
     <value>Welcome {0},
 I'm Bugx Talk version {2}.
@@ -138,6 +145,8 @@ I can help you for following commands:
  - /*Subscribe* : Subscribe to Bugx list
  - /*Unsubscribe* : Stop receiving Bugx information
  - /*Subscribers* : List all subscribers
+ - /*Announcement* : Show a short message in bot status
+ - /*Recycle* : Enable you to restart application pool
  - /? _or_ /*help*: Give you these information
 What can I do for you? :-D</value>
   </data>
@@ -166,5 +175,47 @@ _Note: If you want to stop receiving these messages, simply tell me /*Unsubscrib
   </data>
   <data name="InfoApplicationRestart" xml:space="preserve">
     <value>Application has restarted.</value>
+  </data>
+  <data name="ShutdownBinDirChangeOrDirectoryRename" xml:space="preserve">
+    <value>The application shut down because of a change to the Bin folder or files contained in it.</value>
+  </data>
+  <data name="ShutdownBrowsersDirChangeOrDirectoryRename" xml:space="preserve">
+    <value>The application shut down because of a change to the App_Browsers folder or files contained in it.</value>
+  </data>
+  <data name="ShutdownChangeInGlobalAsax" xml:space="preserve">
+    <value>The application shut down because of a change to Global.asax.</value>
+  </data>
+  <data name="ShutdownChangeInSecurityPolicyFile" xml:space="preserve">
+    <value>The application shut down because of a change in the code access security policy file.</value>
+  </data>
+  <data name="ShutdownCodeDirChangeOrDirectoryRename" xml:space="preserve">
+    <value>The application shut down because of a change to the App_Code folder or files contained in it.</value>
+  </data>
+  <data name="ShutdownConfigurationChange" xml:space="preserve">
+    <value>The application shut down because of a change to the application level configuration.</value>
+  </data>
+  <data name="ShutdownHostingEnvironment" xml:space="preserve">
+    <value>The application shut down because of the hosting environment.</value>
+  </data>
+  <data name="ShutdownHttpRuntimeClose" xml:space="preserve">
+    <value>The application shut down because of a call to System.Web.HttpRuntime.Close().</value>
+  </data>
+  <data name="ShutdownInitializationError" xml:space="preserve">
+    <value>The application shut down because of an application initialization error.</value>
+  </data>
+  <data name="ShutdownMaxRecompilationsReached" xml:space="preserve">
+    <value>The application shut down because of the maximum number of dynamic recompiles of resources limit.</value>
+  </data>
+  <data name="ShutdownNone" xml:space="preserve">
+    <value>No Shutdown reason provided.</value>
+  </data>
+  <data name="ShutdownPhysicalApplicationPathChanged" xml:space="preserve">
+    <value>The application shut down because of a change to the physical path for the application.</value>
+  </data>
+  <data name="ShutdownResourcesDirChangeOrDirectoryRename" xml:space="preserve">
+    <value>The application shut down because of a change to the App_GlobalResources folder or files contained in it.</value>
+  </data>
+  <data name="ShutdownUnloadAppDomainCalled" xml:space="preserve">
+    <value>The application shut down because of a call to System.Web.HttpRuntime.UnloadAppDomain().</value>
   </data>
 </root>
