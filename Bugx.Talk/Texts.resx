@@ -128,7 +128,8 @@ Send /? _or_ /help to have a complete set of available commands</value>
 _Perhaps you should ask for /help_</value>
   </data>
   <data name="ErrorChatWhenNotSubscribed" xml:space="preserve">
-    <value>If you want to send a message to all subscribers, you must /*subscribe* to bugx list.</value>
+    <value>If you want to send a message to all subscribers, you must /*subscribe* to bugx list.
+_Tell me /*help* for more information_</value>
   </data>
   <data name="InfoHelpComplete" xml:space="preserve">
     <value>Welcome {0},
