@@ -61,7 +61,8 @@ namespace Bugx.Talk {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you want to send a message to all subscribers, you must /*subscribe* to bugx list..
+        ///   Looks up a localized string similar to If you want to send a message to all subscribers, you must /*subscribe* to bugx list.
+        ///_Tell me /*help* for more information_.
         /// </summary>
         internal static string ErrorChatWhenNotSubscribed {
             get {
