@@ -32,6 +32,7 @@ using Bugx.Web;
 using System.Text;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Web.Hosting;
 
 namespace Bugx.Talk
 {
@@ -82,12 +83,14 @@ namespace Bugx.Talk
             _Initialized = true;
             SubscriptionManager.LoadSettings();
             _Bot = new JabberClient();
+            _Bot.AutoPresence = false;
             _Bot.OnMessage += new MessageHandler(Bot_OnMessage);
             _Bot.OnAuthenticate += new bedrock.ObjectHandler(Bot_OnAuthenticate);
             _Bot.OnPresence += new PresenceHandler(_Bot_OnPresence);
 
             AsyncSocket.UntrustedRootOK = true;
             ErrorModule.ErrorComplete += new EventHandler<BugEventArgs>(ErrorModule_ErrorComplete);
+            ErrorModule.ApplicationUnload += new EventHandler<ApplicationUnloadEventArgs>(ErrorModule_ApplicationUnload);
 
             SubscriptionManager settings = SubscriptionManager.Instance;
             _Bot.User         = settings.User;
@@ -98,6 +101,31 @@ namespace Bugx.Talk
             _Bot.AutoStartTLS = true;
 
             _Bot.Connect();
+        }
+
+        /// <summary>
+        /// Handles the ApplicationUnload event of the ErrorModule control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="Bugx.Web.ApplicationUnloadEventArgs"/> instance containing the event data.</param>
+        void ErrorModule_ApplicationUnload(object sender, ApplicationUnloadEventArgs e)
+        {
+            string reason = e.Reason.ToString();
+            Message(string.Format(CultureInfo.InvariantCulture,
+                                  Texts.ApplicationIsShuttingDown,
+                                  Texts.ResourceManager.GetString("Shutdown" + reason, Texts.Culture) ?? reason));
+        }
+
+        /// <summary>
+        /// Send a message to all subscribers.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        void Message(string text)
+        {
+            foreach (string user in SubscriptionManager.Instance)
+            {
+                _Bot.Message(user, text);
+            }
         }
 
         Dictionary<string, PresenceType> _Presence = new Dictionary<string, PresenceType>();
@@ -124,17 +152,13 @@ namespace Bugx.Talk
         {
             HttpContext context = HttpContext.Current;
             Exception exception = context.Error.GetBaseException();
-            string message = string.Format(CultureInfo.InvariantCulture, 
-                                           Texts.WarningErrorInProduction, 
-                                           context.Request.Url,
-                                           exception.Message,
-                                           exception.GetType().FullName,
-                                           GetRelevantSource(context.Error)??exception.Source,
-                                           e.BugUri);
-            foreach (string user in SubscriptionManager.Instance)
-            {
-                _Bot.Message(user, message);
-            }
+            Message(string.Format(CultureInfo.InvariantCulture,
+                                  Texts.WarningErrorInProduction,
+                                  context.Request.Url,
+                                  exception.Message,
+                                  exception.GetType().FullName,
+                                  GetRelevantSource(context.Error) ?? exception.Source,
+                                  e.BugUri));
         }
 
         /// <summary>
@@ -151,6 +175,12 @@ namespace Bugx.Talk
             string result = GetRelevantSource(exception.InnerException);
             if (string.IsNullOrEmpty(result))
             {
+                if (!exception.Source.StartsWith("mscorlib", StringComparison.InvariantCultureIgnoreCase) &&
+                    !exception.Source.StartsWith("System", StringComparison.InvariantCultureIgnoreCase))
+                {//If exception source is relevant then simply return it.
+                    return exception.Source;
+                }
+                //Search relevant information.
                 Match firstReleventLine = Regex.Match(exception.StackTrace, @"\sat (?!System)(?<Type>.+)\.[^(\s]+\(");
                 if (!firstReleventLine.Success)
                 {
@@ -184,13 +214,21 @@ namespace Bugx.Talk
             return null;
         }
 
+        /// <summary>
+        /// Bot_s the on authenticate.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
         void Bot_OnAuthenticate(object sender)
         {
-            string message = Texts.InfoApplicationRestart;
-            foreach (string user in SubscriptionManager.Instance)
+            if (!string.IsNullOrEmpty(SubscriptionManager.Instance.Announcement))
             {
-                _Bot.Message(user, message);
+                _Bot.Presence(PresenceType.available, SubscriptionManager.Instance.Announcement, null, 24);
             }
+            else
+            {
+                _Bot.Presence(PresenceType.available, BotVersion, null, 24);
+            }
+            Message(Texts.InfoApplicationRestart);
         }
 
         void Bot_OnMessage(object sender, Message msg)
@@ -223,6 +261,10 @@ namespace Bugx.Talk
             }
         }
 
+        /// <summary>
+        /// Gets the broadcast list.
+        /// </summary>
+        /// <returns></returns>
         List<string> GetBroadcastList()
         {
             List<string> result = new List<string>();
@@ -240,6 +282,11 @@ namespace Bugx.Talk
             return result;
         }
 
+        /// <summary>
+        /// Processes the command.
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
+        /// <returns></returns>
         bool ProcessCommand(Message msg)
         {
             string userAddress = string.Format(CultureInfo.InvariantCulture, "{0}@{1}", msg.From.User, msg.From.Server).ToLowerInvariant();
@@ -258,6 +305,10 @@ namespace Bugx.Talk
                 case "unsubscribe":
                     SubscriptionManager.Instance.Remove(userAddress);
                     _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoUnsubscribeComplete, msg.From.User, msg.Body, BotVersion));
+                    break;
+
+                case "recycle":
+                    HostingEnvironment.InitiateShutdown();
                     break;
 
                 case "subscribers":
@@ -284,7 +335,16 @@ namespace Bugx.Talk
                     break;
 
                 default:
-                    _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.ErrorUnknownCommand, msg.From.User, msg.Body, BotVersion));
+                    if (command.StartsWith("/announcement"))
+                    {
+                        SubscriptionManager.Instance.Announcement = command.Substring(13).Trim();
+                        _Bot.Presence(PresenceType.available, SubscriptionManager.Instance.Announcement, null, 24);
+                        _Bot.Message(msg.From.ToString(), Texts.CommandComplete);
+                    }
+                    else
+                    {
+                        _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.ErrorUnknownCommand, msg.From.User, msg.Body, BotVersion));
+                    }
                     break;
             }
             return true;

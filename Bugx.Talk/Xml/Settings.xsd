@@ -24,6 +24,7 @@
             <xsd:field xpath="." />
           </xsd:unique>
         </xsd:element>
+        <xsd:element name="announcement" type="xsd:string" />
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>

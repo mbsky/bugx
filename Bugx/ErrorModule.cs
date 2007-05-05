@@ -30,8 +30,10 @@ using System.Web;
 using System.Xml;
 using System.Collections;
 using BugEventHandler = System.EventHandler<Bugx.Web.BugEventArgs>;
+using ApplicationUnloadEventHandler = System.EventHandler<Bugx.Web.ApplicationUnloadEventArgs>;
 using Bugx.Web.Configuration;
 using System.Collections.Generic;
+
 
 namespace Bugx.Web
 {
@@ -163,6 +165,17 @@ namespace Bugx.Web
                 throw new ArgumentNullException("context");
             }
             context.Error += new EventHandler(Application_Error);
+            AppDomain.CurrentDomain.DomainUnload += new EventHandler(CurrentDomain_DomainUnload);
+        }
+
+        /// <summary>
+        /// Handles the DomainUnload event of the CurrentDomain control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        static void CurrentDomain_DomainUnload(object sender, EventArgs e)
+        {
+            OnApplicationUnload(new ApplicationUnloadEventArgs());
         }
 
         /// <summary>
@@ -509,6 +522,16 @@ namespace Bugx.Web
                 {
                     ErrorComplete(HttpContext.Current.ApplicationInstance, e);
                 }catch{}
+            }
+        }
+
+        public static event ApplicationUnloadEventHandler ApplicationUnload;
+
+        static void OnApplicationUnload(ApplicationUnloadEventArgs e)
+        {
+            if (ApplicationUnload != null)
+            {
+                ApplicationUnload(null, e);
             }
         }
     }

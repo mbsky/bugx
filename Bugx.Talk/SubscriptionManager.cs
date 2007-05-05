@@ -39,6 +39,7 @@ namespace Bugx.Talk
         string _Password;
         string _NetworkHost;
         string _Server;
+        string _Announcement;
 
         /// <summary>
         /// Gets the name of the setting file.
@@ -66,10 +67,11 @@ namespace Bugx.Talk
                     XPathNavigator xpath = document.CreateNavigator();
                     XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xpath.NameTable);
                     namespaceManager.AddNamespace("bugx", XmlNameSpace);
-                    _User        = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:user", namespaceManager).Value;
-                    _Password    = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:password", namespaceManager).Value;
-                    _Server      = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:server", namespaceManager).Value;
-                    _NetworkHost = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:networkHost", namespaceManager).Value;
+                    _User         = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:user", namespaceManager).Value;
+                    _Password     = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:password", namespaceManager).Value;
+                    _Server       = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:server", namespaceManager).Value;
+                    _NetworkHost  = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:networkHost", namespaceManager).Value;
+                    _Announcement = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:announcement", namespaceManager).Value;
                     
                     foreach (XPathNavigator node in xpath.Select("/bugx:bugx.talk/bugx:subscriptions/bugx:subscription", namespaceManager))
                     {
@@ -224,6 +226,30 @@ namespace Bugx.Talk
         public string Server
         {
             get { return _Server; }
+        }
+
+        public string Announcement
+        {
+            get { return _Announcement; }
+            set
+            {
+                if (_Announcement == value)
+                {
+                    return;
+                }
+                using (FileStream file = new FileStream(_SettingFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    XmlDocument document = new XmlDocument();
+                    document.Load(file);
+                    XmlNamespaceManager namespaceManager = new XmlNamespaceManager(document.NameTable);
+                    namespaceManager.AddNamespace("bugx", XmlNameSpace);
+                    document.SelectSingleNode("/bugx:bugx.talk/bugx:announcement", namespaceManager).InnerText = value;
+                    file.SetLength(0);
+                    document.Save(file);
+                }
+                _Announcement = value;
+                SaveInCache(this);
+            }
         }
 
         
