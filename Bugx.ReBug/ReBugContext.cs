@@ -34,6 +34,8 @@ using System.Configuration;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using System.Security.Principal;
+using System.Runtime.Serialization;
 
 namespace Bugx.ReBug
 {
@@ -51,7 +53,10 @@ namespace Bugx.ReBug
         Dictionary<string, object> _Application;
         Dictionary<object, object> _Context;
         string _PathInfo;
-        Exception _Exception; 
+        Exception _Exception;
+        IPrincipal _User;
+        string _MachineName;
+        int? _ScriptTimeout;
         #endregion
 
         #region Constructor
@@ -80,7 +85,10 @@ namespace Bugx.ReBug
             XmlNode exception = bug.SelectSingleNode("/bugx/exception");
             if (exception != null)
             {
-                _Exception = (Exception)BugSerializer.Deserialize(exception.InnerText);
+                try
+                {
+                    _Exception = (Exception)BugSerializer.Deserialize(exception.InnerText);
+                }catch(SerializationException){}
             }
             XmlNode url = bug.SelectSingleNode("/bugx/url");
             if (url != null)
@@ -91,6 +99,26 @@ namespace Bugx.ReBug
             if (pathInfo != null)
             {
                 _PathInfo = pathInfo.InnerText;
+            }
+            XmlNode machineName = bug.SelectSingleNode("/bugx/machineName");
+            if (machineName != null)
+            {
+                _MachineName = machineName.InnerText;
+            }
+            XmlNode scriptTimeout = bug.SelectSingleNode("/bugx/scriptTimeout");
+            if (scriptTimeout != null)
+            {
+                _ScriptTimeout = Convert.ToInt32(scriptTimeout.InnerText);
+            }
+            XmlNode user = bug.SelectSingleNode("/bugx/user");
+            if (user != null)
+            {
+                try
+                {
+                    _User = (IPrincipal)BugSerializer.Deserialize(user.InnerText);
+                }
+                catch(SerializationException){}
+                catch(ArgumentException){}
             }
         }
 
@@ -141,7 +169,14 @@ namespace Bugx.ReBug
                 }
                 else if (!string.IsNullOrEmpty(node.InnerText))
                 {
-                    data = BugSerializer.Deserialize(node.InnerText);
+                    try
+                    {
+                        data = BugSerializer.Deserialize(node.InnerText);
+                    }
+                    catch(SerializationException)
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -169,7 +204,14 @@ namespace Bugx.ReBug
                 }
                 else if (!string.IsNullOrEmpty(node.InnerText))
                 {
-                    data = BugSerializer.Deserialize(node.InnerText);
+                    try
+                    {
+                        data = BugSerializer.Deserialize(node.InnerText);    
+                    }
+                    catch(SerializationException)
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -181,7 +223,10 @@ namespace Bugx.ReBug
                 }
                 else
                 {
-                    result[BugSerializer.Deserialize(node.SelectSingleNode("key").InnerText)] = data;
+                    try
+                    {
+                        result[BugSerializer.Deserialize(node.SelectSingleNode("key").InnerText)] = data;
+                    }catch(SerializationException){}
                 }
             }
             return result;
@@ -195,7 +240,7 @@ namespace Bugx.ReBug
         /// <value>The URL.</value>
         [Category("Request")]
         [Description("Gets information about the URL of the current request.")]
-        public Uri Url
+        public virtual Uri Url
         {
             get
             {
@@ -213,7 +258,7 @@ namespace Bugx.ReBug
         /// <value>The form.</value>
         [Category("Request")]
         [Description("Gets a collection of form variables.")]
-        public HttpValueCollection Form
+        public virtual HttpValueCollection Form
         {
             get
             {
@@ -226,7 +271,7 @@ namespace Bugx.ReBug
         /// </summary>
         [Category("Request")]
         [Description("Gets the collection of HTTP query string variables.")]
-        public HttpValueCollection QueryString
+        public virtual HttpValueCollection QueryString
         {
             get
             {
@@ -239,7 +284,7 @@ namespace Bugx.ReBug
         /// </summary>
         [Category("Request")]
         [Description("Gets a collection of cookies sent by the client.")]
-        public HttpValueCollection Cookies
+        public virtual HttpValueCollection Cookies
         {
             get
             {
@@ -252,7 +297,7 @@ namespace Bugx.ReBug
         /// </summary>
         [Category("Request")]
         [Description("Gets a collection of HTTP headers.")]
-        public HttpValueCollection Headers
+        public virtual HttpValueCollection Headers
         {
             get
             {
@@ -263,9 +308,9 @@ namespace Bugx.ReBug
         /// <summary>
         /// Gets the <see cref="System.Web.SessionState.HttpSessionState"/> object for the current HTTP request.
         /// </summary>
-        [Category("Environement")]
+        [Category("Environment")]
         [Description("Gets the System.Web.SessionState.HttpSessionState object for the current HTTP request.")]
-        public Dictionary<string, object> Session
+        public virtual Dictionary<string, object> Session
         {
             get
             {
@@ -276,9 +321,9 @@ namespace Bugx.ReBug
         /// <summary>
         /// Gets the <see cref="System.Web.Caching.Cache"/> object for the current HTTP request.
         /// </summary>
-        [Category("Environement")]
+        [Category("Environment")]
         [Description("Gets the System.Web.Caching.Cache object for the current HTTP request.")]
-        public Dictionary<string, object> Cache
+        public virtual Dictionary<string, object> Cache
         {
             get
             {
@@ -289,9 +334,9 @@ namespace Bugx.ReBug
         /// <summary>
         /// Gets a key/value collection that can be used to organize and share data between an <see cref="System.Web.IHttpModule"/> interface and an <see cref="System.Web.IHttpHandler"/> interface during an HTTP request.
         /// </summary>
-        [Category("Environement")]
+        [Category("Environment")]
         [Description("Gets a key/value collection that can be used to organize and share data between an System.Web.IHttpModule interface and an System.Web.IHttpHandler interface during an HTTP request.")]
-        public Dictionary<object, object> Context
+        public virtual Dictionary<object, object> Context
         {
             get
             {
@@ -302,9 +347,9 @@ namespace Bugx.ReBug
         /// <summary>
         /// Gets the <see cref="System.Web.HttpApplicationState"/> object for the current HTTP request.
         /// </summary>
-        [Category("Environement")]
+        [Category("Environment")]
         [Description("Gets the System.Web.HttpApplicationState object for the current HTTP request.")]
-        public Dictionary<string, object> Application
+        public virtual Dictionary<string, object> Application
         {
             get
             {
@@ -317,7 +362,7 @@ namespace Bugx.ReBug
         /// </summary>
         [Category("User - Exception")]
         [Description("Gets the first error accumulated during HTTP request processing.")]
-        public Exception Exception
+        public virtual Exception Exception
         {
             get
             {
@@ -334,11 +379,44 @@ namespace Bugx.ReBug
         /// </summary>
         [Category("Request")]
         [Description("Gets additional path information for a resource with a URL extension.")]
-        public string PathInfo
+        public virtual string PathInfo
         {
             get{ return _PathInfo; }
             set{ _PathInfo = value; }
         } 
+
+        /// <summary>
+        /// Gets or sets security information for the current HTTP request.
+        /// </summary>
+        [Category("Environment")]
+        [Description("Security information for the current HTTP request.")]
+        public virtual IPrincipal User
+        {
+            get { return _User; }
+            set { _User = value; }
+        }
+
+        /// <summary>
+        /// Gets the server&apos;s computer name.
+        /// </summary>
+        [Category("Environment")]
+        [Description("The name of the local computer.")]
+        public virtual string MachineName
+        {
+            get { return _MachineName; }
+        }
+
+        /// <summary>
+        /// Gets and sets the request time-out value in seconds.
+        /// </summary>
+        /// <value>The time-out value setting for requests.</value>
+        [Category("Environment")]
+        [Description("The time-out value setting for requests.")]
+        public virtual int? ScriptTimeout
+        {
+            get { return _ScriptTimeout; }
+            set{ _ScriptTimeout = value; }
+        }
         #endregion
 
         #region Methods
@@ -368,7 +446,12 @@ namespace Bugx.ReBug
             {
                 application[key] = Application[key];
             }
+            if (ScriptTimeout != null)
+            {
+                context.Server.ScriptTimeout = ScriptTimeout.Value;
+            }
         } 
         #endregion
+
     }
 }
