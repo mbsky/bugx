@@ -147,7 +147,6 @@ namespace Bugx.ReBug
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.ContextExplorer.Location = new System.Drawing.Point(12, 19);
             this.ContextExplorer.Name = "ContextExplorer";
-            this.ContextExplorer.PropertySort = System.Windows.Forms.PropertySort.Categorized;
             this.ContextExplorer.Size = new System.Drawing.Size(730, 467);
             this.ContextExplorer.TabIndex = 1;
             // 

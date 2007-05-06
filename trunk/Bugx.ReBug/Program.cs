@@ -93,7 +93,8 @@ namespace Bugx.ReBug
         static void Download(Uri fileName, string destinationFile)
         {
             const int BufferSize = 10240;
-            WebRequest request = WebRequest.Create(fileName);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fileName);
+            request.UserAgent = "ReBug/1.0";
             new DirectoryInfo(Path.GetDirectoryName(destinationFile)).Create();
             using (WebResponse response = request.GetResponse())
             using (Stream responseStream = response.GetResponseStream())

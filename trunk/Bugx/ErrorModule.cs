@@ -231,6 +231,10 @@ namespace Bugx.Web
             {
                 SaveApplication(root, context);
             }
+            if ((dataToSave & DataToSave.User) != 0)
+            {
+                SaveUser(root, context);
+            }
             if ((dataToSave & DataToSave.Exception) != 0)
             {
                 SaveException(root, context);
@@ -444,6 +448,24 @@ namespace Bugx.Web
                                                         root.AppendChild(root.OwnerDocument.CreateElement("form")));
             HttpValueCollection.SaveCollectionToXmlNode(context.Request.Headers,
                                                         root.AppendChild(root.OwnerDocument.CreateElement("headers")));
+            root.AppendChild(root.OwnerDocument.CreateElement("machineName")).InnerText   = context.Server.MachineName;
+            root.AppendChild(root.OwnerDocument.CreateElement("scriptTimeout")).InnerText = context.Server.ScriptTimeout.ToString(CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Saves the user.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="context">The context.</param>
+        static void SaveUser(XmlNode root, HttpContext context)
+        {
+            if (context.User != null && context.User.GetType().IsSerializable)
+            {
+                XmlNode user = root.AppendChild(root.OwnerDocument.CreateElement("user"));
+                user.Attributes.Append(root.OwnerDocument.CreateAttribute("name")).Value = context.User.Identity.Name;
+                user.Attributes.Append(root.OwnerDocument.CreateAttribute("authenticationType")).Value = context.User.Identity.AuthenticationType;
+                user.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(context.User)));
+            }
         }
 
         /// <summary>

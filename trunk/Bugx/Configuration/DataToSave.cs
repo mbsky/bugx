@@ -61,8 +61,13 @@ namespace Bugx.Web.Configuration
         Application = 0x10,
 
         /// <summary>
+        /// Security information.
+        /// </summary>
+        User        = 0x20,
+
+        /// <summary>
         /// Save all information.
         /// </summary>
-        All         = Session | Cache | Context | Exception | Application
+        All         = Session | Cache | Context | Exception | Application | User
     }
 }
