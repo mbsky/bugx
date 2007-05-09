@@ -44,6 +44,21 @@ namespace Bugx.Web
         }
 
         /// <summary>
+        /// Gets or sets the bug report URI.
+        /// </summary>
+        Uri _BugReport;
+
+        /// <summary>
+        /// Gets or sets the bug report URI.
+        /// </summary>
+        /// <value>The bug report.</value>
+        public Uri BugReport
+        {
+            get { return _BugReport; }
+            set { _BugReport = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the bug.
         /// </summary>
         BugDocument _Bug;

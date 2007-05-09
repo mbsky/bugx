@@ -25,6 +25,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.Serialization;
 
 namespace Bugx.Web
 {
@@ -37,14 +38,20 @@ namespace Bugx.Web
         /// <returns></returns>
         public static string Serialize(object graph)
         {
-            using (MemoryStream serializedData = new MemoryStream())
+            try
             {
-                using (Stream writer = new GZipStream(serializedData, CompressionMode.Compress, true))
+                using (MemoryStream serializedData = new MemoryStream())
                 {
-                    new BinaryFormatter().Serialize(writer, graph);
+                    using (Stream writer = new GZipStream(serializedData, CompressionMode.Compress, true))
+                    {
+                        new BinaryFormatter().Serialize(writer, graph);
+                    }
+                    return Convert.ToBase64String(serializedData.ToArray());
                 }
-                return Convert.ToBase64String(serializedData.ToArray());
             }
+            catch(InvalidOperationException){}
+            catch(SerializationException){}
+            return null;
         }
 
         /// <summary>

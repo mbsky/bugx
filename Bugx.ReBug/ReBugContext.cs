@@ -118,7 +118,7 @@ namespace Bugx.ReBug
                     _User = (IPrincipal)BugSerializer.Deserialize(user.InnerText);
                 }
                 catch(SerializationException){}
-                catch(ArgumentException){}
+                catch(TargetInvocationException){}
             }
         }
 

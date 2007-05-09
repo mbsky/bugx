@@ -63,7 +63,7 @@ namespace Bugx.Web
         /// <exception cref="T:System.Xml.XmlException">There is a load or parse error in the XML. In this case, the document remains empty. </exception>
         public override void Load(string filename)
         {
-            using (Stream file = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite))
+            using (Stream file = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
                 Load(file);
             }
