@@ -164,7 +164,7 @@ namespace Bugx.Web
             {
                 throw new ArgumentNullException("context");
             }
-            context.Error += new EventHandler(Application_Error);
+            context.Error += new EventHandler(SafeApplication_Error);
             AppDomain.CurrentDomain.DomainUnload += new EventHandler(CurrentDomain_DomainUnload);
         }
 
@@ -194,11 +194,37 @@ namespace Bugx.Web
         }
 
         /// <summary>
-        /// Handles the Error event of the Application control.
+        /// Handles the Error event of the Application control (Safe).
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        static void Application_Error(object sender, EventArgs e)
+        static void SafeApplication_Error(object sender, EventArgs e)
+        {
+            try
+            {
+                Application_Error(sender);
+            }
+            catch (Exception error)
+            {
+                try
+                {
+                    using (StreamWriter file = new StreamWriter(((HttpApplication)sender).Context.Server.MapPath("~/bugx/crash.log"), true, Encoding.Default))
+                    {
+                        file.WriteLine("/** {0:yyyy/MM/dd HH:mm:ss} *******************", DateTime.Now);
+                        file.WriteLine(error);
+                        file.WriteLine("/***************************************");
+                        file.WriteLine();
+                    }
+                }
+                catch{}
+            }
+        }
+
+        /// <summary>
+        /// Handles the Error event of the Application control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        static void Application_Error(object sender)
         {
             if (IsReBug)
             {//Error handling is disabled.
@@ -207,6 +233,7 @@ namespace Bugx.Web
             HttpContext context = ((HttpApplication) sender).Context;
             BugDocument bug = new BugDocument();
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
+            root.Attributes.Append(bug.CreateAttribute("date")).Value = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-ddTHH:mm:ss} UTC", DateTime.Now.ToUniversalTime());
             BugEventArgs bugEventArgs = new BugEventArgs();
             bugEventArgs.Bug = bug;
             DataToSave dataToSave = BugxConfiguration.DataToSave;
@@ -248,7 +275,8 @@ namespace Bugx.Web
             }
             string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
             bug.Save(destination.FullName + fileName);
-            bugEventArgs.BugUri = BuildBugUri(bugVirtualPath + "/" + fileName);
+            bugEventArgs.BugUri    = ExceptionHelper.BuildBugUri(bugVirtualPath + "/" + fileName);
+            bugEventArgs.BugReport = ExceptionHelper.BuildBugReportUri(bugVirtualPath + "/" + fileName);
             if (MaySendErrorComplete(errorId) && !BugxConfiguration.ShouldBeFiltered(errorId))
             {
                 OnErrorComplete(bugEventArgs);
@@ -345,22 +373,7 @@ namespace Bugx.Web
             }
         }
 
-        /// <summary>
-        /// Builds the bug URI.
-        /// </summary>
-        /// <param name="bugVirtualPath">The bug virtual path.</param>
-        /// <returns></returns>
-        static Uri BuildBugUri(string bugVirtualPath)
-        {
-            HttpContext context = HttpContext.Current;
-            string applicationPath = context.Request.ApplicationPath;
-            if (!applicationPath.EndsWith("/"))
-            {
-                applicationPath += "/";
-            }
-            bugVirtualPath =  new Uri(context.Request.Url, bugVirtualPath.Replace("~/", applicationPath)).ToString();
-            return new Uri(Regex.Replace(bugVirtualPath, "^(https?)://", "bugx://$1/", RegexOptions.IgnoreCase));
-        }
+        
 
         /// <summary>
         /// Saves the cache.
@@ -400,7 +413,13 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveSession(XmlNode root, HttpContext context)
         {
+            if (context.Session == null)
+            {
+                return;
+            }
             XmlNode session = root.AppendChild(root.OwnerDocument.CreateElement("sessionVariables"));
+            session.Attributes.Append(root.OwnerDocument.CreateAttribute("mode")).Value = context.Session.Mode.ToString();
+            session.Attributes.Append(root.OwnerDocument.CreateAttribute("codePage")).Value = context.Session.CodePage.ToString(CultureInfo.InvariantCulture);
             foreach (string key in context.Session.Keys)
             {
                 XmlNode variable = session.AppendChild(root.OwnerDocument.CreateElement("add"));
@@ -431,6 +450,10 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveUrl(XmlNode root, HttpContext context)
         {
+            if (context.Request == null)
+            {
+                return;
+            }
             root.AppendChild(root.OwnerDocument.CreateElement("url")).AppendChild(root.OwnerDocument.CreateCDataSection(context.Request.Url.ToString()));
             root.AppendChild(root.OwnerDocument.CreateElement("pathInfo")).AppendChild(root.OwnerDocument.CreateCDataSection(context.Request.PathInfo));
         }
@@ -442,14 +465,20 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveRequest(XmlNode root, HttpContext context)
         {
-            HttpValueCollection.SaveCollectionToXmlNode(context.Request.QueryString,
+            if (context.Request != null)
+            {
+                HttpValueCollection.SaveCollectionToXmlNode(context.Request.QueryString,
                                                         root.AppendChild(root.OwnerDocument.CreateElement("queryString")));
-            HttpValueCollection.SaveCollectionToXmlNode(context.Request.Form,
-                                                        root.AppendChild(root.OwnerDocument.CreateElement("form")));
-            HttpValueCollection.SaveCollectionToXmlNode(context.Request.Headers,
-                                                        root.AppendChild(root.OwnerDocument.CreateElement("headers")));
-            root.AppendChild(root.OwnerDocument.CreateElement("machineName")).InnerText   = context.Server.MachineName;
-            root.AppendChild(root.OwnerDocument.CreateElement("scriptTimeout")).InnerText = context.Server.ScriptTimeout.ToString(CultureInfo.InvariantCulture);
+                HttpValueCollection.SaveCollectionToXmlNode(context.Request.Form,
+                                                            root.AppendChild(root.OwnerDocument.CreateElement("form")));
+                HttpValueCollection.SaveCollectionToXmlNode(context.Request.Headers,
+                                                            root.AppendChild(root.OwnerDocument.CreateElement("headers")));
+            }
+            if (context.Server != null)
+            {
+                root.AppendChild(root.OwnerDocument.CreateElement("machineName")).InnerText = context.Server.MachineName;
+                root.AppendChild(root.OwnerDocument.CreateElement("scriptTimeout")).InnerText = context.Server.ScriptTimeout.ToString(CultureInfo.InvariantCulture);
+            }
         }
 
         /// <summary>
@@ -475,9 +504,19 @@ namespace Bugx.Web
         /// <param name="context">The context.</param>
         static void SaveException(XmlNode root, HttpContext context)
         {
-            root.AppendChild(root.OwnerDocument.CreateElement("exception"))
-                .AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(context.Error)));
+            if (context.Error == null)
+            {
+                return;
+            }
+            XmlNode exception = root.AppendChild(root.OwnerDocument.CreateElement("exception"));
+            Exception baseException = context.Error.GetBaseException();
+            exception.Attributes.Append(root.OwnerDocument.CreateAttribute("type")).Value = baseException.GetType().FullName;
+            exception.Attributes.Append(root.OwnerDocument.CreateAttribute("message")).Value = baseException.Message;
+            exception.Attributes.Append(root.OwnerDocument.CreateAttribute("source")).Value = ExceptionHelper.GetRelevantSource(context.Error)??baseException.Source;
+            exception.AppendChild(root.OwnerDocument.CreateCDataSection(BugSerializer.Serialize(context.Error)));
+            ExceptionHelper.XmlSerializeStackTrace(baseException, root.AppendChild(root.OwnerDocument.CreateElement("stackTrace")));
         }
+
 
         /// <summary>
         /// Builds the unique identifier.
@@ -504,6 +543,10 @@ namespace Bugx.Web
         /// <returns></returns>
         static string RemoveDebugInformationFromStackTrace(string stackTrace)
         {
+            if(string.IsNullOrEmpty(stackTrace))
+            {
+                return string.Empty;
+            }
             return Regex.Replace(stackTrace, @"\) in \w\:[/\\].+", ")");
         }
 
@@ -549,9 +592,18 @@ namespace Bugx.Web
 
         public static event ApplicationUnloadEventHandler ApplicationUnload;
 
+        /// <summary>
+        /// Test purpose.
+        /// </summary>
+        static int UnloadCounter;
+
+        /// <summary>
+        /// Raises the application unload event.
+        /// </summary>
+        /// <param name="e">The <see cref="Bugx.Web.ApplicationUnloadEventArgs"/> instance containing the event data.</param>
         static void OnApplicationUnload(ApplicationUnloadEventArgs e)
         {
-            if (ApplicationUnload != null)
+            if (ApplicationUnload != null && ++UnloadCounter <= 2)
             {
                 ApplicationUnload(null, e);
             }

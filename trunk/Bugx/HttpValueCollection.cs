@@ -132,7 +132,7 @@ namespace Bugx.Web
             }
             foreach (XmlNode nameValue in node.SelectNodes("*"))
             {
-                collection.Add(nameValue.Name, nameValue.InnerText);
+                collection.Add(XmlConvert.DecodeName(nameValue.Name), nameValue.InnerText);
             }
         }
 
@@ -241,7 +241,7 @@ namespace Bugx.Web
             {
                 if (!string.IsNullOrEmpty(key))
                 {
-                    node.AppendChild(node.OwnerDocument.CreateElement(key)).InnerText = collection[key];
+                    node.AppendChild(node.OwnerDocument.CreateElement(XmlConvert.EncodeName(key))).InnerText = collection[key];
                 }
             }
         }

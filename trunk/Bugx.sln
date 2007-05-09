@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Bugx.TestSite\", "Bugx.TestSite\", "{D15521D0-4769-4228-9413-2A3A7D2BC1A6}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{B01F9377-75E3-410C-A944-A6867D836796}|Bugx.Web.dll;{30AB755F-B05F-4A75-81C3-47230BB42286}|Model.dll;{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}|Bugx.Talk.dll;"
+		ProjectReferences = "{B01F9377-75E3-410C-A944-A6867D836796}|Bugx.Web.dll;{30AB755F-B05F-4A75-81C3-47230BB42286}|Model.dll;{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}|Bugx.Talk.dll;{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}|Bugx.Report.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Bugx.TestSite"
 		Debug.AspNetCompiler.PhysicalPath = "..\Bugx\Bugx.TestSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Bugx.TestSite\"
@@ -41,6 +41,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugx.Talk", "Bugx.Talk\Bugx.Talk.csproj", "{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bugx.Report", "Bugx.Report\Bugx.Report.csproj", "{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -106,6 +112,16 @@ Global
 		{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Release|.NET.ActiveCfg = Release|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

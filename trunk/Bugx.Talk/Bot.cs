@@ -31,7 +31,6 @@ using System.Text.RegularExpressions;
 using Bugx.Web;
 using System.Text;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Web.Hosting;
 
 namespace Bugx.Talk
@@ -157,61 +156,8 @@ namespace Bugx.Talk
                                   context.Request.Url,
                                   exception.Message,
                                   exception.GetType().FullName,
-                                  GetRelevantSource(context.Error) ?? exception.Source,
-                                  e.BugUri));
-        }
-
-        /// <summary>
-        /// Gets the relevent source.
-        /// </summary>
-        /// <param name="exception">The exception.</param>
-        /// <returns></returns>
-        static string  GetRelevantSource(Exception exception)
-        {
-            if (exception == null)
-            {
-                return null;
-            }
-            string result = GetRelevantSource(exception.InnerException);
-            if (string.IsNullOrEmpty(result))
-            {
-                if (!exception.Source.StartsWith("mscorlib", StringComparison.InvariantCultureIgnoreCase) &&
-                    !exception.Source.StartsWith("System", StringComparison.InvariantCultureIgnoreCase))
-                {//If exception source is relevant then simply return it.
-                    return exception.Source;
-                }
-                //Search relevant information.
-                Match firstReleventLine = Regex.Match(exception.StackTrace, @"\sat (?!System)(?<Type>.+)\.[^(\s]+\(");
-                if (!firstReleventLine.Success)
-                {
-                    return null;
-                }
-                Type type = FindType(firstReleventLine.Groups["Type"].Value);
-                if (type == null)
-                {
-                    return null;
-                }
-                return type.Assembly.FullName.Split(',')[0];
-            }
-            return  result;
-        }
-
-        /// <summary>
-        /// Finds the type.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns></returns>
-        static Type FindType(string type)
-        {
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                Type result = assembly.GetType(type);
-                if (result != null)
-                {
-                    return result;
-                }
-            }
-            return null;
+                                  ExceptionHelper.GetRelevantSource(context.Error) ?? exception.Source,
+                                  e.BugReport));
         }
 
         /// <summary>

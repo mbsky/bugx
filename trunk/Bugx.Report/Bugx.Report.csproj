@@ -4,13 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B01F9377-75E3-410C-A944-A6867D836796}</ProjectGuid>
+    <ProjectGuid>{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bugx.Web</RootNamespace>
-    <AssemblyName>Bugx.Web</AssemblyName>
-    <StartupObject>
-    </StartupObject>
+    <RootNamespace>Bugx.Report</RootNamespace>
+    <AssemblyName>Bugx.Report</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -19,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -33,34 +31,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BugDocument.cs" />
-    <Compile Include="BugSerializer.cs" />
-    <Compile Include="Configuration\BugxConfiguration.cs" />
-    <Compile Include="Configuration\DataToSave.cs" />
-    <Compile Include="Configuration\XmlSectionHandler.cs" />
-    <Compile Include="ErrorModule.cs" />
-    <Compile Include="Events.cs" />
-    <Compile Include="ExceptionHelper.cs" />
-    <Compile Include="Properties\FxCop.cs" />
-    <Compile Include="HttpValueCollection.cs" />
+    <Compile Include="Generator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Configuration\Xml\ConfigurationSection.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Configuration\Xml\ConfigurationSection.xsx">
-      <DependentUpon>ConfigurationSection.xsd</DependentUpon>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="key.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ErrorReport.xslt" />
-    <Content Include="Test.xml" />
+    <ProjectReference Include="..\Bugx\Bugx.csproj">
+      <Project>{B01F9377-75E3-410C-A944-A6867D836796}</Project>
+      <Name>Bugx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\Transformation.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
