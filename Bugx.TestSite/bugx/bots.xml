@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<bots>
+<bots xmlns="http://www.wavenet.be/bugx/web/bots.xsd">
   <bot><![CDATA[<a href='http://www.unchaos.com/'> UnChaos </a> From Chaos To Order Hybrid Web Search Engine.(vadim_gonchar@unchaos.com)]]></bot>
   <bot><![CDATA[<a href='http://www.unchaos.com/'> UnChaos Bot Hybrid Web Search Engine. </a> (vadim_gonchar@unchaos.com)]]></bot>
   <bot><![CDATA[<b> UnChaosBot From Chaos To Order UnChaos Hybrid Web Search Engine at www.unchaos.com </b> (info@unchaos.com)]]></bot>
@@ -461,7 +461,6 @@
   <bot><![CDATA[Netprospector JavaCrawler]]></bot>
   <bot><![CDATA[NetResearchServer(http://www.look.com)]]></bot>
   <bot><![CDATA[NetSprint -- 2.0]]></bot>
-  <bot><![CDATA[NetSprint -- 2.0]]></bot>
   <bot><![CDATA[NetWhatCrawler/0.06-dev (NetWhatCrawler from NetWhat.com; http://www.netwhat.com; support@netwhat.com)]]></bot>
   <bot><![CDATA[NetZippy]]></bot>
   <bot><![CDATA[NextGenSearchBot 1 (for information visit http://www.eliyon.com/NextGenSearchBot)]]></bot>
@@ -678,7 +677,6 @@
   <bot><![CDATA[SSurf15a 11]]></bot>
   <bot><![CDATA[stat statcrawler@gmail.com]]></bot>
   <bot><![CDATA[Strategic Board Bot (+http://www.strategicboard.com)]]></bot>
-  <bot><![CDATA[Strategic Board Bot (+http://www.strategicboard.com)]]></bot>
   <bot><![CDATA[Submission Spider at surfsafely.com]]></bot>
   <bot><![CDATA[suchbaer.de]]></bot>
   <bot><![CDATA[suchbaer.de (CrawlerAgent v0.103)]]></bot>
@@ -753,7 +751,6 @@
   <bot><![CDATA[WebarooBot (Webaroo Bot; http://64.124.122.252/feedback.html)]]></bot>
   <bot><![CDATA[Webclipping.com]]></bot>
   <bot><![CDATA[WebCompass 2.0]]></bot>
-  <bot><![CDATA[WebCorp/1.0]]></bot>
   <bot><![CDATA[WebCorp/1.0]]></bot>
   <bot><![CDATA[webcrawl.net]]></bot>
   <bot><![CDATA[WebFindBot(http://www.web-find.com)]]></bot>
