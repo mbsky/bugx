@@ -427,9 +427,12 @@ namespace Bugx.ReBug
         {
             HttpContext context = HttpContext.Current;
             HttpSessionState session = context.Session;
-            foreach (string key in Session.Keys)
+            if (session != null)
             {
-                session[key] = Session[key];
+                foreach (string key in Session.Keys)
+                {
+                    session[key] = Session[key];
+                }
             }
             Cache cache = context.Cache;
             foreach (string key in Cache.Keys)
