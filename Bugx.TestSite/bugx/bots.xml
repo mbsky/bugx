@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bots>
+  <bot><![CDATA[<a href='http://www.unchaos.com/'> UnChaos </a> From Chaos To Order Hybrid Web Search Engine.(vadim_gonchar@unchaos.com)]]></bot>
+  <bot><![CDATA[<a href='http://www.unchaos.com/'> UnChaos Bot Hybrid Web Search Engine. </a> (vadim_gonchar@unchaos.com)]]></bot>
+  <bot><![CDATA[<b> UnChaosBot From Chaos To Order UnChaos Hybrid Web Search Engine at www.unchaos.com </b> (info@unchaos.com)]]></bot>
+  <bot><![CDATA[<http://www.sygol.com/> http://www.sygol.com]]></bot>
+  <bot><![CDATA[:robot/1.0 (linux) ( admin e-mail: undefined http://www.neofonie.de/loesungen/search/robot.html )]]></bot>
+  <bot><![CDATA[+SitiDi.net/SitiDiBot/1.0 (+Have Good Day)]]></bot>
+  <bot><![CDATA[192.comAgent]]></bot>
+  <bot><![CDATA[4anything.com LinkChecker v2.0]]></bot>
+  <bot><![CDATA[A1 Sitemap Generator/1.0 (+http://www.micro-sys.dk/products/sitemap-generator/) miggibot/2006.01.24]]></bot>
+  <bot><![CDATA[AbachoBOT]]></bot>
+  <bot><![CDATA[AbachoBOT (Mozilla compatible)]]></bot>
+  <bot><![CDATA[Aberja Checkomat]]></bot>
+  <bot><![CDATA[abot/0.1 (abot; http://www.abot.com; abot@abot.com)]]></bot>
+  <bot><![CDATA[About/0.1libwww-perl/5.47]]></bot>
+  <bot><![CDATA[accoona]]></bot>
+  <bot><![CDATA[Accoona-AI-Agent/1.1.1 (crawler at accoona dot com)]]></bot>
+  <bot><![CDATA[Accoona-AI-Agent/1.1.2 (aicrawler at accoonabot dot com)]]></bot>
+  <bot><![CDATA[Ack (http://www.ackerm.com/)]]></bot>
+  <bot><![CDATA[AcoiRobot]]></bot>
+  <bot><![CDATA[Acoon Robot v1.50.001]]></bot>
+  <bot><![CDATA[Acoon Robot v1.52 (http://www.acoon.de)]]></bot>
+  <bot><![CDATA[AESOP_com_SpiderMan]]></bot>
+  <bot><![CDATA[AgentName/0.1 libwww-perl/5.48]]></bot>
+  <bot><![CDATA[Agent-SharewarePlazaFileCheckBot/2.0+(+http://www.SharewarePlaza.com)]]></bot>
+  <bot><![CDATA[AIBOT/2.1 By +(www.21seek.com A Real artificial intelligence search engine China)]]></bot>
+  <bot><![CDATA[aipbot/1.0 (aipbot; http://www.aipbot.com; aipbot@aipbot.com)]]></bot>
+  <bot><![CDATA[aipbot/2-beta (aipbot dev; http://aipbot.com; aipbot@aipbot.com)]]></bot>
+  <bot><![CDATA[Aladin/3.324]]></bot>
+  <bot><![CDATA[Aleksika Spider/1.0 (+http://www.aleksika.com/)]]></bot>
+  <bot><![CDATA[AlkalineBOT/1.3]]></bot>
+  <bot><![CDATA[AlkalineBOT/1.4 (1.4.0326.0 RTM)]]></bot>
+  <bot><![CDATA[Allesklar/0.1 libwww-perl/5.46]]></bot>
+  <bot><![CDATA[AltaVista Intranet V2.0 AVS EVAL search@freeit.com]]></bot>
+  <bot><![CDATA[AltaVista Intranet V2.0 Compaq Altavista Eval sveand@altavista.net]]></bot>
+  <bot><![CDATA[AltaVista Intranet V2.0 evreka.com crawler@evreka.com]]></bot>
+  <bot><![CDATA[AltaVista V2.0B crawler@evreka.com]]></bot>
+  <bot><![CDATA[AmfibiBOT]]></bot>
+  <bot><![CDATA[Amfibibot/0.06 (Amfibi Web Search; http://www.amfibi.com; agent@amfibi.com)]]></bot>
+  <bot><![CDATA[Amfibibot/0.07 (Amfibi Robot; http://www.amfibi.com; agent@amfibi.com)]]></bot>
+  <bot><![CDATA[amibot]]></bot>
+  <bot><![CDATA[AnnoMille spider 0.1 alpha - http://www.annomille.it]]></bot>
+  <bot><![CDATA[AnswerBus (http://www.answerbus.com/)]]></bot>
+  <bot><![CDATA[antibot-V1.1.5/i586-linux-2.2]]></bot>
+  <bot><![CDATA[AnzwersCrawl/2.0 (anzwerscrawl@anzwers.com.au;Engine)]]></bot>
+  <bot><![CDATA[A-Online Search]]></bot>
+  <bot><![CDATA[Apexoo Spider 1.0]]></bot>
+  <bot><![CDATA[Aport]]></bot>
+  <bot><![CDATA[appie 1.1 (www.walhello.com)]]></bot>
+  <bot><![CDATA[Arachnoidea (arachnoidea@euroseek.com)]]></bot>
+  <bot><![CDATA[ArchitextSpider]]></bot>
+  <bot><![CDATA[archive.org_bot]]></bot>
+  <bot><![CDATA[Arikus_Spider]]></bot>
+  <bot><![CDATA[ask.24x.info]]></bot>
+  <bot><![CDATA[AskAboutOil/0.06-rcp (Nutch; http://www.nutch.org/docs/en/bot.html; nutch-agent@askaboutoil.com)]]></bot>
+  <bot><![CDATA[asked/Nutch-0.8 (web crawler; http://asked.jp; epicurus at gmail dot com)]]></bot>
+  <bot><![CDATA[ASPSeek/1.2.5]]></bot>
+  <bot><![CDATA[ASPseek/1.2.9d]]></bot>
+  <bot><![CDATA[ASSORT/0.10]]></bot>
+  <bot><![CDATA[asterias/2.0]]></bot>
+  <bot><![CDATA[AtlocalBot/1.1 +(http://www.atlocal.com/local-web-site-owner.html)]]></bot>
+  <bot><![CDATA[Atomz/1.0]]></bot>
+  <bot><![CDATA[atSpider/1.0]]></bot>
+  <bot><![CDATA[augurfind]]></bot>
+  <bot><![CDATA[autoemailspider]]></bot>
+  <bot><![CDATA[AV Fetch 1.0]]></bot>
+  <bot><![CDATA[AVSearch-1.0(peter.turney@nrc.ca)]]></bot>
+  <bot><![CDATA[AVSearch-3.0(AltaVista/AVC)]]></bot>
+  <bot><![CDATA[axadine/ (Axadine Crawler; http://www.axada.de/; )]]></bot>
+  <bot><![CDATA[AxmoRobot - Crawling your site for better indexing on www.axmo.com search engine.]]></bot>
+  <bot><![CDATA[BaiDuSpider]]></bot>
+  <bot><![CDATA[Baiduspider+(+http://www.baidu.com/search/spider.htm)]]></bot>
+  <bot><![CDATA[BDFetch]]></bot>
+  <bot><![CDATA[BDNcentral Crawler v2.3 [en] (http://www.bdncentral.com/robot.html) (X11; I; Linux 2.0.44 i686)]]></bot>
+  <bot><![CDATA[beautybot/1.0 (+http://www.uchoose.de/crawler/beautybot/)]]></bot>
+  <bot><![CDATA[BebopBot/2.5.1 ( crawler http://www.apassion4jazz.net/bebopbot.html )]]></bot>
+  <bot><![CDATA[BigCliqueBOT/1.03-dev (bigclicbot; http://www.bigclique.com; bot@bigclique.com)]]></bot>
+  <bot><![CDATA[BIGLOTRON (Beta 2;GNU/Linux)]]></bot>
+  <bot><![CDATA[BilgiBetaBot/0.8-dev (bilgi.com (Beta) ; http://lucene.apache.org/nutch/bot.html; nutch-agent@lucene.apache.org)]]></bot>
+  <bot><![CDATA[Bitacle bot/1.1]]></bot>
+  <bot><![CDATA[Bitacle Robot (V:1.0;) (http://www.bitacle.com)]]></bot>
+  <bot><![CDATA[BlackWidow]]></bot>
+  <bot><![CDATA[Blaiz-Bee/1.0 (+http://www.blaiz.net)]]></bot>
+  <bot><![CDATA[Blaiz-Bee/2.00.5502 (+http://www.blaiz.net)]]></bot>
+  <bot><![CDATA[BlitzBOT@tricus.net]]></bot>
+  <bot><![CDATA[BlitzBOT@tricus.net (Mozilla compatible)]]></bot>
+  <bot><![CDATA[Bloglines Title Fetch/1.0 (http://www.bloglines.com)]]></bot>
+  <bot><![CDATA[Blogpulse (info@blogpulse.com)]]></bot>
+  <bot><![CDATA[BlogsNowBot, V 2.01 (+http://www.blogsnow.com/)]]></bot>
+  <bot><![CDATA[blogWatcher_Spider/0.1 (http://www.lr.pi.titech.ac.jp/blogWatcher/)]]></bot>
+  <bot><![CDATA[BlogzIce/1.0 (+http://icerocket.com; rhodes@icerocket.com)]]></bot>
+  <bot><![CDATA[BlogzIce/1.0 +http://www.icerocket.com/]]></bot>
+  <bot><![CDATA[BravoBrian SpiderEngine MarcoPolo]]></bot>
+  <bot><![CDATA[BruinBot (+http://webarchive.cs.ucla.edu/bruinbot.html)]]></bot>
+  <bot><![CDATA[BSDSeek/1.0]]></bot>
+  <bot><![CDATA[BullsEye]]></bot>
+  <bot><![CDATA[BurstFindCrawler/1.1 (crawler.burstfind.com; http://crawler.burstfind.com; crawler@burstfind.com)]]></bot>
+  <bot><![CDATA[Buscaplus Robi/1.0 (http://www.buscaplus.com/robi/)]]></bot>
+  <bot><![CDATA[carleson/1.0]]></bot>
+  <bot><![CDATA[Carnegie_Mellon_University_Research_WebBOT-->PLEASE READ-->http://www.andrew.cmu.edu/~brgordon/webbot/index.html http://www.andrew.cmu.edu/~brgordon/webbot/index.html]]></bot>
+  <bot><![CDATA[Carnegie_Mellon_University_WebCrawler http://www.andrew.cmu.edu/~brgordon/webbot/index.html]]></bot>
+  <bot><![CDATA[Catall Spider]]></bot>
+  <bot><![CDATA[Ceramic Tile Installation Guide (http://www.floorstransformed.com)]]></bot>
+  <bot><![CDATA[cfetch/1.0]]></bot>
+  <bot><![CDATA[China Local Browse 2.6]]></bot>
+  <bot><![CDATA[ChristCRAWLER 2.0]]></bot>
+  <bot><![CDATA[CipinetBot (http://www.cipinet.com/bot.html)]]></bot>
+  <bot><![CDATA[ClariaBot/1.0]]></bot>
+  <bot><![CDATA[Claymont.com]]></bot>
+  <bot><![CDATA[combine/0.0]]></bot>
+  <bot><![CDATA[Combine/2.0 http://combine.it.lth.se/]]></bot>
+  <bot><![CDATA[cometrics-bot, http://www.cometrics.de]]></bot>
+  <bot><![CDATA[Computer_and_Automation_Research_Institute_Crawler crawler@ilab.sztaki.hu]]></bot>
+  <bot><![CDATA[Comrite/0.7.1 (Nutch; http://lucene.apache.org/nutch/bot.html; nutch-agent@lucene.apache.org)]]></bot>
+  <bot><![CDATA[ContentSmartz]]></bot>
+  <bot><![CDATA[ConveraCrawler/0.2]]></bot>
+  <bot><![CDATA[ConveraCrawler/0.9d (+http://www.authoritativeweb.com/crawl)]]></bot>
+  <bot><![CDATA[ConveraMultiMediaCrawler/0.1 (+http://www.authoritativeweb.com/crawl)]]></bot>
+  <bot><![CDATA[CoolBot]]></bot>
+  <bot><![CDATA[cosmos/0.8_(robot@xyleme.com)]]></bot>
+  <bot><![CDATA[cosmos/0.9_(robot@xyleme.com)]]></bot>
+  <bot><![CDATA[Cowbot-0.1 (NHN Corp. / +82-2-3011-1954 / nhnbot@naver.com)]]></bot>
+  <bot><![CDATA[CrawlConvera0.1 (CrawlConvera@yahoo.com)]]></bot>
+  <bot><![CDATA[Crawler (cometsearch@cometsystems.com)]]></bot>
+  <bot><![CDATA[Crawler admin@crawler.de]]></bot>
+  <bot><![CDATA[crawler@alexa.com]]></bot>
+  <bot><![CDATA[CrawlerBoy Pinpoint.com]]></bot>
+  <bot><![CDATA[Crawllybot/0.1 (Crawllybot; +http://www.crawlly.com; crawler@crawlly.com)]]></bot>
+  <bot><![CDATA[CreativeCommons/0.06-dev (Nutch; http://www.nutch.org/docs/en/bot.html; nutch-agent@lists.sourceforge.net)]]></bot>
+  <bot><![CDATA[csci_b659/0.13]]></bot>
+  <bot><![CDATA[Cuasarbot/0.9b http://www.cuasar.com/spider_beta/]]></bot>
+  <bot><![CDATA[CurryGuide SiteScan 1.1]]></bot>
+  <bot><![CDATA[Custom Spider www.bisnisseek.com /1.0]]></bot>
+  <bot><![CDATA[DataCha0s/2.0]]></bot>
+  <bot><![CDATA[DataFountains/DMOZ Downloader]]></bot>
+  <bot><![CDATA[DataSpear/1.0 (Spider; http://www.dataspear.com/spider.html; spider@dataspear.com)]]></bot>
+  <bot><![CDATA[DataSpearSpiderBot/0.2 (DataSpear Spider Bot; http://dssb.dataspear.com/bot.html; dssb@dataspear.com)]]></bot>
+  <bot><![CDATA[DatenBot( http://www.sicher-durchs-netz.de/bot.html)]]></bot>
+  <bot><![CDATA[DaviesBot/1.7 (www.wholeweb.net)]]></bot>
+  <bot><![CDATA[dbDig(http://www.prairielandconsulting.com)]]></bot>
+  <bot><![CDATA[DBrowse 1.4b]]></bot>
+  <bot><![CDATA[DBrowse 1.4d]]></bot>
+  <bot><![CDATA[dCSbot/1.1]]></bot>
+  <bot><![CDATA[de.searchengine.comBot 1.2 (http://de.searchengine.com/spider)]]></bot>
+  <bot><![CDATA[deepak-USC/ISI]]></bot>
+  <bot><![CDATA[DeepIndex]]></bot>
+  <bot><![CDATA[DeepIndex ( http://www.zetbot.com )]]></bot>
+  <bot><![CDATA[DeepIndex (www.en.deepindex.com)]]></bot>
+  <bot><![CDATA[DeepIndexer.ca]]></bot>
+  <bot><![CDATA[Demo Bot DOT 16b]]></bot>
+  <bot><![CDATA[Demo Bot Z 16b]]></bot>
+  <bot><![CDATA[Denmex websearch (http://search.denmex.com)]]></bot>
+  <bot><![CDATA[dev-spider2.searchpsider.com/1.3b]]></bot>
+  <bot><![CDATA[DiaGem/1.1 (http://www.skyrocket.gr.jp/diagem.html)]]></bot>
+  <bot><![CDATA[Diamond/1.0]]></bot>
+  <bot><![CDATA[DiamondBot]]></bot>
+  <bot><![CDATA[-DIE-KRAEHE- META-SEARCH-ENGINE/1.1 http://www.die-kraehe.de]]></bot>
+  <bot><![CDATA[Digger/1.0 JDK/1.3.0rc3]]></bot>
+  <bot><![CDATA[DigOut4U]]></bot>
+  <bot><![CDATA[DIIbot/1.2]]></bot>
+  <bot><![CDATA[DittoSpyder]]></bot>
+  <bot><![CDATA[dloader(NaverRobot)/1.0]]></bot>
+  <bot><![CDATA[DoCoMo/1.0/Nxxxi/c10]]></bot>
+  <bot><![CDATA[DoCoMo/1.0/Nxxxi/c10/TB]]></bot>
+  <bot><![CDATA[DoCoMo/2.0 P900iV(c100;TB;W24H11)]]></bot>
+  <bot><![CDATA[Download-Tipp Linkcheck (http://download-tipp.de/)]]></bot>
+  <bot><![CDATA[Drecombot/1.0 (http://career.drecom.jp/bot.html)]]></bot>
+  <bot><![CDATA[DSurf15a 01]]></bot>
+  <bot><![CDATA[DSurf15a 71]]></bot>
+  <bot><![CDATA[DSurf15a 81]]></bot>
+  <bot><![CDATA[DSurf15a VA]]></bot>
+  <bot><![CDATA[dtSearchSpider]]></bot>
+  <bot><![CDATA[Dumbot(version 0.1 beta - dumbfind.com)]]></bot>
+  <bot><![CDATA[Dumbot(version 0.1 beta - http://www.dumbfind.com/dumbot.html)]]></bot>
+  <bot><![CDATA[Dumbot(version 0.1 beta)]]></bot>
+  <bot><![CDATA[EBrowse 1.4b]]></bot>
+  <bot><![CDATA[EchO!/2.0]]></bot>
+  <bot><![CDATA[Educate Search VxB]]></bot>
+  <bot><![CDATA[egothor/3.0a (+http://www.xdefine.org/robot.html)]]></bot>
+  <bot><![CDATA[EgotoBot/4.8 (+http://www.egoto.com/about.htm)]]></bot>
+  <bot><![CDATA[ejupiter.com]]></bot>
+  <bot><![CDATA[elfbot/1.0 (+http://www.uchoose.de/crawler/elfbot/)]]></bot>
+  <bot><![CDATA[EmailSiphon]]></bot>
+  <bot><![CDATA[EmailWolf 1.00]]></bot>
+  <bot><![CDATA[EMPAS_ROBOT]]></bot>
+  <bot><![CDATA[Enfish Tracker]]></bot>
+  <bot><![CDATA[Enterprise_Search/1.0]]></bot>
+  <bot><![CDATA[envolk/1.7 (+http://www.envolk.com/envolkspiderinfo.php)]]></bot>
+  <bot><![CDATA[envolk[ITS]spider/1.6(+http://www.envolk.com/envolkspider.html)]]></bot>
+  <bot><![CDATA[EroCrawler]]></bot>
+  <bot><![CDATA[ES.NET_Crawler/2.0 (http://search.innerprise.net/)]]></bot>
+  <bot><![CDATA[eseek-larbin_2.6.2 (crawler@exactseek.com)]]></bot>
+  <bot><![CDATA[e-sense 1.0 ea(www.vigiltech.com/esensedisclaim.html)]]></bot>
+  <bot><![CDATA[ESISmartSpider]]></bot>
+  <bot><![CDATA[e-SocietyRobot(http://www.yama.info.waseda.ac.jp/~yamana/es/)]]></bot>
+  <bot><![CDATA[eStyleSearch 4 (compatible; MSIE 6.0; Windows NT 5.0)]]></bot>
+  <bot><![CDATA[ESurf15a 15]]></bot>
+  <bot><![CDATA[EvaalSE - bot@evaal.com]]></bot>
+  <bot><![CDATA[eventax/1.3 (eventax; http://www.eventax.de/; info@eventax.de)]]></bot>
+  <bot><![CDATA[Everest-Vulcan Inc./0.1 (R&D project; host=e-1-24; http://everest.vulcan.com/crawlerhelp)]]></bot>
+  <bot><![CDATA[Everest-Vulcan Inc./0.1 (R&D project; http://everest.vulcan.com/crawlerhelp)]]></bot>
+  <bot><![CDATA[Exabot/2.0]]></bot>
+  <bot><![CDATA[Exabot-Images/1.0]]></bot>
+  <bot><![CDATA[ExactSeek Crawler/0.1]]></bot>
+  <bot><![CDATA[exactseek.com]]></bot>
+  <bot><![CDATA[exactseek-crawler-2.63 (crawler@exactseek.com)]]></bot>
+  <bot><![CDATA[exactseek-pagereaper-2.63 (crawler@exactseek.com)]]></bot>
+  <bot><![CDATA[Exalead NG/MimeLive Client (convert/http/0.120)]]></bot>
+  <bot><![CDATA[Excalibur Internet Spider V6.5.4]]></bot>
+  <bot><![CDATA[ExperimentalHenrytheMiragoRobot]]></bot>
+  <bot><![CDATA[ExtractorPro]]></bot>
+  <bot><![CDATA[EyeCatcher (Download-tipp.de)/1.0]]></bot>
+  <bot><![CDATA[factbot : http://www.factbites.com/robots]]></bot>
+  <bot><![CDATA[Fast Crawler Gold Edition]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler 6 (Experimental)]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler 6 / Scirus scirus-crawler@fast.no; http://www.scirus.com/srsapp/contactus/]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler 6 used by Cobra Development (admin@fastsearch.com)]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler 6 used by FAST (FAST)]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler 6 used by Sensis.com.au Web Crawler (search_comments\at\sensis\dot\com\dot\au)]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler/6 (www.fastsearch.com)]]></bot>
+  <bot><![CDATA[FAST Enterprise Crawler/6.4 (helpdesk at fast.no)]]></bot>
+  <bot><![CDATA[FAST FirstPage retriever (compatible; MSIE 5.5; Mozilla/4.0)]]></bot>
+  <bot><![CDATA[FAST MetaWeb Crawler (helpdesk at fastsearch dot com)]]></bot>
+  <bot><![CDATA[Fast PartnerSite Crawler]]></bot>
+  <bot><![CDATA[fastbot crawler beta 2.0 (+http://www.fastbot.de)]]></bot>
+  <bot><![CDATA[FastBug http://www.ay-up.com]]></bot>
+  <bot><![CDATA[FastCrawler 3.0.1 (crawler@1klik.dk)]]></bot>
+  <bot><![CDATA[FastSearch Web Crawler for Verizon SuperPages (kevin.watters@fastsearch.com)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/2.2.10 (Multimedia Search) (crawler@fast.no; http://www.fast.no/faq/faqfastwebsearch/faqfastwebcrawler.html)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/2.2.6 (crawler@fast.no; http://www.fast.no/faq/faqfastwebsearch/faqfastwebcrawler.html)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/2.2.7 (crawler@fast.no; http://www.fast.no/faq/faqfastwebsearch/faqfastwebcrawler.html)http://www.fast.no]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/2.2.8 (crawler@fast.no; http://www.fast.no/faq/faqfastwebsearch/faqfastwebcrawler.html)http://www.fast.no]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.2 test]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.3 (crawler@fast.no; http://fast.no/support.php?c=faqs/crawler)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.4/Nirvana (crawler@fast.no; http://fast.no/support.php?c=faqs/crawler)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.4/PartnerSite (crawler@fast.no; http://fast.no/support.php?c=faqs/crawler)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.5 (atw-crawler at fast dot no; http://fast.no/support.php?c=faqs/crawler)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.6 (atw-crawler at fast dot no; http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.6/FirstPage (crawler@fast.no; http://fast.no/support.php?c=faqs/crawler)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.7 (atw-crawler at fast dot no; http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.7/FirstPage (atw-crawler at fast dot no;http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.8 (atw-crawler at fast dot no; http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[FAST-WebCrawler/3.8/Fresh (atw-crawler at fast dot no; http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[Faxobot/1.0]]></bot>
+  <bot><![CDATA[Feed Seeker Bot (RSS Feed Seeker http://www.MyNewFavoriteThing.com/fsb.php)]]></bot>
+  <bot><![CDATA[FeedChecker/0.01]]></bot>
+  <bot><![CDATA[Feedfetcher-Google; (+http://www.google.com/feedfetcher.html)]]></bot>
+  <bot><![CDATA[Felix - Mixcat Crawler (+http://mixcat.com)]]></bot>
+  <bot><![CDATA[FFC Trap Door Spider]]></bot>
+  <bot><![CDATA[Findexa Crawler (http://www.findexa.no/gulesider/article26548.ece)]]></bot>
+  <bot><![CDATA[FineBot]]></bot>
+  <bot><![CDATA[Firefly/1.0]]></bot>
+  <bot><![CDATA[Firefly/1.0 (compatible; Mozilla 4.0; MSIE 5.5)]]></bot>
+  <bot><![CDATA[Firefox (kastaneta03@hotmail.com)]]></bot>
+  <bot><![CDATA[Firefox_1.0.6 (kasparek@naparek.cz)]]></bot>
+  <bot><![CDATA[FirstGov.gov Search - POC:firstgov.webmasters@gsa.gov]]></bot>
+  <bot><![CDATA[firstsbot]]></bot>
+  <bot><![CDATA[Flapbot/0.7.2 (Flaptor Crawler; http://www.flaptor.com; crawler at flaptor period com)]]></bot>
+  <bot><![CDATA[FlickBot 2.0 RPT-HTTPClient/0.3-3]]></bot>
+  <bot><![CDATA[flunky]]></bot>
+  <bot><![CDATA[FocusedSampler/1.0]]></bot>
+  <bot><![CDATA[Fooky.com/ScorpionBot/ScoutOut; http://www.fooky.com/scorpionbots]]></bot>
+  <bot><![CDATA[Francis/1.0 (francis@neomo.de http://www.neomo.de/)]]></bot>
+  <bot><![CDATA[Franklin Locator 1.8]]></bot>
+  <bot><![CDATA[FreeFind.com-SiteSearchEngine/1.0 (http://freefind.com; spiderinfo@freefind.com)]]></bot>
+  <bot><![CDATA[FreshNotes crawler< report problems to crawler-at-freshnotes-dot-com]]></bot>
+  <bot><![CDATA[FSurf15a 01]]></bot>
+  <bot><![CDATA[Full Web Bot 0416B]]></bot>
+  <bot><![CDATA[Full Web Bot 0516B]]></bot>
+  <bot><![CDATA[Full Web Bot 2816B]]></bot>
+  <bot><![CDATA[FyberSpider (+http://www.fybersearch.com/fyberspider.php)]]></bot>
+  <bot><![CDATA[Mackster( http://www.ukwizz.com )]]></bot>
+  <bot><![CDATA[mailto:webcraft@bea.com]]></bot>
+  <bot><![CDATA[mammoth/1.0 ( http://www.sli-systems.com/)]]></bot>
+  <bot><![CDATA[MantraAgent]]></bot>
+  <bot><![CDATA[MapoftheInternet.com ( http://MapoftheInternet.com)]]></bot>
+  <bot><![CDATA[Mariner/5.1b [de] (Win95; I ;Kolibri gncwebbot)]]></bot>
+  <bot><![CDATA[Marketwave Hit List]]></bot>
+  <bot><![CDATA[Martini]]></bot>
+  <bot><![CDATA[MARTINI]]></bot>
+  <bot><![CDATA[Marvin v0.3]]></bot>
+  <bot><![CDATA[MaSagool/1.0 (MaSagool; http://sagool.jp/; info@sagool.jp)]]></bot>
+  <bot><![CDATA[MasterSeek]]></bot>
+  <bot><![CDATA[Mata Hari/2.00]]></bot>
+  <bot><![CDATA[Matrix S.p.A. - FAST Enterprise Crawler 6 (Unknown admin e-mail address)]]></bot>
+  <bot><![CDATA[maxomobot/dev-20051201 (maxomo; http://67.102.134.34:4047/MAXOMO/MAXOMObot.html; maxomobot@maxomo.com)]]></bot>
+  <bot><![CDATA[MediaCrawler-1.0 (Experimental)]]></bot>
+  <bot><![CDATA[Mediapartners-Google/2.1 ( http://www.googlebot.com/bot.html)]]></bot>
+  <bot><![CDATA[MediaSearch/0.1]]></bot>
+  <bot><![CDATA[MegaSheep v1.0 (www.searchuk.com internet sheep)]]></bot>
+  <bot><![CDATA[Mercator-2.0]]></bot>
+  <bot><![CDATA[Mercator-Scrub-1.1]]></bot>
+  <bot><![CDATA[MetagerBot/0.8-dev (MetagerBot; http://metager.de; )]]></bot>
+  <bot><![CDATA[MetaGer-LinkChecker]]></bot>
+  <bot><![CDATA[Metaspinner/0.01 (Metaspinner; http://www.meta-spinner.de/; support@meta-spinner.de/)]]></bot>
+  <bot><![CDATA[MFC Foundation Class Library 4.0]]></bot>
+  <bot><![CDATA[MicroBaz]]></bot>
+  <bot><![CDATA[Microsoft Small Business Indexer]]></bot>
+  <bot><![CDATA[Microsoft URL Control - 6.00.8xxx]]></bot>
+  <bot><![CDATA[Missauga Locate 1.0.0]]></bot>
+  <bot><![CDATA[Missigua Locator 1.9]]></bot>
+  <bot><![CDATA[Missouri College Browse]]></bot>
+  <bot><![CDATA[Misterbot-Nutch/0.7.1 (Misterbot-Nutch; http://www.misterbot.fr; admin@misterbot.fr)]]></bot>
+  <bot><![CDATA[Miva (AlgoFeedback@miva.com)]]></bot>
+  <bot><![CDATA[Mizzu Labs 2.2]]></bot>
+  <bot><![CDATA[Mo College 1.9]]></bot>
+  <bot><![CDATA[mogimogi/1.0]]></bot>
+  <bot><![CDATA[Morris - Mixcat Crawler ( http://mixcat.com)]]></bot>
+  <bot><![CDATA[Mouse-House/7.4 (spider_monkey spider info at www.mobrien.com/sm.shtml)]]></bot>
+  <bot><![CDATA[Mozilla (Mozilla@somewhere.com)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; Ask Jeeves)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; Ask Jeeves/Teoma; http://about.ask.com/en/docs/about/webmasters.shtml)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; Ask Jeeves/Teoma; http://sp.ask.com/docs/about/tech_crawling.html)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; EZResult -- Internet Search Engine)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; NEWT ActiveX; Win32)]]></bot>
+  <bot><![CDATA[Mozilla/2.0 (compatible; T-H-U-N-D-E-R-S-T-O-N-E)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; Fluffy the spider; http://www.searchhippo.com/; info@searchhippo.com)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; Indy Library)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; MuscatFerret/1.5.4; claude@euroferret.com)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; MuscatFerret/1.5; olly@muscat.co.uk)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; ScollSpider; http://www.webwobot.com)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; Webinator-DEV01.home.iprospect.com/2.56)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (compatible; Webinator-indexer.cyberalert.com/2.56)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (INGRID/3.0 MT; webcrawler@NOSPAMexperimental.net; http://aanmelden.ilse.nl/?aanmeld_mode=webhints)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Slurp.so/Goo; slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Slurp/cat; slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Slurp/si; slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Vagabondo/1.1 MT; webcrawler@NOSPAMwise-guys.nl; http://webagent.wise-guys.nl/)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Vagabondo/2.0 MT; webcrawler@NOSPAMexperimental.net; http://aanmelden.ilse.nl/?aanmeld_mode=webhints)]]></bot>
+  <bot><![CDATA[Mozilla/3.0 (Vagabondo/2.0 MT; webcrawler@NOSPAMwise-guys.nl; http://webagent.wise-guys.nl/)]]></bot>
+  <bot><![CDATA[Mozilla/3.01 (Compatible; Links2Go Similarity Engine)]]></bot>
+  <bot><![CDATA[Mozilla/4.0]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (agadine3.0) www.agada.de]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible: AstraSpider V.2.1 : astrafind.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; Vagabondo/2.2; webcrawler at wise-guys dot nl; http://webagent.wise-guys.nl/)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; Vagabondo/4.0Beta; webcrawler at wise-guys dot nl; http://webagent.wise-guys.nl/)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; B_L_I_T_Z_B_O_T)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; ChristCrawler.com ChristCrawler@ChristCENTRAL.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; crawlx, crawler@trd.overture.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; FastCrawler3 support-fastcrawler3@fast.no)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; FDSE robot)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; GPU p2p crawler http://gpu.sourceforge.net/search_engine.php)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; Iplexx Spider/1.0 http://www.iplexx.at)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 4.0; Windows NT; Site Server 3.0 Robot) Indonesia Interactive]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 4.01; Vonna.com b o t)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; NetNose-Crawler 2.0; A New Search Experience: http://www.netnose.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; Windows 95) TrueRobot; 1.5]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; Windows 95) VoilaBot BETA 1.2 (http://www.voila.com/)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; Windows 95) VoilaBot; 1.6]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt; DTS Agent]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; www.galaxy.com; www.psychedelix.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; www.galaxy.com; www.psychedelix.com/; http://www.galaxy.com/info/crawler.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.0; YANDEX)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0) (samualt9@bigfoot.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 4.0; obot)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 4.0; QXW03018)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0 compatible; Asterias Crawler v4; +http://www.singingfish.com/help/spider.html; webmaster@singingfish.com); SpiderThread Revision: 3.10]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; TargetSeek/1.0; +http://www.targetgroups.net/TargetSeek.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; ODP entries t_st; http://tuezilla.de/t_st-odp-entries-agent.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; ODP links test; http://tuezilla.de/test-odp-links-agent.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; ZoomSpider.net bot; .NET CLR 1.1.4322)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; heritrix/1.3.0 http://www.cs.washington.edu/research/networking/websys/)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; MSIE 6.0; Windows NT; MS Search 4.0 Robot)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; SpeedySpider; www.entireweb.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; www.galaxy.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; Y!J; for robot study; keyoshid)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (compatible; Yahoo Japan; for robot study; kasugiya)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (JemmaTheTourist;http://www.activtourist.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (MobilePhone SCP-5500/US/1.0) NetFront/3.0 MMP/2.0 (compatible; Googlebot/2.1; http://www.google.com/bot.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (MobilePhone SCP-5500/US/1.0) NetFront/3.0 MMP/2.0 FAKE (compatible; Googlebot/2.1; http://www.google.com/bot.html)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 (Sleek Spider/1.2)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 [en] (Ask Jeeves Corporate Spider)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 compatible FurlBot/Furl Search 2.0 (FurlBot; http://www.furl.net; wn.furlbot@looksmart.net)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 compatible ZyBorg/1.0 (wn.zyborg@looksmart.net; http://www.WISEnutbot.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 compatible ZyBorg/1.0 (ZyBorg@WISEnutbot.com; http://www.WISEnutbot.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 compatible ZyBorg/1.0 Dead Link Checker (wn.zyborg@looksmart.net; http://www.WISEnutbot.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 compatible ZyBorg/1.0 for Homepage (ZyBorg@WISEnutbot.com; http://www.WISEnutbot.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.0 efp@gmx.net]]></bot>
+  <bot><![CDATA[Mozilla/4.0(compatible; Zealbot 1.0)]]></bot>
+  <bot><![CDATA[Mozilla/4.0_(compatible;_MSIE_5.0;_Windows_95)_TrueRobot/1.4 libwww/5.2.8]]></bot>
+  <bot><![CDATA[Mozilla/4.0_(compatible;_MSIE_5.0;_Windows_95)_VoilaBot/1.6 libwww/5.3.2]]></bot>
+  <bot><![CDATA[Mozilla/4.04 (compatible; Dulance bot; +http://www.dulance.com/bot.jsp)]]></bot>
+  <bot><![CDATA[Mozilla/4.6 [en] (http://www.cnet.com/)]]></bot>
+  <bot><![CDATA[Mozilla/4.7]]></bot>
+  <bot><![CDATA[Mozilla/4.7 (compatible; http://eidetica.com/spider)]]></bot>
+  <bot><![CDATA[Mozilla/4.7 (compatible; Intelliseek; http://www.intelliseek.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.7 (compatible; Whizbang)]]></bot>
+  <bot><![CDATA[Mozilla/4.7 (compatible; WhizBang; http://www.whizbang.com/crawler)]]></bot>
+  <bot><![CDATA[Mozilla/4.7 [en](BecomeBot@exava.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.7 [en](Exabot@exava.com)]]></bot>
+  <bot><![CDATA[Mozilla/4.72 [en] (BACS http://www.ba.be)]]></bot>
+  <bot><![CDATA[Mozilla/5.0]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (+http://www.sli-systems.com/) Mammoth/0.1]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Clustered-Search-Bot/1.0; support@clush.com; http://www.clush.com/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; archive.org_bot/1.5.0-200506132127 +http://crawler.archive.org) Hurricane Katrina]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; BecomeBot/1.23; http://www.become.com/webmasters.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; BecomeBot/2.0beta; http://www.become.com/webmasters.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; BecomeJPBot/2.3; MSIE 6.0 compatible; +http://www.become.co.jp/site_owners.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Charlotte/1.0b; charlotte@betaspider.com)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Crawling jpeg; http://www.yama.info.waseda.ac.jp)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; DNS-Digger/1.0; +http://www.dnsdigger.com)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; EARTHCOM.info/2.01; http://www.earthcom.info)]]></bot>
+  <bot><![CDATA[mozilla/5.0 (compatible; genevabot http://www.healthdash.com)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Googlebot/2.1; http://www.google.com/bot.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)]]></bot>
+  <bot><![CDATA[mozilla/5.0 (compatible; heritrix/1.0.4 http://innovationblog.com)]]></bot>
+  <bot><![CDATA[mozilla/5.0 (compatible; heritrix/1.3.0 http://archive.crawler.org)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; heritrix/1.4.0 +http://www.chepi.net)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; heritrix/1.4t http://www.truveo.com/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; heritrix/1.5.0 http://www.l3s.de/~kohlschuetter/projects/crawling/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; heritrix/1.5.0-200506231921 http://pandora.nla.gov.au/crawl.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; heritrix/1.6.0 http://www.worio.com/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; LemSpider 0.1)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; MojeekBot/2.0; http://www.mojeek.com/bot.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; OnetSzukaj/5.0; http://szukaj.onet.pl)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Scrubby/2.2; http://www.scrubtheweb.com/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Vagabondo/2.1; webcrawler at wise-guys dot nl; http://webagent.wise-guys.nl/)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Yahoo! DE Slurp; http://help.yahoo.com/help/us/ysearch/slurp)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Yahoo! Slurp China; http://misc.yahoo.com.cn/help.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible;archive.org_bot/1.7.1; collectionId=316; Archive-It; +http://www.archive-it.org)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible;archive.org_bot/heritrix-1.9.0-200608171144 +http://pandora.nla.gov.au/crawl.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (compatible;MAINSEEK_BOT)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Slurp/cat; slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Slurp/si; slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Version: xxxx Type:xx)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (wgao@genieknows.com)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.7) NimbleCrawler 1.11 obeys UserAgent NimbleCrawler For problems contact: crawler_at_dataalchemy.com]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Windows;) NimbleCrawler 1.12 obeys UserAgent NimbleCrawler For problems contact: crawler@health]]></bot>
+  <bot><![CDATA[Mozilla/5.0 (Windows;) NimbleCrawler 1.12 obeys UserAgent NimbleCrawler For problems contact: crawler@healthline.com]]></bot>
+  <bot><![CDATA[Mozilla/5.0 [en] (compatible; Gulper Web Bot 0.2.4 www.ecsl.cs.sunysb.edu/~maxim/cgi-bin/Link/GulperBot)]]></bot>
+  <bot><![CDATA[Mozilla/5.0 URL-Spider]]></bot>
+  <bot><![CDATA[Mozilla/5.0 usww.com-Spider-for-w8.net]]></bot>
+  <bot><![CDATA[Mozilla/5.0 wgao@genieknows.com]]></bot>
+  <bot><![CDATA[MQbot metaquerier.cs.uiuc.edu/crawler]]></bot>
+  <bot><![CDATA[msnbot-media/1.0 (+http://search.msn.com/msnbot.htm)]]></bot>
+  <bot><![CDATA[msnbot-Products/1.0 (+http://search.msn.com/msnbot.htm)]]></bot>
+  <bot><![CDATA[MSNPTC/1.0]]></bot>
+  <bot><![CDATA[MultiText/0.1]]></bot>
+  <bot><![CDATA[MusicWalker2.0 ( http://www.somusical.com)]]></bot>
+  <bot><![CDATA[MVAClient]]></bot>
+  <bot><![CDATA[Mylinea.com Crawler 2.0]]></bot>
+  <bot><![CDATA[gsa-crawler (Enterprise; GIX-02057; dm@enhesa.com)]]></bot>
+  <bot><![CDATA[Naamah 1.0.1/Blogbot (http://blogbot.de/)]]></bot>
+  <bot><![CDATA[Naamah 1.0a/Blogbot (http://blogbot.de/)]]></bot>
+  <bot><![CDATA[NABOT/5.0]]></bot>
+  <bot><![CDATA[nabot_1.0]]></bot>
+  <bot><![CDATA[NASA Search 1.0]]></bot>
+  <bot><![CDATA[NationalDirectoryAddURL/1.0]]></bot>
+  <bot><![CDATA[NationalDirectory-WebSpider/1.3]]></bot>
+  <bot><![CDATA[NaverBot_dloader/1.5]]></bot>
+  <bot><![CDATA[NaverBot-1.0 (NHN Corp. / +82-2-3011-1954 / nhnbot@naver.com)]]></bot>
+  <bot><![CDATA[NavissoBot]]></bot>
+  <bot><![CDATA[NavissoBot/1.7 (+http://navisso.com/)]]></bot>
+  <bot><![CDATA[NCSA Beta 1 (http://vias.ncsa.uiuc.edu/viasarchivinginformation.html)]]></bot>
+  <bot><![CDATA[NEC Research Agent -- compuman at research.nj.nec.com]]></bot>
+  <bot><![CDATA[NetLookout/2.24]]></bot>
+  <bot><![CDATA[Netluchs/0.8-dev ( ; http://www.netluchs.de/; ___don't___spam_me_@netluchs.de)]]></bot>
+  <bot><![CDATA[NetNoseCrawler/v1.0]]></bot>
+  <bot><![CDATA[Netprospector JavaCrawler]]></bot>
+  <bot><![CDATA[NetResearchServer(http://www.look.com)]]></bot>
+  <bot><![CDATA[NetSprint -- 2.0]]></bot>
+  <bot><![CDATA[NetSprint -- 2.0]]></bot>
+  <bot><![CDATA[NetWhatCrawler/0.06-dev (NetWhatCrawler from NetWhat.com; http://www.netwhat.com; support@netwhat.com)]]></bot>
+  <bot><![CDATA[NetZippy]]></bot>
+  <bot><![CDATA[NextGenSearchBot 1 (for information visit http://www.eliyon.com/NextGenSearchBot)]]></bot>
+  <bot><![CDATA[NG/1.0]]></bot>
+  <bot><![CDATA[NG/4.0.1229]]></bot>
+  <bot><![CDATA[NG-Search/0.90 (NG-SearchBot; http://www.ng-search.com; )]]></bot>
+  <bot><![CDATA[NITLE Blog Spider/0.01]]></bot>
+  <bot><![CDATA[Noago Spider]]></bot>
+  <bot><![CDATA[Nokia-WAPToolkit/1.2 googlebot(at)googlebot.com]]></bot>
+  <bot><![CDATA[Norbert the Spider(Burf.com)]]></bot>
+  <bot><![CDATA[noxtrumbot/1.0 (crawler@noxtrum.com)]]></bot>
+  <bot><![CDATA[noyona_0_1]]></bot>
+  <bot><![CDATA[NP/0.1 (NP; http://www.nameprotect.com; npbot@nameprotect.com)]]></bot>
+  <bot><![CDATA[NPBot (http://www.nameprotect.com/botinfo.html)]]></bot>
+  <bot><![CDATA[NPBot-1/2.0]]></bot>
+  <bot><![CDATA[nttdirectory_robot/0.9 (super-robot@super.navi.ocn.ne.jp)]]></bot>
+  <bot><![CDATA[nuSearch Spider <a href='http://www.nusearch.com'>www.nusearch.com</a> (compatible; MSIE 4.01)]]></bot>
+  <bot><![CDATA[NuSearch Spider (compatible; MSIE 6.0)]]></bot>
+  <bot><![CDATA[NuSearch Spider www.nusearch.com]]></bot>
+  <bot><![CDATA[Nutch]]></bot>
+  <bot><![CDATA[NutchCVS/0.0x-dev (Nutch; http://www.nutch.org/docs/bot.html; nutch-agent@lists.sourceforge.net)]]></bot>
+  <bot><![CDATA[NutchCVS/0.7.1 (Nutch running at UW; http://www.nutch.org/docs/en/bot.html; sycrawl@cs.washington.edu)]]></bot>
+  <bot><![CDATA[NutchOrg/0.0x-dev (Nutch; http://www.nutch.org/docs/bot.html; nutch-agent@lists.sourceforge.net)]]></bot>
+  <bot><![CDATA[obidos-bot (just looking for books.)]]></bot>
+  <bot><![CDATA[ObjectsSearch/0.01-dev (ObjectsSearch;http://www.ObjectsSearch.com/bot.html; support@thesoftwareobjects.com)]]></bot>
+  <bot><![CDATA[ObjectsSearch/0.0x (ObjectsSearch; http://www.ObjectsSearch.com/bot.html; support@thesoftwareobjects.com)]]></bot>
+  <bot><![CDATA[oBot ((compatible;Win32))]]></bot>
+  <bot><![CDATA[Octora Beta - www.octora.com]]></bot>
+  <bot><![CDATA[Octora Beta Bot - www.octora.com]]></bot>
+  <bot><![CDATA[Onet.pl SA- http://szukaj.onet.pl]]></bot>
+  <bot><![CDATA[OntoSpider/1.0 libwww-perl/5.65]]></bot>
+  <bot><![CDATA[Openbot/3.0+(robot-response@openfind.com.tw;+http://www.openfind.com.tw/robot.html)]]></bot>
+  <bot><![CDATA[Openfind data gatherer- Openbot/3.0+(robot-response@openfind.com.tw;+http://www.openfind.com.tw/robot.html)]]></bot>
+  <bot><![CDATA[Openfind Robot/1.1A2]]></bot>
+  <bot><![CDATA[OpenTaggerBot (http://www.opentagger.com/opentaggerbot.htm)]]></bot>
+  <bot><![CDATA[OpenTextSiteCrawler/2.9.2]]></bot>
+  <bot><![CDATA[OpidooBOT (larbin2.6.3@unspecified.mail)]]></bot>
+  <bot><![CDATA[Oracle Ultra Search]]></bot>
+  <bot><![CDATA[OrangeSpider]]></bot>
+  <bot><![CDATA[Orbiter/T-2.0 (+http://www.dailyorbit.com/bot.htm)]]></bot>
+  <bot><![CDATA[Overture-WebCrawler/3.8/Fresh (atw-crawler at fast dot no; http://fast.no/support/crawler.asp)]]></bot>
+  <bot><![CDATA[ozelot/2.7.3 (Search engine indexer; www.flying-cat.de/ozelot; ozelot@flying-cat.de)]]></bot>
+  <bot><![CDATA[page_verifier (http://www.securecomputing.com/goto/pv)]]></bot>
+  <bot><![CDATA[parallelContextFocusCrawler1.1parallelContextFocusCrawler1.1]]></bot>
+  <bot><![CDATA[ParaSite/1.0b (http://www.ianett.com/parasite/)]]></bot>
+  <bot><![CDATA[Patwebbot (http://www.herz-power.de/technik.html)]]></bot>
+  <bot><![CDATA[PBrowse 1.4b]]></bot>
+  <bot><![CDATA[pd02_1.0.0 pd02_1.0.0@dzimi@post.sk]]></bot>
+  <bot><![CDATA[PEERbot www.peerbot.com]]></bot>
+  <bot><![CDATA[PEval 1.4b]]></bot>
+  <bot><![CDATA[PicoSearch/1.0]]></bot>
+  <bot><![CDATA[pipeLiner/0.3a (PipeLine Spider;http://www.pipeline-search.com/webmaster.html; webmaster'at'pipeline-search.com)]]></bot>
+  <bot><![CDATA[Pita]]></bot>
+  <bot><![CDATA[PJspider/3.0 (pjspider@portaljuice.com; http://www.portaljuice.com)]]></bot>
+  <bot><![CDATA[Poirot]]></bot>
+  <bot><![CDATA[polybot 1.0 (http://cis.poly.edu/polybot/)]]></bot>
+  <bot><![CDATA[Popdexter/1.0]]></bot>
+  <bot><![CDATA[Port Huron Labs]]></bot>
+  <bot><![CDATA[PortalBSpider/2.0 (spider@portalb.com)]]></bot>
+  <bot><![CDATA[potbot 1.0]]></bot>
+  <bot><![CDATA[PrivacyFinder Cache Bot v1.0]]></bot>
+  <bot><![CDATA[PrivacyFinder/1.1]]></bot>
+  <bot><![CDATA[Production Bot 0116B]]></bot>
+  <bot><![CDATA[Production Bot 2016B]]></bot>
+  <bot><![CDATA[Production Bot DOT 3016B]]></bot>
+  <bot><![CDATA[Program Shareware 1.0.2]]></bot>
+  <bot><![CDATA[Project XP5 [2.03.07-111203]]]></bot>
+  <bot><![CDATA[PROve AnswerBot 4.0]]></bot>
+  <bot><![CDATA[ProWebGuide Link Checker (http://www.prowebguide.com)]]></bot>
+  <bot><![CDATA[psbot/0.1 (+http://www.picsearch.com/bot.html)]]></bot>
+  <bot><![CDATA[PSurf15a 11]]></bot>
+  <bot><![CDATA[PSurf15a 51]]></bot>
+  <bot><![CDATA[PSurf15a VA]]></bot>
+  <bot><![CDATA[psycheclone]]></bot>
+  <bot><![CDATA[PycURL]]></bot>
+  <bot><![CDATA[Python-urllib/1.1x]]></bot>
+  <bot><![CDATA[Python-urllib/2.0a1]]></bot>
+  <bot><![CDATA[Qango.com Web Directory (http://www.qango.com/)]]></bot>
+  <bot><![CDATA[QPCreep Test Rig ( We are not indexing- just testing )]]></bot>
+  <bot><![CDATA[QuepasaCreep ( crawler@quepasacorp.com )]]></bot>
+  <bot><![CDATA[QuepasaCreep v0.9.1x]]></bot>
+  <bot><![CDATA[QueryN Metasearch]]></bot>
+  <bot><![CDATA[rabaz (rabaz at gigabaz dot com)]]></bot>
+  <bot><![CDATA[RaBot/1.0 Agent-admin/phortse@hanmail.net]]></bot>
+  <bot><![CDATA[RAMPyBot - www.giveRAMP.com/0.1 (RAMPyBot - www.giveRAMP.com; http://www.giveramp.com/bot.html; support@giveRAMP.com)]]></bot>
+  <bot><![CDATA[RAMPyBot/0.8-dev (Nutch; http://lucene.apache.org/nutch/bot.html; nutch-agent@lucene.apache.org)]]></bot>
+  <bot><![CDATA[Rational SiteCheck (Windows NT)]]></bot>
+  <bot><![CDATA[Reaper [2.03.10-031204] (http://www.sitesearch.ca/reaper/)]]></bot>
+  <bot><![CDATA[Reaper/2.0x (+http://www.sitesearch.ca/reaper)]]></bot>
+  <bot><![CDATA[RedCarpet/1.2 (http://www.redcarpet-inc.com/robots.html)]]></bot>
+  <bot><![CDATA[RedCell/0.1 (InfoSec Search Bot (Coming Soon); http://www.telegenetic.net/bot.html; lhall@telegenetic.net)]]></bot>
+  <bot><![CDATA[RedCell/0.1 (RedCell; telegenetic.net/bot.html; lhall_at_telegenetic.net)]]></bot>
+  <bot><![CDATA[RedKernel WWW-Spider 2/0 (+http://www-spider.redkernel-softwares.com/)]]></bot>
+  <bot><![CDATA[rico/0.1]]></bot>
+  <bot><![CDATA[RixBot (http://babelserver.org/rix)]]></bot>
+  <bot><![CDATA[RoboCrawl (www.canadiancontent.net)]]></bot>
+  <bot><![CDATA[RoboPal (http://www.findpal.com/)]]></bot>
+  <bot><![CDATA[Robot/www.pj-search.com]]></bot>
+  <bot><![CDATA[Robot: NutchCrawler- Owner: wdavies@acm.org]]></bot>
+  <bot><![CDATA[Robot@SuperSnooper.Com]]></bot>
+  <bot><![CDATA[Robozilla/1.0]]></bot>
+  <bot><![CDATA[Rotondo/3.1 libwww/5.3.1]]></bot>
+  <bot><![CDATA[RRC (crawler_admin@bigfoot.com)]]></bot>
+  <bot><![CDATA[RSurf15a 41]]></bot>
+  <bot><![CDATA[RSurf15a 51]]></bot>
+  <bot><![CDATA[RSurf15a 81]]></bot>
+  <bot><![CDATA[RufusBot (Rufus Web Miner; http://64.124.122.252/feedback.html)]]></bot>
+  <bot><![CDATA[SandCrawler - Compatibility Testing]]></bot>
+  <bot><![CDATA[savvybot/0.2]]></bot>
+  <bot><![CDATA[SBIder/0.7 (SBIder; http://www.sitesell.com/sbider.html; http://support.sitesell.com/contact-support.html)]]></bot>
+  <bot><![CDATA[SBIder/0.8-dev (SBIder; http://www.sitesell.com/sbider.html; http://support.sitesell.com/contact-support.html)]]></bot>
+  <bot><![CDATA[ScanWeb]]></bot>
+  <bot><![CDATA[schwarzmann.biz-Spider_for_paddel.org+(http://www.innerprise.net/usp-spider.asp)]]></bot>
+  <bot><![CDATA[Scooter/1.0]]></bot>
+  <bot><![CDATA[Scooter/1.0 scooter@pa.dec.com]]></bot>
+  <bot><![CDATA[Scooter/1.1 (custom)]]></bot>
+  <bot><![CDATA[Scooter/2.0 G.R.A.B. V1.1.0]]></bot>
+  <bot><![CDATA[Scooter/2.0 G.R.A.B. X2.0]]></bot>
+  <bot><![CDATA[Scooter/3.3]]></bot>
+  <bot><![CDATA[Scooter/3.3.QA.pczukor]]></bot>
+  <bot><![CDATA[Scooter/3.3.vscooter]]></bot>
+  <bot><![CDATA[Scooter/3.3_SF]]></bot>
+  <bot><![CDATA[Scooter_bh0-3.0.3]]></bot>
+  <bot><![CDATA[Scooter_trk3-3.0.3]]></bot>
+  <bot><![CDATA[Scooter-3.0.EU]]></bot>
+  <bot><![CDATA[Scooter-3.0.FS]]></bot>
+  <bot><![CDATA[Scooter-3.0.HD]]></bot>
+  <bot><![CDATA[Scooter-3.0.VNS]]></bot>
+  <bot><![CDATA[Scooter-3.0QI]]></bot>
+  <bot><![CDATA[Scooter-3.2]]></bot>
+  <bot><![CDATA[Scooter-3.2.BT]]></bot>
+  <bot><![CDATA[Scooter-3.2.DIL]]></bot>
+  <bot><![CDATA[Scooter-3.2.EX]]></bot>
+  <bot><![CDATA[Scooter-3.2.JT]]></bot>
+  <bot><![CDATA[Scooter-3.2.NIV]]></bot>
+  <bot><![CDATA[Scooter-3.2.SF0]]></bot>
+  <bot><![CDATA[Scooter-3.2.snippet]]></bot>
+  <bot><![CDATA[Scooter-3.3dev]]></bot>
+  <bot><![CDATA[Scooter-ARS-1.1]]></bot>
+  <bot><![CDATA[Scooter-ARS-1.1-ih]]></bot>
+  <bot><![CDATA[scooter-venus-3.0.vns]]></bot>
+  <bot><![CDATA[Scooter-W3.1.2]]></bot>
+  <bot><![CDATA[Scooter-W3-1.0]]></bot>
+  <bot><![CDATA[ScoutAbout]]></bot>
+  <bot><![CDATA[scoutmaster]]></bot>
+  <bot><![CDATA[search.ch V1.4]]></bot>
+  <bot><![CDATA[search.ch V1.4.2 (spiderman@search.ch; http://www.search.ch)]]></bot>
+  <bot><![CDATA[Search/1.0 (http://www.innerprise.net/es-spider.asp)]]></bot>
+  <bot><![CDATA[Search+]]></bot>
+  <bot><![CDATA[searchbot admin@google.com]]></bot>
+  <bot><![CDATA[SearchByUsa/2 (SearchByUsa; http://www.SearchByUsa.com/bot.html; info@SearchByUsa.com)]]></bot>
+  <bot><![CDATA[Search-Engine-Studio]]></bot>
+  <bot><![CDATA[SearchExpress Spider0.99]]></bot>
+  <bot><![CDATA[SearchGuild/DMOZ/Experiment (searchguild@gmail.com)]]></bot>
+  <bot><![CDATA[SearchGuild_DMOZ_Experiment (chris@searchguild.com)]]></bot>
+  <bot><![CDATA[Searchit-Now Robot/2.2 (+http://www.searchit-now.co.uk)]]></bot>
+  <bot><![CDATA[Searchmee! Spider v0.98a]]></bot>
+  <bot><![CDATA[SearchSight/2.0 (http://SearchSight.com/)]]></bot>
+  <bot><![CDATA[SearchSpider.com/1.1]]></bot>
+  <bot><![CDATA[Searchspider/1.2 (SearchSpider; http://www.searchspider.com; webmaster@searchspider.com)]]></bot>
+  <bot><![CDATA[SearchTone2.0 - IDEARE]]></bot>
+  <bot><![CDATA[Seekbot/1.0 (http://www.seekbot.net/bot.html) HTTPFetcher/0.3]]></bot>
+  <bot><![CDATA[Seekbot/1.0 (http://www.seekbot.net/bot.html) RobotsTxtFetcher/1.0 (XDF)]]></bot>
+  <bot><![CDATA[Seekbot/1.0 (http://www.seekbot.net/bot.html) RobotsTxtFetcher/1.2]]></bot>
+  <bot><![CDATA[Seeker.lookseek.com]]></bot>
+  <bot><![CDATA[Sensis Web Crawler (search_comments\at\sensis\dot\com\dot\au)]]></bot>
+  <bot><![CDATA[Sensis.com.au Web Crawler (search_comments\at\sensis\dot\com\dot\au)]]></bot>
+  <bot><![CDATA[SeznamBot/1.0]]></bot>
+  <bot><![CDATA[SeznamBot/1.0 (+http://fulltext.seznam.cz/)]]></bot>
+  <bot><![CDATA[Shim Crawler]]></bot>
+  <bot><![CDATA[Shim-Crawler(Mozilla-compatible; http://www.logos.ic.i.u-tokyo.ac.jp/crawler/; crawl@logos.ic.i.u-tokyo.ac.jp)]]></bot>
+  <bot><![CDATA[ShopWiki/1.0 ( +http://www.shopwiki.com/)]]></bot>
+  <bot><![CDATA[ShopWiki/1.0 ( +http://www.shopwiki.com/wiki/Help:Bot)]]></bot>
+  <bot><![CDATA[Shoula.com Crawler 2.0]]></bot>
+  <bot><![CDATA[Siigle Orumcex v.001 Turkey (http://www.siigle.com)]]></bot>
+  <bot><![CDATA[silk/1.0 (+http://www.slider.com/silk.htm)/3.7]]></bot>
+  <bot><![CDATA[SiteSpider +(http://www.SiteSpider.com/)]]></bot>
+  <bot><![CDATA[SiteXpert]]></bot>
+  <bot><![CDATA[Skywalker/0.1 (Skywalker; anonymous; anonymous)]]></bot>
+  <bot><![CDATA[Slarp/0.1]]></bot>
+  <bot><![CDATA[Slider_Search_v1-de]]></bot>
+  <bot><![CDATA[Slurp/2.0 (slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Slurp/2.0-KiteWeekly (slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Slurp/si (slurp@inktomi.com; http://www.inktomi.com/slurp.html)]]></bot>
+  <bot><![CDATA[Slurpy Verifier/1.0]]></bot>
+  <bot><![CDATA[SlySearch (slysearch@slysearch.com)]]></bot>
+  <bot><![CDATA[SlySearch/1.0 http://www.plagiarism.org/crawler/robotinfo.html]]></bot>
+  <bot><![CDATA[smartwit.com]]></bot>
+  <bot><![CDATA[snap.com beta crawler v0]]></bot>
+  <bot><![CDATA[Snapbot/1.0]]></bot>
+  <bot><![CDATA[SnykeBot/0.6 (http://www.snyke.com)]]></bot>
+  <bot><![CDATA[SocSciBot ()]]></bot>
+  <bot><![CDATA[SoftHypermarketFileCheckBot/1.0+(+http://www.softhypermaket.com)]]></bot>
+  <bot><![CDATA[sogou spider]]></bot>
+  <bot><![CDATA[sohu agent]]></bot>
+  <bot><![CDATA[sohu-search]]></bot>
+  <bot><![CDATA[speedfind ramBot xtreme 8.1]]></bot>
+  <bot><![CDATA[Speedy Spider (Entireweb; Beta/1.0; http://www.entireweb.com/about/search_tech/speedyspider/)]]></bot>
+  <bot><![CDATA[Speedy_Spider (http://www.entireweb.com)]]></bot>
+  <bot><![CDATA[Sphider]]></bot>
+  <bot><![CDATA[Spida/0.1]]></bot>
+  <bot><![CDATA[spider.batsch.com]]></bot>
+  <bot><![CDATA[spider.yellopet.com - www.yellopet.com]]></bot>
+  <bot><![CDATA[Spider/maxbot.com admin@maxbot.com]]></bot>
+  <bot><![CDATA[SpiderMan]]></bot>
+  <bot><![CDATA[Spider-Sleek/2.0 (+http://search-info.com/linktous.html)]]></bot>
+  <bot><![CDATA[Spinne/2.0]]></bot>
+  <bot><![CDATA[Spinne/2.0 med]]></bot>
+  <bot><![CDATA[Spinne/2.0 med_AH]]></bot>
+  <bot><![CDATA[sportsuchmaschine.de-Robot (Version: 1.02- powered by www.sportsuchmaschine.de)]]></bot>
+  <bot><![CDATA[sproose/0.1-alpha (sproose crawler; http://www.sproose.com/bot.html; crawler@sproose.com)]]></bot>
+  <bot><![CDATA[Sqworm/2.9.81-BETA (beta_release; 20011102-760; i686-pc-linux-gnu)]]></bot>
+  <bot><![CDATA[Sqworm/2.9.85-BETA (beta_release; 20011115-775; i686-pc-linux-gnu)]]></bot>
+  <bot><![CDATA[SSurf15a 11]]></bot>
+  <bot><![CDATA[stat statcrawler@gmail.com]]></bot>
+  <bot><![CDATA[Strategic Board Bot (+http://www.strategicboard.com)]]></bot>
+  <bot><![CDATA[Strategic Board Bot (+http://www.strategicboard.com)]]></bot>
+  <bot><![CDATA[Submission Spider at surfsafely.com]]></bot>
+  <bot><![CDATA[suchbaer.de]]></bot>
+  <bot><![CDATA[suchbaer.de (CrawlerAgent v0.103)]]></bot>
+  <bot><![CDATA[suchbot]]></bot>
+  <bot><![CDATA[Suchknecht.at-Robot]]></bot>
+  <bot><![CDATA[suchpadbot/1.0 (+http://www.suchpad.de)]]></bot>
+  <bot><![CDATA[SurferF3 1/0]]></bot>
+  <bot><![CDATA[suzuran]]></bot>
+  <bot><![CDATA[Swooglebot/2.0. (+http://swoogle.umbc.edu/swooglebot.htm)]]></bot>
+  <bot><![CDATA[SWSBot-Images/1.2 http://www.smartwaresoft.com/swsbot12.html]]></bot>
+  <bot><![CDATA[SygolBot http://www.sygol.net]]></bot>
+  <bot><![CDATA[SynoBot]]></bot>
+  <bot><![CDATA[Syntryx ANT Scout Chassis Pheromone; Mozilla/4.0 compatible crawler]]></bot>
+  <bot><![CDATA[Tagword (http://tagword.com/dmoz_survey.php)]]></bot>
+  <bot><![CDATA[Talkro Web-Shot/1.0 (E-mail: webshot@daumsoft.com- Home: http://222.122.15.190/webshot)]]></bot>
+  <bot><![CDATA[Tecomi Bot (http://www.tecomi.com/bot.htm)]]></bot>
+  <bot><![CDATA[Teoma MP]]></bot>
+  <bot><![CDATA[teoma_agent1]]></bot>
+  <bot><![CDATA[teomaagent crawler-admin@teoma.com]]></bot>
+  <bot><![CDATA[teomaagent1 [crawler-admin@teoma.com]]]></bot>
+  <bot><![CDATA[Teradex Mapper; mapper@teradex.com; http://www.teradex.com]]></bot>
+  <bot><![CDATA[TerrawizBot/1.0 (+http://www.terrawiz.com/bot.html)]]></bot>
+  <bot><![CDATA[Test spider]]></bot>
+  <bot><![CDATA[TheSuBot/0.1 (www.thesubot.de)]]></bot>
+  <bot><![CDATA[thumbshots-de-Bot (Version: 1.02- powered by www.thumbshots.de)]]></bot>
+  <bot><![CDATA[timboBot/0.9 http://www.breakingblogs.com/timbo_bot.html]]></bot>
+  <bot><![CDATA[tivraSpider/1.0 (crawler@tivra.com)]]></bot>
+  <bot><![CDATA[TJG/Spider]]></bot>
+  <bot><![CDATA[traazibot/testengine (+http://www.traazi.de)]]></bot>
+  <bot><![CDATA[Trampelpfad-Spider]]></bot>
+  <bot><![CDATA[Trampelpfad-Spider-v0.1]]></bot>
+  <bot><![CDATA[TSurf15a 11]]></bot>
+  <bot><![CDATA[Turnpike Emporium LinkChecker/0.1]]></bot>
+  <bot><![CDATA[TutorGig/1.5 (+http://www.tutorgig.com/crawler)]]></bot>
+  <bot><![CDATA[Tutorial Crawler 1.4 (http://www.tutorgig.com/crawler)]]></bot>
+  <bot><![CDATA[Twiceler www.cuill.com/robots.html]]></bot>
+  <bot><![CDATA[TygoBot]]></bot>
+  <bot><![CDATA[TygoProwler]]></bot>
+  <bot><![CDATA[UIowaCrawler/1.0]]></bot>
+  <bot><![CDATA[Ultraseek]]></bot>
+  <bot><![CDATA[Under the Rainbow 2.2]]></bot>
+  <bot><![CDATA[updated/0.1-alpha (updated crawler; http://www.updated.com; crawler@updated.com)]]></bot>
+  <bot><![CDATA[updated/0.1beta (updated.com; http://www.updated.com; crawler@updated.om)]]></bot>
+  <bot><![CDATA[Uptimebot]]></bot>
+  <bot><![CDATA[UptimeBot(www.uptimebot.com)]]></bot>
+  <bot><![CDATA[User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)]]></bot>
+  <bot><![CDATA[User-Agent: Mozilla/4.0 (SKIZZLE! Distributed Internet Spider v1.0 - www.SKIZZLE.com)]]></bot>
+  <bot><![CDATA[USyd-NLP-Spider (http://www.it.usyd.edu.au/~vinci/bot.html)]]></bot>
+  <bot><![CDATA[Vagabondo/2.0 MT]]></bot>
+  <bot><![CDATA[Vagabondo/2.0 MT (webagent at wise-guys dot nl)]]></bot>
+  <bot><![CDATA[Vagabondo/2.0 MT (webagent@NOSPAMwise-guys.nl)]]></bot>
+  <bot><![CDATA[Vagabondo/3.0 (webagent at wise-guys dot nl)]]></bot>
+  <bot><![CDATA[Vagabondo-WAP/2.0 (webcrawler at wise-guys dot nl; http://webagent.wise-guys.nl/)/1.0 Profile]]></bot>
+  <bot><![CDATA[Vakes/0.01 (Vakes; http://www.vakes.com/; search@vakes.com)]]></bot>
+  <bot><![CDATA[versus 0.2 (+http://versus.integis.ch)]]></bot>
+  <bot><![CDATA[versus crawler eda.baykan@epfl.ch]]></bot>
+  <bot><![CDATA[VeryGoodSearch.com.DaddyLongLegs]]></bot>
+  <bot><![CDATA[Vespa Crawler]]></bot>
+  <bot><![CDATA[Vision Research Lab image spider at vision.ece.ucsb.edu]]></bot>
+  <bot><![CDATA[VMBot/0.7.2 (VMBot; http://www.VerticalMatch.com/; vmbot@tradedot.com)]]></bot>
+  <bot><![CDATA[Vortex/2.2 (+http://marty.anstey.ca/robots/vortex/)]]></bot>
+  <bot><![CDATA[voyager/1.0]]></bot>
+  <bot><![CDATA[VSE/1.0 (testcrawler@hotmail.com)]]></bot>
+  <bot><![CDATA[VSE/1.0 (testcrawler@vivisimo.com)]]></bot>
+  <bot><![CDATA[vspider]]></bot>
+  <bot><![CDATA[W3SiteSearch Crawler_v1.1 http://www.w3sitesearch.de]]></bot>
+  <bot><![CDATA[WatchMouse-Site-Monitor/1.1 (http://watchmouse.com)]]></bot>
+  <bot><![CDATA[Wavefire/0.8-dev (Wavefire; http://www.wavefire.com; info@wavefire.com)]]></bot>
+  <bot><![CDATA[Waypath development crawler - info at waypath dot com]]></bot>
+  <bot><![CDATA[Web Snooper]]></bot>
+  <bot><![CDATA[WebAlta Crawler/1.2.1 (http://www.webalta.ru/bot.html)]]></bot>
+  <bot><![CDATA[WebarooBot (Webaroo Bot; http://64.124.122.252/feedback.html)]]></bot>
+  <bot><![CDATA[Webclipping.com]]></bot>
+  <bot><![CDATA[WebCompass 2.0]]></bot>
+  <bot><![CDATA[WebCorp/1.0]]></bot>
+  <bot><![CDATA[WebCorp/1.0]]></bot>
+  <bot><![CDATA[webcrawl.net]]></bot>
+  <bot><![CDATA[WebFindBot(http://www.web-find.com)]]></bot>
+  <bot><![CDATA[webmeasurement-bot, http://rvs.informatik.uni-leipzig.de]]></bot>
+  <bot><![CDATA[WebSearch.COM.AU/3.0.1 (The Australian Search Engine; http://WebSearch.COM.AU; Search@WebSearch.COM.AU)]]></bot>
+  <bot><![CDATA[WebSearchBench WebCrawler v0.1(Experimental)]]></bot>
+  <bot><![CDATA[WebSearchBench WebCrawler V1.0 (Beta)- Prof. Dr.-Ing. Christoph Lindemann- Universitt Dortmund- cl@cs.uni-dortmund.de- http://websearchbench.cs.uni-dortmund.de/]]></bot>
+  <bot><![CDATA[WebsiteWorth v1.0]]></bot>
+  <bot><![CDATA[Webspinne/1.0 webmaster@webspinne.de]]></bot>
+  <bot><![CDATA[Websquash.com (Add url robot)]]></bot>
+  <bot><![CDATA[WebStat/1.0 (Unix; beta; 20040314)]]></bot>
+  <bot><![CDATA[WebVac (webmaster@pita.stanford.edu)]]></bot>
+  <bot><![CDATA[Webverzeichnis.de - Telefon: 01908 / 26005]]></bot>
+  <bot><![CDATA[WebVulnCrawl.blogspot.com/1.0 libwww-perl/5.803]]></bot>
+  <bot><![CDATA[Wells Search II]]></bot>
+  <bot><![CDATA[WEP Search 00]]></bot>
+  <bot><![CDATA[WFARC]]></bot>
+  <bot><![CDATA[whatUseek_winona/3.0]]></bot>
+  <bot><![CDATA[WhizBang! Lab]]></bot>
+  <bot><![CDATA[Willow Internet Crawler by Twotrees V2.1]]></bot>
+  <bot><![CDATA[WinHTTP Example/1.0]]></bot>
+  <bot><![CDATA[WinkBot/0.06 (Wink.com search engine web crawler; http://www.wink.com/Wink:WinkBot; winkbot@wink.com)]]></bot>
+  <bot><![CDATA[WIRE/0.11 (Linux; i686; Bot,Robot,Spider,Crawler,aromano@cli.di.unipi.it)]]></bot>
+  <bot><![CDATA[WISEbot/1.0 (WISEbot@koreawisenut.com; http://wisebot.koreawisenut.com)]]></bot>
+  <bot><![CDATA[WorldLight]]></bot>
+  <bot><![CDATA[Wotbox/alpha0.6 (bot@wotbox.com; http://www.wotbox.com)]]></bot>
+  <bot><![CDATA[WSB WebCrawler V1.0 (Beta)- cl@cs.uni-dortmund.de]]></bot>
+  <bot><![CDATA[WSB, http://websearchbench.cs.uni-dortmund.de]]></bot>
+  <bot><![CDATA[wume_crawler/1.1 (http://wume.cse.lehigh.edu/~xiq204/crawler/)]]></bot>
+  <bot><![CDATA[Wwlib/Linux]]></bot>
+  <bot><![CDATA[www.arianna.it]]></bot>
+  <bot><![CDATA[WWWeasel Robot v1.00 (http://wwweasel.de)]]></bot>
+  <bot><![CDATA[X-Crawler]]></bot>
+  <bot><![CDATA[xirq/0.1-beta (xirq; http://www.xirq.com; xirq@xirq.com)]]></bot>
+  <bot><![CDATA[xyro_(xcrawler@cosmos.inria.fr)]]></bot>
+  <bot><![CDATA[Y!J/1.0 (http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html)]]></bot>
+  <bot><![CDATA[Y!J-BSC/1.0 (http://help.yahoo.co.jp/help/jp/search/indexing/indexing-15.html)]]></bot>
+  <bot><![CDATA[yacy (www.yacy.net; v20040602; i386 Linux 2.4.26-gentoo-r13; java 1.4.2_06; MET/en)]]></bot>
+  <bot><![CDATA[yacybot (x86 Windows XP 5.1; java 1.5.0_06; Europe/de) yacy.net]]></bot>
+  <bot><![CDATA[Yahoo! Mindset]]></bot>
+  <bot><![CDATA[Yahoo-Blogs/v3.9 (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.com/help/us/ysearch/crawling/crawling-02.html )]]></bot>
+  <bot><![CDATA[YahooFeedSeeker/2.0 (compatible; Mozilla 4.0; MSIE 5.5; http://publisher.yahoo.com/rssguide)]]></bot>
+  <bot><![CDATA[Yahoo-MMAudVid/1.0 (mms dash mmaudvidcrawler dash support at yahoo dash inc dot com)]]></bot>
+  <bot><![CDATA[YahooSeeker/1.0 (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.com/help/us/shop/merchant/)]]></bot>
+  <bot><![CDATA[YahooSeeker/1.0 (compatible; Mozilla 4.0; MSIE 5.5; http://search.yahoo.com/yahooseeker.html)]]></bot>
+  <bot><![CDATA[YahooSeeker/1.1 (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.com/help/us/shop/merchant/)]]></bot>
+  <bot><![CDATA[YahooSeeker/bsv3.9 (compatible; Mozilla 4.0; MSIE 5.5; http://help.yahoo.com/help/us/ysearch/crawling/crawling-02.html )]]></bot>
+  <bot><![CDATA[YahooSeeker/CafeKelsa-dev (compatible; Konqueror/3.2; FreeBSD ;cafekelsa-dev-webmaster@yahoo-inc.com )]]></bot>
+  <bot><![CDATA[YahooSeeker-Testing/v3.9 (compatible; Mozilla 4.0; MSIE 5.5; http://search.yahoo.com/)]]></bot>
+  <bot><![CDATA[Yahoo-Test/4.0]]></bot>
+  <bot><![CDATA[Yahoo-VerticalCrawler-FormerWebCrawler/3.9 crawler at trd dot overture dot com; http://www.alltheweb.com/help/webmaster/crawler]]></bot>
+  <bot><![CDATA[yarienavoir.net/0.2]]></bot>
+  <bot><![CDATA[Yeti]]></bot>
+  <bot><![CDATA[yoogliFetchAgent/0.1]]></bot>
+  <bot><![CDATA[yoono/1.0 web-crawler/1.0]]></bot>
+  <bot><![CDATA[YottaCars_Bot/4.12 (+http://www.yottacars.com) Car Search Engine]]></bot>
+  <bot><![CDATA[YottaShopping_Bot/4.12 (+http://www.yottashopping.com) Shopping Search Engine]]></bot>
+  <bot><![CDATA[Zao/0.1 (http://www.kototoi.org/zao/)]]></bot>
+  <bot><![CDATA[Zao-Crawler]]></bot>
+  <bot><![CDATA[Zao-Crawler 0.2b]]></bot>
+  <bot><![CDATA[ZBot/1.00 (icaulfield@zeus.com)]]></bot>
+  <bot><![CDATA[Zearchit]]></bot>
+  <bot><![CDATA[ZeBot_lseek.net (bot@ze.bz)]]></bot>
+  <bot><![CDATA[ZeBot_www.ze.bz (ze.bz@hotmail.com)]]></bot>
+  <bot><![CDATA[zedzo.digest/0.1 (http://www.zedzo.com/)]]></bot>
+  <bot><![CDATA[zerxbot/Version 0.6 libwww-perl/5.79]]></bot>
+  <bot><![CDATA[Zeus ThemeSite Viewer Webster Pro V2.9 Win32]]></bot>
+  <bot><![CDATA[Zeus xxxxx Webster Pro V2.9 Win32]]></bot>
+  <bot><![CDATA[Zeusbot/0.07 (Ulysseek's web-crawling robot; http://www.zeusbot.com; agent@zeusbot.com)]]></bot>
+  <bot><![CDATA[Zippy v2.0 - Zippyfinder.com]]></bot>
+  <bot><![CDATA[ZoomSpider - wrensoft.com]]></bot>
+  <bot><![CDATA[zspider/0.9-dev http://feedback.redkolibri.com/]]></bot>
+  <bot><![CDATA[ZyBorg/1.0 (ZyBorg@WISEnut.com; http://www.WISEnut.com)]]></bot>
+</bots>
