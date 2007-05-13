@@ -231,9 +231,14 @@ namespace Bugx.Web
                 return;
             }
             HttpContext context = ((HttpApplication) sender).Context;
+            if (context == null || context.Error == null)
+            {
+                return;
+            }
             BugDocument bug = new BugDocument();
             XmlNode root = bug.AppendChild(bug.CreateElement("bugx"));
-            root.Attributes.Append(bug.CreateAttribute("date")).Value = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-ddTHH:mm:ss} UTC", DateTime.Now.ToUniversalTime());
+            bug.CreationDate = DateTime.Now;
+            bug.ErrorFromBot = BrowserHelper.IsKnownBot(context.Request.UserAgent);
             BugEventArgs bugEventArgs = new BugEventArgs();
             bugEventArgs.Bug = bug;
             DataToSave dataToSave = BugxConfiguration.DataToSave;
