@@ -157,7 +157,8 @@ namespace Bugx.Talk
                                   exception.Message,
                                   exception.GetType().FullName,
                                   ExceptionHelper.GetRelevantSource(context.Error) ?? exception.Source,
-                                  e.BugReport));
+                                  e.BugReport, 
+                                  e.Bug.ErrorFromBot));
         }
 
         /// <summary>
