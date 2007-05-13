@@ -24,12 +24,91 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 using System.IO;
 using System.Xml;
 using System.IO.Compression;
+using System;
+using System.Globalization;
 
 namespace Bugx.Web
 {
 
     public class BugDocument : XmlDocument
     {
+        #region Properties
+        /// <summary>
+        /// Gets or sets the creation date.
+        /// </summary>
+        /// <value>The creation date.</value>
+        public DateTime? CreationDate
+        {
+            get
+            {
+                if (DocumentElement == null || DocumentElement.Attributes["date"] == null)
+                {
+                    return null;
+                }
+                DateTime result;
+                if (DateTime.TryParseExact(DocumentElement.Attributes["date"].Value,
+                                           "yyyy-MM-ddTHH:mm:ss UTC",
+                                           CultureInfo.InvariantCulture,
+                                           DateTimeStyles.AssumeUniversal,
+                                           out result))
+                {
+                    return result;
+                }
+                return null;
+            }
+            set
+            {
+                if (DocumentElement == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                if (value == null)
+                {
+                    if (DocumentElement.Attributes["date"] != null)
+                    {
+                        DocumentElement.Attributes.Remove(DocumentElement.Attributes["date"]);
+                    }
+                }
+                else
+                {
+                    DateTime date = value.Value;
+                    if (date.Kind == DateTimeKind.Local)
+                    {
+                        date = date.ToUniversalTime();
+                    }
+                    XmlAttribute dateAttribute = DocumentElement.Attributes["date"] ?? DocumentElement.Attributes.Append(CreateAttribute("date"));
+                    dateAttribute.Value = string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-ddTHH:mm:ss} UTC", date);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the error is throw by a bot.
+        /// </summary>
+        /// <value><c>true</c> if the error is throw by a bot; otherwise, <c>false</c>.</value>
+        public bool ErrorFromBot
+        {
+            get
+            {
+                if (DocumentElement == null || DocumentElement.Attributes["bot"] == null)
+                {
+                    return false;
+                }
+                return DocumentElement.Attributes["bot"].Value == "1";
+            }
+            set
+            {
+                if (DocumentElement == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                XmlAttribute bot = DocumentElement.Attributes["bot"] ?? DocumentElement.Attributes.Append(CreateAttribute("bot"));
+                bot.InnerText = value ? "1" : "0";
+            }
+        } 
+        #endregion
+
+        #region Load & Save
         /// <summary>
         /// Saves the XML document to the specified stream.
         /// </summary>
@@ -80,6 +159,7 @@ namespace Bugx.Web
             {
                 base.Load(stream);
             }
-        }
+        } 
+        #endregion
     }
 }

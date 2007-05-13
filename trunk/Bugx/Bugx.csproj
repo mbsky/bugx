@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserHelper.cs" />
     <Compile Include="BugDocument.cs" />
     <Compile Include="BugSerializer.cs" />
+    <Compile Include="Collections\Set.cs" />
     <Compile Include="Configuration\BugxConfiguration.cs" />
     <Compile Include="Configuration\DataToSave.cs" />
     <Compile Include="Configuration\XmlSectionHandler.cs" />
@@ -50,6 +52,12 @@
     <Compile Include="Properties\FxCop.cs" />
     <Compile Include="HttpValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Configuration\Xml\BotList.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Configuration\Xml\BotList.xsx">
+      <DependentUpon>BotList.xsd</DependentUpon>
+    </None>
     <None Include="Configuration\Xml\ConfigurationSection.xsd">
       <SubType>Designer</SubType>
     </None>
