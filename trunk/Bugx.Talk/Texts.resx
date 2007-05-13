@@ -167,6 +167,7 @@ _Note: If you want to stop receiving these messages, simply tell me /*Unsubscrib
   <data name="WarningErrorInProduction" xml:space="preserve">
     <value>
       <![CDATA[*Error from*: {0}
+*From BOT*: {5}      
 *Message*: {1}
 *Type*: {2}
 *Assembly*: {3}

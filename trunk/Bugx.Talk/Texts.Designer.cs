@@ -305,6 +305,7 @@ namespace Bugx.Talk {
         /// <summary>
         ///   Looks up a localized string similar to 
         ///      *Error from*: {0}
+        ///*From BOT*: {5}      
         ///*Message*: {1}
         ///*Type*: {2}
         ///*Assembly*: {3}
