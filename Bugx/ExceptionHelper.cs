@@ -39,7 +39,7 @@ namespace Bugx.Web
         /// <returns></returns>
         public static string GetRelevantSource(Exception exception)
         {
-            if (exception == null)
+            if (exception == null || string.IsNullOrEmpty(exception.StackTrace))
             {
                 return null;
             }
