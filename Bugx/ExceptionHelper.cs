@@ -93,6 +93,10 @@ namespace Bugx.Web
         /// <param name="root">The root.</param>
         public static void XmlSerializeStackTrace(Exception exception, XmlNode root)
         {
+            if (exception == null || string.IsNullOrEmpty(exception.StackTrace))
+            {
+                return;
+            }
             root.InnerXml = Regex.Replace(exception.StackTrace.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;"), 
                                           @"(\s+at\s+|(?<MethodName>[^\s\.]+)(?<MethodArguments>\([^)]*\))(?<Location>.*)|(?<ClassPath>[^\s\.]+\.)+)",
                                           delegate(Match match)
