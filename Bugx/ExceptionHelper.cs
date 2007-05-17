@@ -46,7 +46,8 @@ namespace Bugx.Web
             string result = GetRelevantSource(exception.InnerException);
             if (string.IsNullOrEmpty(result))
             {
-                if (!exception.Source.StartsWith("mscorlib", StringComparison.InvariantCultureIgnoreCase) &&
+                if (!string.IsNullOrEmpty(exception.Source) &&
+                    !exception.Source.StartsWith("mscorlib", StringComparison.InvariantCultureIgnoreCase) &&
                     !exception.Source.StartsWith("System", StringComparison.InvariantCultureIgnoreCase))
                 {//If exception source is relevant then simply return it.
                     return exception.Source;
