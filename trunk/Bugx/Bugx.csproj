@@ -27,7 +27,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -42,7 +42,7 @@
     <Compile Include="BrowserHelper.cs" />
     <Compile Include="BugDocument.cs" />
     <Compile Include="BugSerializer.cs" />
-    <Compile Include="Collections\Set.cs" />
+    <Compile Include="Collections\SetCollection.cs" />
     <Compile Include="Configuration\BugxConfiguration.cs" />
     <Compile Include="Configuration\DataToSave.cs" />
     <Compile Include="Configuration\XmlSectionHandler.cs" />
@@ -52,6 +52,7 @@
     <Compile Include="Properties\FxCop.cs" />
     <Compile Include="HttpValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeRunner.cs" />
     <EmbeddedResource Include="Configuration\Xml\BotList.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>

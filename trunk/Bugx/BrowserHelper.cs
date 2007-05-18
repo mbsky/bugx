@@ -49,7 +49,7 @@ namespace Bugx.Web
         /// Gets the known bots collection.
         /// </summary>
         /// <value>The known bots collection.</value>
-        static Set<int> KnownBots
+        static SetCollection<int> KnownBots
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Bugx.Web
                 {
                     throw new NotImplementedException("No implementation outside web application.");
                 }
-                Set<int> knownBots = cache[KnownBotsCacheKey] as Set<int>;
+                SetCollection<int> knownBots = cache[KnownBotsCacheKey] as SetCollection<int>;
                 if (knownBots == null)
                 {
                     knownBots = BuildBotSet();
@@ -72,9 +72,9 @@ namespace Bugx.Web
         /// Builds the bot set.
         /// </summary>
         /// <returns></returns>
-        static Set<int> BuildBotSet()
+        static SetCollection<int> BuildBotSet()
         {
-            Set<int> result = new Set<int>();
+            SetCollection<int> result = new SetCollection<int>();
             string fileName = BotsDataBaseFile;
             if (File.Exists(fileName))
             {

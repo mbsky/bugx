@@ -89,6 +89,15 @@ namespace Bugx.ReBug {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown uri format: {0}.
+        /// </summary>
+        internal static string ErrorUnknownUriFormat {
+            get {
+                return ResourceManager.GetString("ErrorUnknownUriFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         internal static string Information {

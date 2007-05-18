@@ -20,29 +20,3 @@ Wavenet, hereby disclaims all copyright interest in
 the library `BUGx' (An Asp.Net Bug Tracking tool) written
 by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
-
-using System;
-using System.Web;
-using System.Xml;
-using Bugx.Web;
-
-namespace Bugx.ReBug
-{
-    public class BugxHost : MarshalByRefObject
-    {
-        public void Process(ReBugContext context)
-        {
-            ErrorModule.IsReBug = true;
-            HttpWorkerRequest swr = new BugxWorkerRequest(context, Console.Out);
-            HttpRuntime.ProcessRequest(swr);
-        }
-
-        /// <summary>
-        /// Checks the app domain connection.
-        /// </summary>
-        public void CheckAppDomainConnection()
-        {
-            
-        }
-    }
-}

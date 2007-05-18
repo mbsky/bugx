@@ -23,7 +23,6 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 
 using System.Diagnostics.CodeAnalysis;
 
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Bugx.Web")]
 [module: SuppressMessage("Microsoft.Design", "CA1010:CollectionsShouldImplementGenericInterface", Scope = "type", Target = "Bugx.Web.BugDocument")]
 [module: SuppressMessage("Microsoft.Design", "CA1058:TypesShouldNotExtendCertainBaseTypes", Scope = "type", Target = "Bugx.Web.BugDocument", MessageId = "System.Xml.XmlDocument")]
 [module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Bugx.Web.BugDocument")]
@@ -31,7 +30,10 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1035:ICollectionImplementationsHaveStronglyTypedMembers", Scope = "type", Target = "Bugx.Web.HttpValueCollection")]
 [module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.HttpValueCollection.LoadCollectionFromXmlNode(System.Collections.Specialized.NameValueCollection,System.Xml.XmlNode):System.Void", MessageId = "System.Xml.XmlNode")]
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Bugx.Web.HttpValueCollection.CreateCollectionFromUrlEncoded(System.String):Bugx.Web.HttpValueCollection", MessageId = "0#")]
-[module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.HttpValueCollection.LoadFromNode(System.Xml.XmlNode):System.Void", MessageId = "System.Xml.XmlNode")]
-[module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.HttpValueCollection.CreateCollectionFromXmlNode(System.Xml.XmlNode):Bugx.Web.HttpValueCollection", MessageId = "System.Xml.XmlNode")]
-[module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.HttpValueCollection.SaveToNode(System.Xml.XmlNode):System.Void", MessageId = "System.Xml.XmlNode")]
-[module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.HttpValueCollection.SaveCollectionToXmlNode(System.Collections.Specialized.NameValueCollection,System.Xml.XmlNode):System.Void", MessageId = "System.Xml.XmlNode")]
+[module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Bugx.Web.SafeRunner.LogException(System.Exception):System.Void")]
+[module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Bugx.Web.SafeRunner.Invoke(Bugx.Web.SafeRunner+Method):System.Void")]
+[module: SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings", Scope = "member", Target = "Bugx.Web.ExceptionHelper.BuildBugUri(System.String):System.Uri")]
+[module: SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings", Scope = "member", Target = "Bugx.Web.ExceptionHelper.BuildBugReportUri(System.String):System.Uri")]
+[module: SuppressMessage("Microsoft.Naming", "CA1714:FlagsEnumsShouldHavePluralNames", Scope = "type", Target = "Bugx.Web.Configuration.DataToSave")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Bugx.Web.Collections")]
+[module: SuppressMessage("Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", Scope = "member", Target = "Bugx.Web.BugEventArgs.Bug", MessageId = "System.Xml.XmlNode")]

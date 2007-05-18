@@ -120,16 +120,255 @@
   <metadata name="BugScenario.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BugScenario.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="LoadBugFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LoadBugFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>667, 15</value>
+  </data>
+  <data name="LoadBugFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LoadBugFile.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LoadBugFile.Text" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="&gt;&gt;LoadBugFile.Name" xml:space="preserve">
+    <value>LoadBugFile</value>
+  </data>
+  <data name="&gt;&gt;LoadBugFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoadBugFile.Parent" xml:space="preserve">
+    <value>BugScenario</value>
+  </data>
+  <data name="&gt;&gt;LoadBugFile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BugFile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="BugFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="BugFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>597, 23</value>
+  </data>
+  <data name="BugFile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;BugFile.Name" xml:space="preserve">
+    <value>BugFile</value>
+  </data>
+  <data name="&gt;&gt;BugFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BugFile.Parent" xml:space="preserve">
+    <value>BugScenario</value>
+  </data>
+  <data name="&gt;&gt;BugFile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="BugFileLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <data name="BugFileLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BugFileLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 20</value>
+  </data>
+  <data name="BugFileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="BugFileLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="BugFileLabel.Text" xml:space="preserve">
+    <value>Bug File :</value>
+  </data>
+  <data name="&gt;&gt;BugFileLabel.Name" xml:space="preserve">
+    <value>BugFileLabel</value>
+  </data>
+  <data name="&gt;&gt;BugFileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BugFileLabel.Parent" xml:space="preserve">
+    <value>BugScenario</value>
+  </data>
+  <data name="&gt;&gt;BugFileLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BugScenario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 108</value>
+  </data>
+  <data name="BugScenario.Size" type="System.Drawing.Size, System.Drawing">
+    <value>748, 48</value>
+  </data>
+  <data name="BugScenario.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="BugScenario.Text" xml:space="preserve">
+    <value>Bug Scenario :</value>
+  </data>
+  <data name="&gt;&gt;BugScenario.Name" xml:space="preserve">
+    <value>BugScenario</value>
+  </data>
+  <data name="&gt;&gt;BugScenario.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BugScenario.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BugScenario.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="CommandPannel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <data name="CommandPannel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="CommandPannel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CommandPannel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="ReBug.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ReBug.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 5</value>
+  </data>
+  <data name="ReBug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="ReBug.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="ReBug.Text" xml:space="preserve">
+    <value>ReBug !</value>
+  </data>
+  <data name="&gt;&gt;ReBug.Name" xml:space="preserve">
+    <value>ReBug</value>
+  </data>
+  <data name="&gt;&gt;ReBug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ReBug.Parent" xml:space="preserve">
+    <value>CommandPannel</value>
+  </data>
+  <data name="&gt;&gt;ReBug.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CloseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 5</value>
+  </data>
+  <data name="CloseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="CloseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="CloseButton.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Name" xml:space="preserve">
+    <value>CloseButton</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Parent" xml:space="preserve">
+    <value>CommandPannel</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CommandPannel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>595, 660</value>
+  </data>
+  <data name="CommandPannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 31</value>
+  </data>
+  <data name="CommandPannel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;CommandPannel.Name" xml:space="preserve">
+    <value>CommandPannel</value>
+  </data>
+  <data name="&gt;&gt;CommandPannel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CommandPannel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CommandPannel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="ContextInfo.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ContextInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="ContextExplorer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="ContextExplorer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 19</value>
+  </data>
+  <data name="ContextExplorer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>730, 467</value>
+  </data>
+  <data name="ContextExplorer.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ContextExplorer.Name" xml:space="preserve">
+    <value>ContextExplorer</value>
+  </data>
+  <data name="&gt;&gt;ContextExplorer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PropertyGrid, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ContextExplorer.Parent" xml:space="preserve">
+    <value>ContextInfo</value>
+  </data>
+  <data name="&gt;&gt;ContextExplorer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ContextInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 162</value>
+  </data>
+  <data name="ContextInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>748, 492</value>
+  </data>
+  <data name="ContextInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="ContextInfo.Text" xml:space="preserve">
+    <value>Context :</value>
+  </data>
+  <data name="&gt;&gt;ContextInfo.Name" xml:space="preserve">
+    <value>ContextInfo</value>
+  </data>
+  <data name="&gt;&gt;ContextInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ContextInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ContextInfo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAXoAAABaCAYAAAC2e50SAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -476,9 +715,45 @@
         6q2n/Y2UX6mMRnRI4+4PbR9K+Uc0rVEQHo34/w8BpzEkYreVIwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>378, 90</value>
+  </data>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>AutoSize</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="OpenFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>105, 17</value>
   </metadata>
+  <data name="OpenFile.Filter" xml:space="preserve">
+    <value>Bugx Files|*.bugx</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>772, 700</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAUAEBAAAAAAAABoBQAAVgAAACAgAAAAAAAAqAgAAL4FAAAwMAAAAAAAAKgOAABmDgAAQEAAAAAA
@@ -1026,5 +1301,26 @@
         ///////////////5/////v//////////////9/////9/////////////////////////////////////
         //////////////////////////////////8=
 </value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>780, 734</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>ReBug</value>
+  </data>
+  <data name="&gt;&gt;OpenFile.Name" xml:space="preserve">
+    <value>OpenFile</value>
+  </data>
+  <data name="&gt;&gt;OpenFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

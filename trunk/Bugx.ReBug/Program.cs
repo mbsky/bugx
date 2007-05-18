@@ -28,6 +28,7 @@ using System.Reflection;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Globalization;
 
 namespace Bugx.ReBug
 {
@@ -43,7 +44,7 @@ namespace Bugx.ReBug
             if (args.Length > 0)
             {
                 Uri url;
-                if (Uri.TryCreate(args[0], UriKind.Absolute, out url) && (url.Scheme.ToLowerInvariant() == "bugx"))
+                if (Uri.TryCreate(args[0], UriKind.Absolute, out url) && (string.Compare(url.Scheme, "bugx", StringComparison.InvariantCultureIgnoreCase) == 0))
                 {
                     fileName = Download(url);
                 }
@@ -119,7 +120,7 @@ namespace Bugx.ReBug
             Match path = Regex.Match(file.ToString(), "/bugx/errors/.+", RegexOptions.IgnoreCase);
             if (!path.Success)
             {
-                throw new NotSupportedException("Unknown uri format: " + file);
+                throw new NotSupportedException(string.Format(CultureInfo.InvariantCulture, Texts.ErrorUnknownUriFormat, file));
             }
             return new Uri(applicationPath, ".." + path.Value).LocalPath;
         }
@@ -131,7 +132,7 @@ namespace Bugx.ReBug
         {
             Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx", string.Empty, "URL: bugx Protocol");
             Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx", "URL Protocol", string.Empty);
-            Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx\shell\open\command", string.Empty, string.Format("\"{0}\" \"%1\"", new Uri(Assembly.GetCallingAssembly().CodeBase).LocalPath));
+            Registry.SetValue(@"HKEY_CLASSES_ROOT\bugx\shell\open\command", string.Empty, string.Format(CultureInfo.InvariantCulture, "\"{0}\" \"%1\"", new Uri(Assembly.GetCallingAssembly().CodeBase).LocalPath));
             Registry.SetValue(@"HKEY_CLASSES_ROOT\.bugx", string.Empty, "bugx");
         }
     }

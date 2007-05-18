@@ -32,6 +32,7 @@ namespace Bugx.ReBug
 {
     class PropertyGridInspector : ICustomTypeDescriptor
     {
+        #region PropertyGridTypeConverter
         class PropertyGridTypeConverter : TypeConverter
         {
             PropertyGridTypeConverter()
@@ -97,7 +98,9 @@ namespace Bugx.ReBug
                 }
                 return base.ConvertTo(context, culture, value, destinationType);
             }
-        }
+        } 
+        #endregion
+        #region PropertyGridPropertyDescriptor
         class PropertyGridPropertyDescriptor : PropertyDescriptor
         {
             PropertyDescriptor _InnerDescriptor;
@@ -184,7 +187,9 @@ namespace Bugx.ReBug
                 }
             }
 
-        }
+        } 
+        #endregion
+        #region NameValueDescriptor
         class NameValueDescriptor : PropertyDescriptor
         {
             NameValueCollection _NameValue;
@@ -236,20 +241,22 @@ namespace Bugx.ReBug
 
             public override void SetValue(object component, object value)
             {
-                _NameValue[_Key] = Convert.ToString(value);
+                _NameValue[_Key] = Convert.ToString(value, CultureInfo.InvariantCulture);
             }
 
             public override bool ShouldSerializeValue(object component)
             {
                 return false;
             }
-        }
+        } 
+        #endregion
+        #region NameObjectDescriptor
         class NameObjectDescriptor : PropertyDescriptor
         {
             IDictionary _NameValue;
             object _Key;
             public NameObjectDescriptor(IDictionary nameValue, object key)
-                : base(Convert.ToString(key), null)
+                : base(Convert.ToString(key, CultureInfo.InvariantCulture), null)
             {
                 _NameValue = nameValue;
                 _Key = key;
@@ -320,7 +327,9 @@ namespace Bugx.ReBug
             {
                 return false;
             }
-        }
+        } 
+        #endregion
+        #region ListDescriptor
         class ListDescriptor : PropertyDescriptor
         {
             IList _List;
@@ -398,7 +407,100 @@ namespace Bugx.ReBug
             {
                 return false;
             }
+        } 
+        #endregion
+        #region ListDescriptor
+        class CollectionDescriptor : PropertyDescriptor
+        {
+            ICollection _Collection;
+            int _Index;
+            public CollectionDescriptor(ICollection collection, int index)
+                : base("[" + index + "]", null)
+            {
+                _Collection = collection;
+                _Index = index;
+            }
+            public override bool CanResetValue(object component)
+            {
+                return false;
+            }
+
+            public override Type ComponentType
+            {
+                get
+                {
+                    return null;
+                }
+            }
+            object GetValue(int index)
+            {
+                int i = 0;
+                foreach (object o in _Collection)
+                {
+                    if (i++ == index)
+                    {
+                        return o;
+                    }
+                }
+                return null;
+            }
+
+            public override TypeConverter Converter
+            {
+                get
+                {
+                    object value = GetValue(_Index);
+                    if (value != null && value.GetType().IsValueType)
+                    {
+                        return null;
+                    }
+                    return PropertyGridTypeConverter.Instance;
+                }
+            }
+
+            public override object GetValue(object component)
+            {
+                object result = GetValue(_Index);
+                if (result != null && !result.GetType().IsValueType)
+                {
+                    return new PropertyGridInspector(result);
+                }
+                return result;
+            }
+
+            public override bool IsReadOnly
+            {
+                get
+                {
+                    return true;
+                }
+            }
+
+            public override Type PropertyType
+            {
+                get
+                {
+                    object type = GetValue(null);
+                    return type != null ? type.GetType() : null;
+                }
+            }
+
+            public override void ResetValue(object component)
+            {
+
+            }
+
+            public override void SetValue(object component, object value)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override bool ShouldSerializeValue(object component)
+            {
+                return false;
+            }
         }
+        #endregion
         object _Data;
         public PropertyGridInspector(object data)
         {
@@ -486,6 +588,11 @@ namespace Bugx.ReBug
             {
                 return GetVirtualPropertiesForList(list);
             }
+            ICollection collection = _Data as ICollection;
+            if (collection != null)
+            {
+                return GetVirtualPropertiesForCollection(collection);
+            }
             PropertyDescriptorCollection result = new PropertyDescriptorCollection(null);
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(_Data))
             {
@@ -497,6 +604,16 @@ namespace Bugx.ReBug
                 {
                     result.Add(new PropertyGridPropertyDescriptor(descriptor));
                 }
+            }
+            return result;
+        }
+
+        static PropertyDescriptorCollection GetVirtualPropertiesForCollection(ICollection collection)
+        {
+            PropertyDescriptorCollection result = new PropertyDescriptorCollection(null);
+            for (int i = 0; i < collection.Count; i++)
+            {
+                result.Add(new CollectionDescriptor(collection, i));
             }
             return result;
         }
