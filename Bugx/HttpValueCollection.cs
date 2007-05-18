@@ -28,6 +28,7 @@ using System.Web;
 using System.Xml;
 using System.Runtime.Serialization;
 using System.Diagnostics;
+using System.Xml.XPath;
 
 namespace Bugx.Web
 {
@@ -111,7 +112,7 @@ namespace Bugx.Web
         /// Loads from node.
         /// </summary>
         /// <param name="node">The node.</param>
-        public virtual void LoadFromNode(XmlNode node)
+        public virtual void LoadFromNode(IXPathNavigable node)
         {
             if (node == null)
             {
@@ -120,7 +121,7 @@ namespace Bugx.Web
             LoadCollectionFromXmlNode(this, node);
         }
 
-        public static void LoadCollectionFromXmlNode(NameValueCollection collection, XmlNode node)
+        public static void LoadCollectionFromXmlNode(NameValueCollection collection, IXPathNavigable node)
         {
             if (collection == null)
             {
@@ -130,9 +131,9 @@ namespace Bugx.Web
             {
                 throw new ArgumentNullException("node");
             }
-            foreach (XmlNode nameValue in node.SelectNodes("*"))
+            foreach (XPathNavigator nameValue in node.CreateNavigator().Select("*"))
             {
-                collection.Add(XmlConvert.DecodeName(nameValue.Name), nameValue.InnerText);
+                collection.Add(XmlConvert.DecodeName(nameValue.Name), nameValue.Value);
             }
         }
 
@@ -141,7 +142,7 @@ namespace Bugx.Web
         /// </summary>
         /// <param name="node">The node.</param>
         /// <returns></returns>
-        public static HttpValueCollection CreateCollectionFromXmlNode(XmlNode node)
+        public static HttpValueCollection CreateCollectionFromXmlNode(IXPathNavigable node)
         {
             HttpValueCollection result = new HttpValueCollection();
             if (node != null)
@@ -217,7 +218,7 @@ namespace Bugx.Web
         /// Saves to node.
         /// </summary>
         /// <param name="node">The node.</param>
-        public virtual void SaveToNode(XmlNode node)
+        public virtual void SaveToNode(IXPathNavigable node)
         {
             SaveCollectionToXmlNode(this, node);
         }
@@ -227,7 +228,7 @@ namespace Bugx.Web
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="node">The node.</param>
-        public static void SaveCollectionToXmlNode(NameValueCollection collection, XmlNode node)
+        public static void SaveCollectionToXmlNode(NameValueCollection collection, IXPathNavigable node)
         {
             if (collection == null)
             {
@@ -237,11 +238,16 @@ namespace Bugx.Web
             {
                 throw new ArgumentNullException("node");
             }
-            foreach (string key in collection.AllKeys)
+            if (collection.AllKeys.Length > 0)
             {
-                if (!string.IsNullOrEmpty(key))
+                XPathNavigator navigator = node.CreateNavigator();
+                foreach (string key in collection.AllKeys)
                 {
-                    node.AppendChild(node.OwnerDocument.CreateElement(XmlConvert.EncodeName(key))).InnerText = collection[key];
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        navigator.AppendChildElement(string.Empty, XmlConvert.EncodeName(key), string.Empty, collection[key]);
+                        //node.AppendChild(node.OwnerDocument.CreateElement(XmlConvert.EncodeName(key))).InnerText = collection[key];
+                    }
                 }
             }
         }

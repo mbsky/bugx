@@ -24,9 +24,9 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Reflection;
-using System.Xml;
 using System.Globalization;
 using System.Web;
+using System.Xml.XPath;
 
 namespace Bugx.Web
 {
@@ -48,7 +48,8 @@ namespace Bugx.Web
             {
                 if (!string.IsNullOrEmpty(exception.Source) &&
                     !exception.Source.StartsWith("mscorlib", StringComparison.InvariantCultureIgnoreCase) &&
-                    !exception.Source.StartsWith("System", StringComparison.InvariantCultureIgnoreCase))
+                    !exception.Source.StartsWith("System", StringComparison.InvariantCultureIgnoreCase) &&
+                    string.Compare(exception.Source, ".Net SqlClient Data Provider", StringComparison.InvariantCultureIgnoreCase) != 0)
                 {//If exception source is relevant then simply return it.
                     return exception.Source;
                 }
@@ -91,50 +92,55 @@ namespace Bugx.Web
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="root">The root.</param>
-        public static void XmlSerializeStackTrace(Exception exception, XmlNode root)
+        public static void XmlSerializeStackTrace(Exception exception, IXPathNavigable root)
         {
             if (exception == null || string.IsNullOrEmpty(exception.StackTrace))
             {
                 return;
             }
-            root.InnerXml = Regex.Replace(exception.StackTrace.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;"), 
-                                          @"(\s+at\s+|(?<MethodName>[^\s\.]+)(?<MethodArguments>\([^)]*\))(?<Location>.*)|(?<ClassPath>[^\s\.]+\.)+)",
-                                          delegate(Match match)
+            if (root == null)
+            {
+                throw new ArgumentNullException("root");
+            }
+            root.CreateNavigator().InnerXml =
+                Regex.Replace(exception.StackTrace.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;"),
+                              @"(\s+at\s+|(?<MethodName>[^\s\.]+)(?<MethodArguments>\([^)]*\))(?<Location>.*)|(?<ClassPath>[^\s\.]+\.)+)",
+                              delegate(Match match)
+                                  {
+                                      if (match.Groups["MethodName"].Success)
+                                      {//method
+                                          if (match.Groups["Location"].Value.Trim().Length > 0)
                                           {
-                                              if (match.Groups["MethodName"].Success)
-                                              {//method
-                                                  if (match.Groups["Location"].Value.Trim().Length > 0)
-                                                  {
-                                                      return string.Format(CultureInfo.InvariantCulture,
-                                                                           "<method>{0}</method><arguments>{1}</arguments><location>{2}</location></trace>",
-                                                                           match.Groups["MethodName"].Value,
-                                                                           XmlSerializeParameters(match.Groups["MethodArguments"].Value),
-                                                                           match.Groups["Location"].Value);
-                                                  }
-                                                  else
-                                                  {
-                                                      return string.Format(CultureInfo.InvariantCulture,
-                                                                           "<method>{0}</method><arguments>{1}</arguments></trace>",
-                                                                           match.Groups["MethodName"].Value,
-                                                                           XmlSerializeParameters(match.Groups["MethodArguments"].Value));
-                                                  }
-                                              }
-                                              else if (match.Groups["ClassPath"].Success)
-                                              {//class
-                                                  StringBuilder path = new StringBuilder();
-                                                  CaptureCollection captures = match.Groups["ClassPath"].Captures;
-                                                  path.AppendFormat("<trace relevant=\"{0}\">", captures[0].Value != "System." ? 1 : 0);
-                                                  for (int i = 0; i < captures.Count - 1; i++)
-                                                  {
-                                                      path.AppendFormat("<namespace>{0}</namespace>.",
-                                                                        captures[i].Value.Substring(0, captures[i].Value.Length - 1));
-                                                  }
-                                                  path.AppendFormat("<class>{0}</class>.",
-                                                                    captures[captures.Count - 1].Value.Substring(0, captures[captures.Count - 1].Value.Length - 1));
-                                                  return path.ToString();
-                                              }
-                                              return string.Empty;
-                                          });
+                                              return string.Format(CultureInfo.InvariantCulture,
+                                                                   "<method>{0}</method><arguments>{1}</arguments><location>{2}</location></trace>",
+                                                                   match.Groups["MethodName"].Value,
+                                                                   XmlSerializeParameters(match.Groups["MethodArguments"].Value),
+                                                                   match.Groups["Location"].Value);
+                                          }
+                                          else
+                                          {
+                                              return string.Format(CultureInfo.InvariantCulture,
+                                                                   "<method>{0}</method><arguments>{1}</arguments></trace>",
+                                                                   match.Groups["MethodName"].Value,
+                                                                   XmlSerializeParameters(match.Groups["MethodArguments"].Value));
+                                          }
+                                      }
+                                      else if (match.Groups["ClassPath"].Success)
+                                      {//class
+                                          StringBuilder path = new StringBuilder();
+                                          CaptureCollection captures = match.Groups["ClassPath"].Captures;
+                                          path.AppendFormat("<trace relevant=\"{0}\">", captures[0].Value != "System." ? 1 : 0);
+                                          for (int i = 0; i < captures.Count - 1; i++)
+                                          {
+                                              path.AppendFormat("<namespace>{0}</namespace>.",
+                                                                captures[i].Value.Substring(0, captures[i].Value.Length - 1));
+                                          }
+                                          path.AppendFormat("<class>{0}</class>.",
+                                                            captures[captures.Count - 1].Value.Substring(0, captures[captures.Count - 1].Value.Length - 1));
+                                          return path.ToString();
+                                      }
+                                      return string.Empty;
+                                  });
         }
 
         /// <summary>
@@ -144,6 +150,10 @@ namespace Bugx.Web
         /// <returns></returns>
         public static Uri BuildBugUri(string bugVirtualPath)
         {
+            if (bugVirtualPath == null)
+            {
+                throw new ArgumentNullException("bugVirtualPath");
+            }
             HttpContext context = HttpContext.Current;
             string applicationPath = context.Request.ApplicationPath;
             if (!applicationPath.EndsWith("/"))
@@ -161,6 +171,10 @@ namespace Bugx.Web
         /// <returns></returns>
         public static Uri BuildBugReportUri(string bugVirtualPath)
         {
+            if (bugVirtualPath == null)
+            {
+                throw new ArgumentNullException("bugVirtualPath");
+            }
             HttpContext context = HttpContext.Current;
             string applicationPath = context.Request.ApplicationPath;
             if (!applicationPath.EndsWith("/"))

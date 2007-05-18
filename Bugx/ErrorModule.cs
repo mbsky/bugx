@@ -200,24 +200,7 @@ namespace Bugx.Web
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         static void SafeApplication_Error(object sender, EventArgs e)
         {
-            try
-            {
-                Application_Error(sender);
-            }
-            catch (Exception error)
-            {
-                try
-                {
-                    using (StreamWriter file = new StreamWriter(((HttpApplication)sender).Context.Server.MapPath("~/bugx/crash.log"), true, Encoding.Default))
-                    {
-                        file.WriteLine("/** {0:yyyy/MM/dd HH:mm:ss} *******************", DateTime.Now);
-                        file.WriteLine(error);
-                        file.WriteLine("/***************************************");
-                        file.WriteLine();
-                    }
-                }
-                catch{}
-            }
+            SafeRunner.Invoke(delegate{Application_Error(sender);});
         }
 
         /// <summary>
@@ -243,6 +226,17 @@ namespace Bugx.Web
             bugEventArgs.Bug = bug;
             DataToSave dataToSave = BugxConfiguration.DataToSave;
             string errorId = BuildUniqueIdentifier(context.Error);
+            string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + errorId;
+            DirectoryInfo destination = new DirectoryInfo(context.Request.MapPath(bugVirtualPath));
+            if (!destination.Exists)
+            {
+                destination.Create();
+            }
+            string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
+            if (File.Exists(fileName))
+            {
+                return;
+            }
             //Minimum data to save.
             SaveUrl(root, context);
             SaveRequest(root, context);
@@ -272,20 +266,16 @@ namespace Bugx.Web
                 SaveException(root, context);
             }
             OnError(bugEventArgs);
-            string bugVirtualPath = "~/bugx/errors/" + context.Error.GetBaseException().GetType().FullName.Replace('.', '/') + "/" + errorId;
-            DirectoryInfo destination = new DirectoryInfo(context.Request.MapPath(bugVirtualPath));
-            if (!destination.Exists)
+            try
             {
-                destination.Create();
-            }
-            string fileName = DateTime.Now.ToUniversalTime().ToString("/yyyyMMddTHHmmssZ", CultureInfo.InvariantCulture) + ".bugx";
-            bug.Save(destination.FullName + fileName);
-            bugEventArgs.BugUri    = ExceptionHelper.BuildBugUri(bugVirtualPath + "/" + fileName);
-            bugEventArgs.BugReport = ExceptionHelper.BuildBugReportUri(bugVirtualPath + "/" + fileName);
-            if (MaySendErrorComplete(errorId) && !BugxConfiguration.ShouldBeFiltered(errorId))
-            {
-                OnErrorComplete(bugEventArgs);
-            }
+                bug.Save(destination.FullName + fileName);
+                bugEventArgs.BugUri = ExceptionHelper.BuildBugUri(bugVirtualPath + "/" + fileName);
+                bugEventArgs.BugReport = ExceptionHelper.BuildBugReportUri(bugVirtualPath + "/" + fileName);
+                if (MaySendErrorComplete(errorId) && !BugxConfiguration.ShouldBeFiltered(errorId))
+                {
+                    OnErrorComplete(bugEventArgs);
+                }
+            }catch(IOException){}//Nothing to do if the same bug arrives twice.
         }
 
         /// <summary>
@@ -377,8 +367,6 @@ namespace Bugx.Web
                 }
             }
         }
-
-        
 
         /// <summary>
         /// Saves the cache.
@@ -568,10 +556,7 @@ namespace Bugx.Web
         {
             if (Error != null)
             {
-                try
-                {
-                    Error(HttpContext.Current.ApplicationInstance, e);
-                }catch{}
+                SafeRunner.Invoke(delegate {Error(HttpContext.Current.ApplicationInstance, e);});
             }
         }
 
@@ -588,10 +573,7 @@ namespace Bugx.Web
         {
             if (ErrorComplete != null)
             {
-                try
-                {
-                    ErrorComplete(HttpContext.Current.ApplicationInstance, e);
-                }catch{}
+                SafeRunner.Invoke(delegate {ErrorComplete(HttpContext.Current.ApplicationInstance, e);});
             }
         }
 

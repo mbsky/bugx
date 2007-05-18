@@ -31,7 +31,7 @@ using System.Xml;
 
 namespace Bugx.Talk
 {
-    public class SubscriptionManager: Collection<string>
+    public class SubscriptionCollection: Collection<string>
     {
         const string XmlNameSpace = "http://www.wavenet.be/bugx/talk/Settings.xsd";
 
@@ -46,12 +46,10 @@ namespace Bugx.Talk
         /// </summary>
         static string _SettingFileName;
 
-        bool _IsInitialization;
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscriptionManager"/> class.
         /// </summary>
-        protected SubscriptionManager()
+        protected SubscriptionCollection()
         {
             string fileName = _SettingFileName;
             if (File.Exists(fileName))
@@ -62,7 +60,6 @@ namespace Bugx.Talk
                     {
                         return;
                     }
-                    _IsInitialization = true;
                     XPathDocument document = new XPathDocument(file);
                     XPathNavigator xpath = document.CreateNavigator();
                     XmlNamespaceManager namespaceManager = new XmlNamespaceManager(xpath.NameTable);
@@ -72,12 +69,14 @@ namespace Bugx.Talk
                     _Server       = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:server", namespaceManager).Value;
                     _NetworkHost  = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:network/bugx:networkHost", namespaceManager).Value;
                     _Announcement = xpath.SelectSingleNode("/bugx:bugx.talk/bugx:announcement", namespaceManager).Value;
-                    
+
                     foreach (XPathNavigator node in xpath.Select("/bugx:bugx.talk/bugx:subscriptions/bugx:subscription", namespaceManager))
                     {
-                        Add(node.Value);
+                        if (!Contains(node.Value))
+                        {
+                            base.InsertItem(Count, node.Value);
+                        }
                     }
-                    _IsInitialization = false;
                 }
             }
         }
@@ -94,7 +93,7 @@ namespace Bugx.Talk
             {//Only availabe on request time.
                 return;
             }
-            _SettingFileName = context.Request.MapPath("~/bugx.talk.config");
+            _SettingFileName = context.Request.MapPath("~/bugx/bugx.talk.config");
             _Cache = context.Cache;
         }
 
@@ -102,14 +101,14 @@ namespace Bugx.Talk
         /// Gets the instance.
         /// </summary>
         /// <value>The instance.</value>
-        public static SubscriptionManager Instance
+        public static SubscriptionCollection Instance
         {
             get
             {
-                SubscriptionManager result = _Cache[typeof(SubscriptionManager).FullName] as SubscriptionManager;
+                SubscriptionCollection result = _Cache[typeof(SubscriptionCollection).FullName] as SubscriptionCollection;
                 if (result == null)
                 {
-                    result = new SubscriptionManager();
+                    result = new SubscriptionCollection();
                     SaveInCache(result);
                 }
                 return result;
@@ -120,9 +119,9 @@ namespace Bugx.Talk
         /// Saves the <c>subscriptionManager</c> in cache.
         /// </summary>
         /// <param name="subscriptionManager">The subscription manager.</param>
-        static void SaveInCache(SubscriptionManager subscriptionManager)
+        static void SaveInCache(SubscriptionCollection subscriptionManager)
         {
-            _Cache.Add(typeof(SubscriptionManager).FullName, subscriptionManager, new CacheDependency(_SettingFileName), Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Low, null); 
+            _Cache.Add(typeof(SubscriptionCollection).FullName, subscriptionManager, new CacheDependency(_SettingFileName), Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0), CacheItemPriority.Low, null); 
         }
 
         /// <summary>
@@ -138,10 +137,6 @@ namespace Bugx.Talk
                 return;
             }
             base.InsertItem(index, item);
-            if (_IsInitialization)
-            {
-                return;
-            }
             using (FileStream file = new FileStream(_SettingFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 XmlDocument document = new XmlDocument();

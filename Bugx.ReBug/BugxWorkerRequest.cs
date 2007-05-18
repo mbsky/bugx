@@ -31,10 +31,12 @@ namespace Bugx.ReBug
 {
     public class BugxWorkerRequest : SimpleWorkerRequest
     {
-        static Dictionary<string, int> _Headers = new Dictionary<string, int>();
-        static string[] _HeaderList = new string[RequestHeaderMaximum];
+        static Dictionary<string, int> _Headers;
+        static string[] _HeaderList;
         static BugxWorkerRequest()
         {
+            _Headers = new Dictionary<string, int>();
+            _HeaderList = new string[RequestHeaderMaximum];
             DefineHeader(0, "Cache-Control", "HTTP_CACHE_CONTROL");
             DefineHeader(1, "Connection", "HTTP_CONNECTION");
             DefineHeader(2, "Date", "HTTP_DATE");

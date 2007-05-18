@@ -130,4 +130,7 @@ Do you want to attach one?</value>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="ErrorUnknownUriFormat">
+    <value>Unknown uri format: {0}</value>
+  </data>
 </root>

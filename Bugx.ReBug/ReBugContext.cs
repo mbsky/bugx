@@ -27,7 +27,6 @@ using System.Web.Caching;
 using Bugx.Web;
 using System.ComponentModel;
 using System.Collections;
-using System.Xml;
 using System.Web;
 using System.Web.SessionState;
 using System.Configuration;
@@ -36,6 +35,7 @@ using System.Globalization;
 using System.Threading;
 using System.Security.Principal;
 using System.Runtime.Serialization;
+using System.Xml.XPath;
 
 namespace Bugx.ReBug
 {
@@ -64,58 +64,59 @@ namespace Bugx.ReBug
         /// Initializes a new instance of the <see cref="ReBugContext"/> class.
         /// </summary>
         /// <param name="bug">The bug.</param>
-        protected ReBugContext(XmlDocument bug)
+        protected ReBugContext(IXPathNavigable bug)
         {
-            _QueryString = HttpValueCollection.CreateCollectionFromXmlNode(bug.SelectSingleNode("/bugx/queryString"));
+            XPathNavigator xml = bug.CreateNavigator();
+            _QueryString = HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/queryString"));
 
-            _Form = HttpValueCollection.CreateCollectionFromXmlNode(bug.SelectSingleNode("/bugx/form"));
+            _Form = HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/form"));
 
-            XmlNode cookie = bug.SelectSingleNode("/bugx/headers/Cookie");
+            XPathNavigator cookie = xml.SelectSingleNode("/bugx/headers/Cookie");
             if (cookie != null)
             {
-                _Cookies = HttpValueCollection.CreateCollectionFromCookieHeader(cookie.InnerText);
+                _Cookies = HttpValueCollection.CreateCollectionFromCookieHeader(cookie.Value);
             }
-            _Headers = HttpValueCollection.CreateCollectionFromXmlNode(bug.SelectSingleNode("/bugx/headers"));
+            _Headers = HttpValueCollection.CreateCollectionFromXmlNode(xml.SelectSingleNode("/bugx/headers"));
 
-            _Session = FillNameValue(bug.SelectNodes("/bugx/sessionVariables/add"));
-            _Cache = FillNameValue(bug.SelectNodes("/bugx/cacheVariables/add"));
-            _Application = FillNameValue(bug.SelectNodes("/bugx/applicationVariables/add"));
-            _Context = FillHashtable(bug.SelectNodes("/bugx/contextVariables/add"));
+            _Session = FillNameValue(xml.Select("/bugx/sessionVariables/add"));
+            _Cache = FillNameValue(xml.Select("/bugx/cacheVariables/add"));
+            _Application = FillNameValue(xml.Select("/bugx/applicationVariables/add"));
+            _Context = FillHashtable(xml.Select("/bugx/contextVariables/add"));
 
-            XmlNode exception = bug.SelectSingleNode("/bugx/exception");
+            XPathNavigator exception = xml.SelectSingleNode("/bugx/exception");
             if (exception != null)
             {
                 try
                 {
-                    _Exception = (Exception)BugSerializer.Deserialize(exception.InnerText);
+                    _Exception = (Exception)BugSerializer.Deserialize(exception.Value);
                 }catch(SerializationException){}
             }
-            XmlNode url = bug.SelectSingleNode("/bugx/url");
+            XPathNavigator url = xml.SelectSingleNode("/bugx/url");
             if (url != null)
             {
-                _Url = new Uri(url.InnerText);
+                _Url = new Uri(url.Value);
             }
-            XmlNode pathInfo = bug.SelectSingleNode("/bugx/pathInfo");
+            XPathNavigator pathInfo = xml.SelectSingleNode("/bugx/pathInfo");
             if (pathInfo != null)
             {
-                _PathInfo = pathInfo.InnerText;
+                _PathInfo = pathInfo.Value;
             }
-            XmlNode machineName = bug.SelectSingleNode("/bugx/machineName");
+            XPathNavigator machineName = xml.SelectSingleNode("/bugx/machineName");
             if (machineName != null)
             {
-                _MachineName = machineName.InnerText;
+                _MachineName = machineName.Value;
             }
-            XmlNode scriptTimeout = bug.SelectSingleNode("/bugx/scriptTimeout");
+            XPathNavigator scriptTimeout = xml.SelectSingleNode("/bugx/scriptTimeout");
             if (scriptTimeout != null)
             {
-                _ScriptTimeout = Convert.ToInt32(scriptTimeout.InnerText);
+                _ScriptTimeout = Convert.ToInt32(scriptTimeout.Value, CultureInfo.InvariantCulture);
             }
-            XmlNode user = bug.SelectSingleNode("/bugx/user");
+            XPathNavigator user = xml.SelectSingleNode("/bugx/user");
             if (user != null)
             {
                 try
                 {
-                    _User = (IPrincipal)BugSerializer.Deserialize(user.InnerText);
+                    _User = (IPrincipal)BugSerializer.Deserialize(user.Value);
                 }
                 catch(SerializationException){}
                 catch(TargetInvocationException){}
@@ -127,24 +128,16 @@ namespace Bugx.ReBug
         /// </summary>
         /// <param name="bug">The bug.</param>
         /// <returns></returns>
-        public static ReBugContext Create(XmlDocument bug)
+        public static ReBugContext Create(IXPathNavigable bug)
         {
             Type custom = Type.GetType(ConfigurationManager.AppSettings["CustomReBugContext"] ?? typeof(ReBugContext).AssemblyQualifiedName );
             if (custom != null && typeof(ReBugContext).IsAssignableFrom(custom))
             {
-                ConstructorInfo constructor = custom.GetConstructor(BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.NonPublic, null, new Type[] {typeof (XmlDocument)}, null);
+                ConstructorInfo constructor = custom.GetConstructor(BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.NonPublic, null, new Type[] {typeof (IXPathNavigable)}, null);
+                System.Diagnostics.Debugger.Break();
                 if (constructor != null)
                 {
-                    CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                    try
-                    {
-                        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-                        return (ReBugContext) constructor.Invoke(new object[] {bug});
-                    }
-                    finally
-                    {
-                        Thread.CurrentThread.CurrentCulture = currentCulture;
-                    }
+                    return (ReBugContext) constructor.Invoke(new object[] {bug});
                 }
             }
             return new ReBugContext(bug);
@@ -157,21 +150,21 @@ namespace Bugx.ReBug
         /// </summary>
         /// <param name="nodes">The nodes.</param>
         /// <returns></returns>
-        static Dictionary<string, object> FillNameValue(XmlNodeList nodes)
+        static Dictionary<string, object> FillNameValue(XPathNodeIterator nodes)
         {
             Dictionary<string, object> result = new Dictionary<string, object>();
-            foreach (XmlNode node in nodes)
+            foreach (XPathNavigator node in nodes)
             {
                 object data;
-                if (node.Attributes["value"] != null)
+                if (!string.IsNullOrEmpty(node.GetAttribute("value", string.Empty)))
                 {
-                    data = Convert.ChangeType(node.Attributes["value"].Value, Type.GetType(node.Attributes["type"].Value));
+                    data = Convert.ChangeType(node.GetAttribute("value", string.Empty), Type.GetType(node.GetAttribute("type", string.Empty)), CultureInfo.InvariantCulture);
                 }
-                else if (!string.IsNullOrEmpty(node.InnerText))
+                else if (!string.IsNullOrEmpty(node.Value))
                 {
                     try
                     {
-                        data = BugSerializer.Deserialize(node.InnerText);
+                        data = BugSerializer.Deserialize(node.Value);
                     }
                     catch(SerializationException)
                     {
@@ -182,7 +175,7 @@ namespace Bugx.ReBug
                 {
                     continue;
                 }
-                result[node.Attributes["name"].Value] = data;
+                result[node.GetAttribute("name", string.Empty)] = data;
             }
             return result;
         }
@@ -192,21 +185,21 @@ namespace Bugx.ReBug
         /// </summary>
         /// <param name="nodes">The nodes.</param>
         /// <returns></returns>
-        static Dictionary<object, object> FillHashtable(XmlNodeList nodes)
+        static Dictionary<object, object> FillHashtable(XPathNodeIterator nodes)
         {
             Dictionary<object, object> result = new Dictionary<object, object>();
-            foreach (XmlNode node in nodes)
+            foreach (XPathNavigator node in nodes)
             {
                 object data;
-                if (node.Attributes["value"] != null)
+                if (!string.IsNullOrEmpty(node.GetAttribute("value", string.Empty)))
                 {
-                    data = Convert.ChangeType(node.Attributes["value"].Value, Type.GetType(node.Attributes["type"].Value));
+                    data = Convert.ChangeType(node.GetAttribute("value", string.Empty), Type.GetType(node.GetAttribute("type", string.Empty)), CultureInfo.InvariantCulture);
                 }
-                else if (!string.IsNullOrEmpty(node.InnerText))
+                else if (!string.IsNullOrEmpty(node.Value))
                 {
                     try
                     {
-                        data = BugSerializer.Deserialize(node.InnerText);    
+                        data = BugSerializer.Deserialize(node.Value);    
                     }
                     catch(SerializationException)
                     {
@@ -217,15 +210,15 @@ namespace Bugx.ReBug
                 {
                     continue;
                 }
-                if (node.Attributes["nameType"] != null)
+                if (!string.IsNullOrEmpty(node.GetAttribute("nameType", string.Empty)))
                 {
-                    result[Convert.ChangeType(node.Attributes["name"].Value, Type.GetType(node.Attributes["nameType"].Value))] = data;
+                    result[Convert.ChangeType(node.GetAttribute("name", string.Empty), Type.GetType(node.GetAttribute("nameType", string.Empty)), CultureInfo.InvariantCulture)] = data;
                 }
                 else
                 {
                     try
                     {
-                        result[BugSerializer.Deserialize(node.SelectSingleNode("key").InnerText)] = data;
+                        result[BugSerializer.Deserialize(node.SelectSingleNode("key").Value)] = data;
                     }catch(SerializationException){}
                 }
             }

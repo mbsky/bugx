@@ -140,7 +140,7 @@ namespace Bugx.Talk {
         
         /// <summary>
         ///   Looks up a localized string similar to Welcome {0},
-        ///I will give you all information on bad things appening here.
+        ///I will give you all information on bad things happening here.
         ///_Note: If you want to stop receiving these messages, simply tell me /*Unsubscribe*_.
         /// </summary>
         internal static string InfoSubscribeComplete {

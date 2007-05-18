@@ -26,6 +26,7 @@ using System.IO;
 using System.Xml.Xsl;
 using System.Xml;
 using Bugx.Web;
+using System;
 
 namespace Bugx.Report
 {
@@ -49,6 +50,10 @@ namespace Bugx.Report
         /// <param name="context">An <see cref="T:System.Web.HttpContext"></see> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
         public void ProcessRequest(HttpContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
             string fileName = context.Server.MapPath(context.Request.Url.AbsolutePath).Replace(".axd", string.Empty);
             if (!File.Exists(fileName))
             {

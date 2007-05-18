@@ -9,6 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bugx.Talk</RootNamespace>
     <AssemblyName>Bugx.Talk</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,7 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
-    <Compile Include="SubscriptionManager.cs" />
+    <Compile Include="Properties\FxCop.cs" />
+    <Compile Include="SubscriptionCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Texts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -65,6 +68,7 @@
     <EmbeddedResource Include="Xml\Settings.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="key.snk" />
     <None Include="Xml\Settings.xsx">
       <DependentUpon>Settings.xsd</DependentUpon>
     </None>

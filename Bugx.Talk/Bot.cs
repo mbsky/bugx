@@ -35,7 +35,7 @@ using System.Web.Hosting;
 
 namespace Bugx.Talk
 {
-    public class Bot: IHttpModule
+    public class Bot: IHttpModule, IDisposable
     {
         JabberClient _Bot;
         
@@ -54,6 +54,7 @@ namespace Bugx.Talk
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Bugx.Talk
                 return;
             }
             _Initialized = true;
-            SubscriptionManager.LoadSettings();
+            SubscriptionCollection.LoadSettings();
             _Bot = new JabberClient();
             _Bot.AutoPresence = false;
             _Bot.OnMessage += new MessageHandler(Bot_OnMessage);
@@ -91,7 +92,7 @@ namespace Bugx.Talk
             ErrorModule.ErrorComplete += new EventHandler<BugEventArgs>(ErrorModule_ErrorComplete);
             ErrorModule.ApplicationUnload += new EventHandler<ApplicationUnloadEventArgs>(ErrorModule_ApplicationUnload);
 
-            SubscriptionManager settings = SubscriptionManager.Instance;
+            SubscriptionCollection settings = SubscriptionCollection.Instance;
             _Bot.User         = settings.User;
             _Bot.Password     = settings.Password;
             _Bot.Server       = settings.Server;
@@ -121,7 +122,7 @@ namespace Bugx.Talk
         /// <param name="text">The text.</param>
         void Message(string text)
         {
-            foreach (string user in SubscriptionManager.Instance)
+            foreach (string user in SubscriptionCollection.Instance)
             {
                 _Bot.Message(user, text);
             }
@@ -167,9 +168,9 @@ namespace Bugx.Talk
         /// <param name="sender">The sender.</param>
         void Bot_OnAuthenticate(object sender)
         {
-            if (!string.IsNullOrEmpty(SubscriptionManager.Instance.Announcement))
+            if (!string.IsNullOrEmpty(SubscriptionCollection.Instance.Announcement))
             {
-                _Bot.Presence(PresenceType.available, SubscriptionManager.Instance.Announcement, null, 24);
+                _Bot.Presence(PresenceType.available, SubscriptionCollection.Instance.Announcement, null, 24);
             }
             else
             {
@@ -187,7 +188,7 @@ namespace Bugx.Talk
             string userAddress = string.Format(CultureInfo.InvariantCulture, "{0}@{1}", msg.From.User, msg.From.Server).ToLowerInvariant();
             if (!ProcessCommand(msg))
             {
-                if (!SubscriptionManager.Instance.Contains(userAddress))
+                if (!SubscriptionCollection.Instance.Contains(userAddress))
                 {
                     _Bot.Message(msg.From.ToString(), Texts.ErrorChatWhenNotSubscribed);
                     return;
@@ -200,7 +201,7 @@ namespace Bugx.Talk
                 }
                 foreach (string user in users)
                 {
-                    if (string.Compare(user, userAddress, true) != 0)
+                    if (string.Compare(user, userAddress, StringComparison.InvariantCultureIgnoreCase) != 0)
                     {
                         _Bot.Message(user, string.Format(CultureInfo.InvariantCulture, "*{0}*: {1}", msg.From.User, msg.Body));
                     }
@@ -215,7 +216,7 @@ namespace Bugx.Talk
         List<string> GetBroadcastList()
         {
             List<string> result = new List<string>();
-            foreach (string user in SubscriptionManager.Instance)
+            foreach (string user in SubscriptionCollection.Instance)
             {
                 foreach (KeyValuePair<string, PresenceType> availableUser in _Presence)
                 {
@@ -245,12 +246,12 @@ namespace Bugx.Talk
             switch (command.Substring(1))
             {
                 case "subscribe":
-                    SubscriptionManager.Instance.Add(userAddress);
+                    SubscriptionCollection.Instance.Add(userAddress);
                     _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoSubscribeComplete, msg.From.User, msg.Body, BotVersion));
                     break;
 
                 case "unsubscribe":
-                    SubscriptionManager.Instance.Remove(userAddress);
+                    SubscriptionCollection.Instance.Remove(userAddress);
                     _Bot.Message(msg.From.ToString(), string.Format(CultureInfo.InvariantCulture, Texts.InfoUnsubscribeComplete, msg.From.User, msg.Body, BotVersion));
                     break;
 
@@ -260,10 +261,10 @@ namespace Bugx.Talk
 
                 case "subscribers":
                     string list;
-                    if (SubscriptionManager.Instance.Count > 0)
+                    if (SubscriptionCollection.Instance.Count > 0)
                     {
                         StringBuilder listDetail = new StringBuilder();
-                        foreach (string user in SubscriptionManager.Instance)
+                        foreach (string user in SubscriptionCollection.Instance)
                         {
                             listDetail.AppendFormat("\r\n- {0}", user);
                         }
@@ -284,8 +285,8 @@ namespace Bugx.Talk
                 default:
                     if (command.StartsWith("/announcement"))
                     {
-                        SubscriptionManager.Instance.Announcement = command.Substring(13).Trim();
-                        _Bot.Presence(PresenceType.available, SubscriptionManager.Instance.Announcement, null, 24);
+                        SubscriptionCollection.Instance.Announcement = command.Substring(13).Trim();
+                        _Bot.Presence(PresenceType.available, SubscriptionCollection.Instance.Announcement, null, 24);
                         _Bot.Message(msg.From.ToString(), Texts.CommandComplete);
                     }
                     else

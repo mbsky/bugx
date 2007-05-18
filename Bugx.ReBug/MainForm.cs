@@ -29,6 +29,7 @@ using Bugx.Web;
 using System.Web.Hosting;
 using System.Diagnostics;
 using System.Runtime.Remoting;
+using System.Globalization;
 
 namespace Bugx.ReBug
 {
@@ -68,7 +69,7 @@ namespace Bugx.ReBug
                 }
                 try
                 {
-                    bool isConnected = _Host.IsConnected;
+                    _Host.CheckAppDomainConnection();
                 }
                 catch (RemotingException)
                 {//Remoting context is broken.
@@ -130,14 +131,19 @@ namespace Bugx.ReBug
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void ReBug_Click(object sender, EventArgs e)
         {
-            if (!Debugger.IsAttached && MessageBox.Show(this, Texts.DebuggerIsNotAttached, Texts.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == System.Windows.Forms.DialogResult.Yes)
+            MessageBoxOptions options = 0;
+            if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
+            {
+                options |= MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign;
+            }
+            if (!Debugger.IsAttached && MessageBox.Show(this, Texts.DebuggerIsNotAttached, Texts.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, options) == System.Windows.Forms.DialogResult.Yes)
             {
                 Debugger.Launch();    
             }
             if (Debugger.IsAttached)
             {
                 Host.Process(CurrentContext);
-                MessageBox.Show(this, Texts.BugComplete, Texts.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Texts.BugComplete, Texts.Information, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, options);
             }
         }
         #endregion
