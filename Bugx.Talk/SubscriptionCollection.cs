@@ -31,6 +31,9 @@ using System.Xml;
 
 namespace Bugx.Talk
 {
+    /// <summary>
+    /// Contains all subscript to Bugx Talk.
+    /// </summary>
     public class SubscriptionCollection: Collection<string>
     {
         const string XmlNameSpace = "http://www.wavenet.be/bugx/talk/Settings.xsd";
@@ -47,7 +50,7 @@ namespace Bugx.Talk
         static string _SettingFileName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubscriptionManager"/> class.
+        /// Initializes a new instance of the <see cref="SubscriptionCollection"/> class.
         /// </summary>
         protected SubscriptionCollection()
         {
@@ -223,6 +226,10 @@ namespace Bugx.Talk
             get { return _Server; }
         }
 
+        /// <summary>
+        /// Gets or sets the announcement.
+        /// </summary>
+        /// <value>The announcement.</value>
         public string Announcement
         {
             get { return _Announcement; }

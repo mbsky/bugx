@@ -33,10 +33,15 @@ using BugEventHandler = System.EventHandler<Bugx.Web.BugEventArgs>;
 using ApplicationUnloadEventHandler = System.EventHandler<Bugx.Web.ApplicationUnloadEventArgs>;
 using Bugx.Web.Configuration;
 using System.Collections.Generic;
+using Bugx.Web.Collections;
 
 
 namespace Bugx.Web
 {
+    /// <summary>
+    /// Bugx error module is the core of this application, it will record every data from crash to a .bugx file.
+    /// And then notify listners.
+    /// </summary>
     public class ErrorModule : IHttpModule
     {
         #region ExceptionTracking
@@ -577,6 +582,9 @@ namespace Bugx.Web
             }
         }
 
+        /// <summary>
+        /// Occurs when application is unloaded.
+        /// </summary>
         public static event ApplicationUnloadEventHandler ApplicationUnload;
 
         /// <summary>

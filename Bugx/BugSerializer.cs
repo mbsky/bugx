@@ -29,6 +29,9 @@ using System.Runtime.Serialization;
 
 namespace Bugx.Web
 {
+    /// <summary>
+    /// Allow application to serialize and deserialize object with a simple compression algorithm.
+    /// </summary>
     public static class BugSerializer
     {
         /// <summary>

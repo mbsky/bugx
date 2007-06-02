@@ -24,12 +24,14 @@ using System;
 using System.Text;
 using System.IO;
 using System.Web;
+using System.Diagnostics;
 
 namespace Bugx.Web
 {
     /// <summary>
     /// This class run safely a method to avoid any handling crash.
     /// </summary>
+    [DebuggerStepThrough]
     public static class SafeRunner
     {
         /// <summary>

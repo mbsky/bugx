@@ -26,6 +26,9 @@ using System.Web.Hosting;
 
 namespace Bugx.Web
 {
+    /// <summary>
+    /// Argument send to notifiers to complete/notify reports.
+    /// </summary>
     public class BugEventArgs : EventArgs
     {
         /// <summary>
@@ -75,6 +78,9 @@ namespace Bugx.Web
 
     }
 
+    /// <summary>
+    /// Contains information why current application domain is unloaded.
+    /// </summary>
     public class ApplicationUnloadEventArgs: EventArgs
     {
         /// <summary>

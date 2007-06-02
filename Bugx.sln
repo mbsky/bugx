@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Bugx.TestSite\", "Bugx.TestSite\", "{D15521D0-4769-4228-9413-2A3A7D2BC1A6}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Bugx.TestSite\", "Bugx.TestSite", "{D15521D0-4769-4228-9413-2A3A7D2BC1A6}"
 	ProjectSection(WebsiteProperties) = preProject
 		ProjectReferences = "{B01F9377-75E3-410C-A944-A6867D836796}|Bugx.Web.dll;{30AB755F-B05F-4A75-81C3-47230BB42286}|Model.dll;{C55E53FE-CDFA-4BD6-B0C8-E34BA2B3F824}|Bugx.Talk.dll;{B2FD1E0E-C2C8-489F-AF84-4BFCB872DF13}|Bugx.Report.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Bugx.TestSite"

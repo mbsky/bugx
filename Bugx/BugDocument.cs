@@ -29,7 +29,9 @@ using System.Globalization;
 
 namespace Bugx.Web
 {
-
+    /// <summary>
+    /// BugDcoument is an <see cref="XmlDocument"/> with some quick access and with compression to avoid large XML files.
+    /// </summary>
     public class BugDocument : XmlDocument
     {
         #region Properties

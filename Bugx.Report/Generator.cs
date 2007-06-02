@@ -30,6 +30,9 @@ using System;
 
 namespace Bugx.Report
 {
+    /// <summary>
+    /// Handler used to generate bugx reports.
+    /// </summary>
     public class Generator: IHttpHandler
     {
         const string Status404 = "404 Not Found";
@@ -81,7 +84,7 @@ namespace Bugx.Report
                 BugDocument bug = new BugDocument();
                 bug.Load(fileName);
                 xsl.Load(new XmlTextReader(xslFile));
-                xsl.Transform(bug, writer);
+                xsl.Transform(bug, XsltExtension.RegisterExtension(), writer);
             }
         }
 

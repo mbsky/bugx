@@ -271,6 +271,7 @@
   <bot><![CDATA[Full Web Bot 0516B]]></bot>
   <bot><![CDATA[Full Web Bot 2816B]]></bot>
   <bot><![CDATA[FyberSpider (+http://www.fybersearch.com/fyberspider.php)]]></bot>
+  <bot><![CDATA[ia_archiver]]></bot>
   <bot><![CDATA[Mackster( http://www.ukwizz.com )]]></bot>
   <bot><![CDATA[mailto:webcraft@bea.com]]></bot>
   <bot><![CDATA[mammoth/1.0 ( http://www.sli-systems.com/)]]></bot>
@@ -435,6 +436,7 @@
   <bot><![CDATA[Mozilla/5.0 usww.com-Spider-for-w8.net]]></bot>
   <bot><![CDATA[Mozilla/5.0 wgao@genieknows.com]]></bot>
   <bot><![CDATA[MQbot metaquerier.cs.uiuc.edu/crawler]]></bot>
+  <bot><![CDATA[msnbot/1.0 (+http://search.msn.com/msnbot.htm)]]></bot>
   <bot><![CDATA[msnbot-media/1.0 (+http://search.msn.com/msnbot.htm)]]></bot>
   <bot><![CDATA[msnbot-Products/1.0 (+http://search.msn.com/msnbot.htm)]]></bot>
   <bot><![CDATA[MSNPTC/1.0]]></bot>

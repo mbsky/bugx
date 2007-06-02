@@ -21,8 +21,6 @@ the library `BUGx' (An Asp.Net Bug Tracking tool) written
 by Olivier Bossaer. (olivier.bossaer@gmail.com)
 */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Bugx.Web.Collections;
 using System.Web;
 using System.Web.Caching;
@@ -32,6 +30,9 @@ using System.Xml;
 
 namespace Bugx.Web
 {
+    /// <summary>
+    /// Helper about client navigators, user-agents, ...
+    /// </summary>
     public static class BrowserHelper
     {
         const string KnownBotsCacheKey = "Bugx.Web.BrowserHelper.KnownBots";

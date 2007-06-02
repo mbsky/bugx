@@ -28,8 +28,15 @@ using Bugx.Web;
 
 namespace Bugx.ReBug
 {
+    /// <summary>
+    /// Bugx is an ASP.NET application domain wich can processes <see cref="ReBugContext"/> requests.
+    /// </summary>
     public class BugxHost : MarshalByRefObject
     {
+        /// <summary>
+        /// Processes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public void Process(ReBugContext context)
         {
             ErrorModule.IsReBug = true;

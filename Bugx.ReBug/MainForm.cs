@@ -33,6 +33,9 @@ using System.Globalization;
 
 namespace Bugx.ReBug
 {
+    /// <summary>
+    /// Main application form.
+    /// </summary>
     public partial class MainForm : Form
     {
         #region Constructor
@@ -55,6 +58,10 @@ namespace Bugx.ReBug
 
         #region Properties
         BugxHost _Host;
+        /// <summary>
+        /// Gets the host.
+        /// </summary>
+        /// <value>The host.</value>
         public BugxHost Host
         {
             get
@@ -92,7 +99,7 @@ namespace Bugx.ReBug
         void LoadBug(string fileName)
         {
             BugFile.Text = fileName;
-            XmlDocument xml = new BugDocument();
+            BugDocument xml = new BugDocument();
             xml.Load(fileName);
             CurrentContext = ReBugContext.Create(xml);
             ContextExplorer.SelectedObject = new PropertyGridInspector(CurrentContext);
