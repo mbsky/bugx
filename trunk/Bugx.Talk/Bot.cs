@@ -35,6 +35,9 @@ using System.Web.Hosting;
 
 namespace Bugx.Talk
 {
+    /// <summary>
+    /// Bugx talk bot is an <see cref="IHttpModule"/> wich connect to Bugx core and is notified when an error occurs.
+    /// </summary>
     public class Bot: IHttpModule, IDisposable
     {
         JabberClient _Bot;

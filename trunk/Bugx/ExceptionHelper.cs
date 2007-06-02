@@ -30,6 +30,9 @@ using System.Xml.XPath;
 
 namespace Bugx.Web
 {
+    /// <summary>
+    /// ExceptionHelper.
+    /// </summary>
     public static class ExceptionHelper
     {
         /// <summary>

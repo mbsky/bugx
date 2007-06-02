@@ -32,13 +32,16 @@ using System.Web.SessionState;
 using System.Configuration;
 using System.Reflection;
 using System.Globalization;
-using System.Threading;
 using System.Security.Principal;
 using System.Runtime.Serialization;
 using System.Xml.XPath;
+using Bugx.Web.Collections;
 
 namespace Bugx.ReBug
 {
+    /// <summary>
+    /// Contains all information about crash.
+    /// </summary>
     [Serializable]
     public class ReBugContext
     {
@@ -134,7 +137,6 @@ namespace Bugx.ReBug
             if (custom != null && typeof(ReBugContext).IsAssignableFrom(custom))
             {
                 ConstructorInfo constructor = custom.GetConstructor(BindingFlags.Instance | BindingFlags.CreateInstance | BindingFlags.NonPublic, null, new Type[] {typeof (IXPathNavigable)}, null);
-                System.Diagnostics.Debugger.Break();
                 if (constructor != null)
                 {
                     return (ReBugContext) constructor.Invoke(new object[] {bug});

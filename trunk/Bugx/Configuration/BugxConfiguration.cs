@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace Bugx.Web.Configuration
 {
+    /// <summary>
+    /// Contains information about Bugx configuration properties.
+    /// </summary>
     public static class BugxConfiguration
     {
         /// <summary>

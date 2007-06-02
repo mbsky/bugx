@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ext="http://www.wavenet.be/bugx/report/extensions">
   <xsl:output omit-xml-declaration="yes" encoding="utf-8" method="html"/>
   <xsl:template match="/bugx">
     <xsl:text disable-output-escaping="yes">
@@ -99,11 +99,11 @@
                 <xsl:for-each select="queryString/*">
                   <tr>
                     <th class="Variable" title="System.String">
-                      <xsl:value-of select="name()"/>
+                      <xsl:value-of select="ext:DecodeName(name())" />
                     </th>
                     <td>
                       <code>
-                        <xsl:value-of select="."/>
+                        <xsl:value-of select="ext:AvoidTemplateStretching(.)" disable-output-escaping="yes"/>
                       </code>
                     </td>
                   </tr>
@@ -118,12 +118,29 @@
                 <xsl:for-each select="form/*">
                   <tr>
                     <th class="Variable" title="System.String">
-                      <xsl:value-of select="name()"/>
+                      <xsl:value-of select="ext:DecodeName(name())" />
                     </th>
                     <td>
                     <code>
-                      <xsl:value-of select="."/>
+                      <xsl:value-of select="ext:AvoidTemplateStretching(.)" disable-output-escaping="yes"/>
                     </code>
+                    </td>
+                  </tr>
+                </xsl:for-each>
+              </table>
+            </fieldset>
+          </xsl:if>
+          <xsl:if test="headers/Cookie">
+            <fieldset>
+              <legend>Cookies:</legend>
+              <table>
+                <xsl:for-each select="ext:CreateCollectionFromCookieHeader(headers/Cookie)/*">
+                  <tr>
+                    <th>
+                      <xsl:value-of select="ext:DecodeName(name())" /> :
+                    </th>
+                    <td>
+                      <xsl:value-of select="ext:AvoidTemplateStretching(.)" disable-output-escaping="yes"/>
                     </td>
                   </tr>
                 </xsl:for-each>
@@ -263,11 +280,11 @@
                 <xsl:for-each select="headers/*">
                   <tr>
                     <th class="Variable" title="System.String">
-                      <xsl:value-of select="name()"/>
+                      <xsl:value-of select="ext:DecodeName(name())" />
                     </th>
                     <td>
                       <code>
-                        <xsl:value-of select="."/>
+                        <xsl:value-of select="ext:AvoidTemplateStretching(.)" disable-output-escaping="yes"/>
                       </code>
                     </td>
                   </tr>

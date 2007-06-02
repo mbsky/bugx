@@ -29,6 +29,9 @@ using System.Globalization;
 
 namespace Bugx.ReBug
 {
+    /// <summary>
+    /// BugxWorkerRequest simulate crash requests.
+    /// </summary>
     public class BugxWorkerRequest : SimpleWorkerRequest
     {
         static Dictionary<string, int> _Headers;
@@ -87,6 +90,11 @@ namespace Bugx.ReBug
 
 
         byte[] PostedData;
+        
+        /// <summary>
+        /// Returns the HTTP request verb.
+        /// </summary>
+        /// <returns>The HTTP verb for this request.</returns>
         public override string GetHttpVerbName()
         {
             if (PostedData == null)
@@ -95,31 +103,79 @@ namespace Bugx.ReBug
             }
             return "POST";
         }
+
+        /// <summary>
+        /// Returns the server IP address of the interface on which the request was received.
+        /// </summary>
+        /// <returns>
+        /// The server IP address of the interface on which the request was received.
+        /// </returns>
         public override string GetLocalAddress()
         {
             return _Context.Url.Host;
         }
+
+        /// <summary>
+        /// Returns the port number on which the request was received.
+        /// </summary>
+        /// <returns>
+        /// The server port number on which the request was received.
+        /// </returns>
         public override int GetLocalPort()
         {
             return _Context.Url.Port;
         }
+
+        /// <summary>
+        /// Returns the HTTP protocol (HTTP or HTTPS).
+        /// </summary>
+        /// <returns>
+        /// HTTPS if the <see cref="M:System.Web.HttpWorkerRequest.IsSecure"></see> method is true, otherwise HTTP.
+        /// </returns>
         public override string GetProtocol()
         {
             return _Context.Url.Scheme;
         }
+
+        /// <summary>
+        /// Returns a value indicating whether the connection uses SSL.
+        /// </summary>
+        /// <returns>
+        /// true if the connection is an SSL connection; otherwise, false. The default is false.
+        /// </returns>
         public override bool IsSecure()
         {
             return string.Compare(_Context.Url.Scheme, "https", true, CultureInfo.InvariantCulture) == 0;
         }
+
+        /// <summary>
+        /// Returns additional path information for a resource with a URL extension. That is, for the path /virdir/page.html/tail, the return value is /tail.
+        /// </summary>
+        /// <returns>
+        /// Additional path information for a resource.
+        /// </returns>
         public override string GetPathInfo()
         {
             return _Context.PathInfo;
         }
+
+        /// <summary>
+        /// Returns a value indicating whether all request data is available and no further reads from the client are required.
+        /// </summary>
+        /// <returns>
+        /// true if all request data is available; otherwise, false.
+        /// </returns>
         public override bool IsEntireEntityBodyIsPreloaded()
         {
             return true;
         }
 
+        /// <summary>
+        /// Returns the portion of the HTTP request body that has already been read.
+        /// </summary>
+        /// <returns>
+        /// The portion of the HTTP request body that has been read.
+        /// </returns>
         public override byte[] GetPreloadedEntityBody()
         {
             if (PostedData == null)
@@ -131,6 +187,11 @@ namespace Bugx.ReBug
 
         bool _IsInitialized;
 
+        /// <summary>
+        /// Returns the standard HTTP request header that corresponds to the specified index.
+        /// </summary>
+        /// <param name="index">The index of the header. For example, the <see cref="F:System.Web.HttpWorkerRequest.HeaderAllow"></see> field.</param>
+        /// <returns>The HTTP request header.</returns>
         public override string GetKnownRequestHeader(int index)
         {
             if (!_IsInitialized)
@@ -143,6 +204,11 @@ namespace Bugx.ReBug
 
         ReBugContext _Context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BugxWorkerRequest"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="output">The output.</param>
         public BugxWorkerRequest(ReBugContext context, TextWriter output)
             : base(context.Url.AbsolutePath.Substring(1), context.QueryString.ToString(), output)
         {

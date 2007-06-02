@@ -23,6 +23,9 @@ by Olivier Bossaer. (olivier.bossaer@gmail.com)
 
 namespace Bugx.ReBug
 {
+    /// <summary>
+    /// Object inspector is used to inspects <see cref="ReBugContext"/> in a <see cref="PropertyGridInspector"/>.
+    /// </summary>
     public class ObjectInspector
     {
         /// <summary>
