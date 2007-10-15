@@ -85,7 +85,7 @@ namespace Bugx.Report
         /// <returns></returns>
         public string AvoidTemplateStretching(string value)
         {
-            return Regex.Replace(HttpUtility.HtmlEncode(value), @"((?:&[^;]{1, 10};|.|\s){10})", "$1<wbr />");
+            return Regex.Replace(HttpUtility.HtmlEncode(value), @"((?:\&[^;]+\;|.|\s){10})", "$1<wbr />");
         }
 
         /// <summary>
