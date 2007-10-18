@@ -86,6 +86,7 @@ namespace Bugx.Talk
             _Initialized = true;
             SubscriptionCollection.LoadSettings();
             _Bot = new JabberClient();
+            _Bot.AutoReconnect = 0;
             _Bot.AutoPresence = false;
             _Bot.OnMessage += new MessageHandler(Bot_OnMessage);
             _Bot.OnAuthenticate += new bedrock.ObjectHandler(Bot_OnAuthenticate);
