@@ -32,7 +32,9 @@
     <DocumentationFile>bin\Release\Bugx.Talk.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="jabber-net, Version=1.1.2674.14208, Culture=neutral, PublicKeyToken=924c5b18328d6f09, processorArchitecture=MSIL" />
+    <Reference Include="jabber-net, Version=1.1.2674.14208, Culture=neutral, PublicKeyToken=924c5b18328d6f09, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
