@@ -1,9 +1,8 @@
 #labels Phase-Design
-#Package Format
-
-Voici le format des paquages d'installation, tel que défini pour le moment:
+Voici le format des paquages d'installation, tel que défini pour le moment.
 Il contient:
- # Un fichier manifest.xml.
+
+==== Un fichier manifest.xml. ==== 
 
 Outre le nom et la description du paquet, ce fichier comporte
 	* le numéro de version. Ce dernier est codé sur 3 chiffres
@@ -28,7 +27,7 @@ liste des dépendances.
 	* La liste des fichiers sql à exécuter lors de l'install. Ce
 sont principalement les procédures stockées.
 
- # 3 repertoires
+==== 3 repertoires ==== 
 	* bin: contient les assembly
 	* sql: contient les fichiers sql présents dans le fichier
 manifest.xml + custom.install.sql (commandes sql spécifiques à exécuter
@@ -44,5 +43,5 @@ Dans cette arborescence, les noms entourés de "%" seront substitués par
 leur équivalent. Exemple: %desktopmodules% sera remplacé par
 wvnportal/desktopmodules.
 
- # un fichier web.config. 
+==== un fichier web.config. ==== 
 Ce dernier reprend exactement la même structure que le fichier web.config global et reprend toutes les clés utilisées par le module.
