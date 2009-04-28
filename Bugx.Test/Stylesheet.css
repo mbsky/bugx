@@ -1,0 +1,52 @@
+﻿.Bugx_Test
+{
+    position:absolute;
+    width:100%;
+    left:0px;
+    top:0px;
+    text-align:left;
+    color:#000;
+}
+.Bugx_Test:hover
+{
+    opacity:0.7;
+}
+.Bugx_Test div
+{
+    background:#D4D0C8;
+    height:25px;
+    border:solid 1px #000;
+    border-color:#fff #808080 #808080 #fff;
+    font:normal 8pt/25px tahoma;
+}
+.Bugx_Test b
+{
+    font:normal 0px/0px arial;
+    display:block;
+    width:16px;
+    height:16px;
+    padding:0px;
+    margin:4px 5px;
+    background:none no-repeat -48px center;
+    float:left;
+}
+.Bugx_Test a
+{
+    font:normal 0px/0px arial;
+    display:block;
+    width:16px;
+    height:16px;
+    padding:0px;
+    margin:4px 5px;
+    background:none no-repeat 0px center;
+    float:right;
+    outline:0;
+}
+.Bugx_Test a:hover
+{
+    background-position:-16px center;
+}
+.Bugx_Test a:active
+{
+    background-position:-32px center;
+}
