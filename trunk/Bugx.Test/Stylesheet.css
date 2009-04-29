@@ -6,6 +6,8 @@
     top:0px;
     text-align:left;
     color:#000;
+    cursor:default;
+    -moz-user-select:none;
 }
 .Bugx_Test:hover
 {

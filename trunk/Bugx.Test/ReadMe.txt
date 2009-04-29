@@ -1,17 +1,29 @@
 ﻿A mettre dans le web.config:
 
 <configuration>
+    <configSections>
+        <sectionGroup name="bugx">
+          <section name="watermark" type="System.Configuration.NameValueFileSectionHandler, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+        </sectionGroup>
+    </configSections>
+    <!-- Optional parameters -->
+    <bugx>
+        <watermark>
+          <add key="Enable" value="true/false"/>
+          <add key="Text" value="Pre-production Environment"/>
+        </watermark>
+    </bugx>
+
     <system.web>
       <httpModules>
-        <add name="BugxWatermark" type="Bugx.Test.EnvironmentWatermark, Bugx.Test"/>
+        <add name="BugxWatermark" type="Bugx.Watermark.EnvironmentWatermark, Bugx.Watermark"/>
       </httpModules>
     </system.web>
-    <!-- 
-        Section pour IIS 7
-    -->
+    
+    <!-- IIS 7 Section -->
     <system.webServer>
       <modules>
-        <add name="BugxWatermark" type="Bugx.Test.EnvironmentWatermark, Bugx.Test"/>
+        <add name="BugxWatermark" type="Bugx.Watermark.EnvironmentWatermark, Bugx.Watermark"/>
       </modules>
     </system.webServer>
 </configuration>

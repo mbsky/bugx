@@ -31,9 +31,13 @@
     imageUrl = 'url(' + imageUrl + ')';
 
     document.getElementsByTagName("head")[0].appendChild($create('link', { rel: 'stylesheet', type:'text/css', href:css }));
-    text = text || "Zone de préproduction: ";
-    document.title = text + document.title;
+    text = text || "Pre-production Environment";
+    document.title = text + ": " + document.title;
     var host = $create("div", { className: 'Bugx_Test' }).injectInside(document.body);
+    if (document.attachEvent) {
+        //Disable IE text selection
+        host.onselectstart = function() { return false; };
+    }
     var bar = $create("div").injectInside(host);
     $create("b", null, {backgroundImage:imageUrl}).injectInside(bar);
     $create("a", { href: "#" }, { backgroundImage: imageUrl }).injectInside(bar).onclick = function() {
@@ -41,5 +45,5 @@
         document.cookie = "BugxTestHide=1";
         return false;
     };
-    $createText(text, bar);
+    $createText(document.title, bar);
 }

@@ -1,36 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿// <copyright file="EnvironmentWatermark.cs" company="Wavenet">
+// Copyright © Wavenet 2009
+// </copyright>
+// <author>Olivier Bossaer</author>
+// <email>olivier.bossaer@gmail.com</email>
+// <date>2006-04-29</date>
 
-namespace Bugx.Test
+namespace Bugx.Watermark
 {
+    using System;
+    using System.Web;
+    using System.Web.UI;
+    using System.Globalization;
+
     /// <summary>
-    /// Summary description for EnvironmentWatermark
+    /// The <see cref="EnvironmentWatermark"/> module add a watermark on all pages.
     /// </summary>
-    public class EnvironmentWatermark:IHttpModule
+    public class EnvironmentWatermark : IHttpModule
     {
+        /// <summary>
+        /// Disposes of the resources (other than memory) used by the module that implements System.Web.IHttpModule.        
+        /// </summary>
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Initializes <see cref="EnvironmentWatermark"/> and prepares it to handle requests.
+        /// </summary>
+        /// <param name="context">An <see cref="HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
         public void Init(HttpApplication context)
         {
-            context.PostAcquireRequestState += BeginRequest;
+            context.PostAcquireRequestState += this.BeginRequest;
         }
 
-        void BeginRequest(object sender, EventArgs e)
+        /// <summary>
+        /// For each page request a script is include to handle the watermark.
+        /// </summary>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">An <see cref="EventArgs"/> that contains no event data</param>
+        private void BeginRequest(object sender, EventArgs e)
         {
+            if (HttpContext.Current == null || !ConfigurationSettings.Enable)
+            {
+                return;
+            }
+
             Page page = HttpContext.Current.Handler as Page;
             if (page != null)
             {
-                var script = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Test.Script.js");
-                var images = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Test.Images.png");
-                var css = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Test.Stylesheet.css");
+                var script = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Script.js");
+                var images = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Images.png");
+                var css = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Stylesheet.css");
                 page.ClientScript.RegisterClientScriptInclude(typeof(EnvironmentWatermark), "ScriptInclude", script);
-                page.ClientScript.RegisterClientScriptBlock(typeof(EnvironmentWatermark), "Script", "<script type=\"text/javascript\" defer=\"defer\">/*<![CDATA[*/RegisterWatermark('" + images + "', '" + css + "');/*]]>*/</script>", false);
+                page.ClientScript.RegisterClientScriptBlock(
+                    typeof(EnvironmentWatermark), 
+                    "Script",
+                    string.Format(CultureInfo.InvariantCulture, "<script type=\"text/javascript\" defer=\"defer\">/*<![CDATA[*/RegisterWatermark('{0}', '{1}', '{2}');/*]]>*/</script>", images, css, ConfigurationSettings.Text.Replace("'", "\\'")),
+                    false);
             }
         }
     }
