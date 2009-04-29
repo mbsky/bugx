@@ -28,22 +28,36 @@
         e.appendChild(this);
         return this;
     }
-    imageUrl = 'url(' + imageUrl + ')';
-
-    document.getElementsByTagName("head")[0].appendChild($create('link', { rel: 'stylesheet', type:'text/css', href:css }));
-    text = text || "Pre-production Environment";
-    document.title = text + ": " + document.title;
-    var host = $create("div", { className: 'Bugx_Test' }).injectInside(document.body);
-    if (document.attachEvent) {
-        //Disable IE text selection
-        host.onselectstart = function() { return false; };
+    function $ready(callback) {
+        if (document.attachEvent && document.readyState != "complete") {
+            document.attachEvent("onreadystatechange", function() {
+                if (document.readyState == "complete") {
+                    callback();
+                }
+            });
+        } else {
+            callback();
+        }
     }
-    var bar = $create("div").injectInside(host);
-    $create("b", null, {backgroundImage:imageUrl}).injectInside(bar);
-    $create("a", { href: "#" }, { backgroundImage: imageUrl }).injectInside(bar).onclick = function() {
-        host.style.display = 'none';
-        document.cookie = "BugxTestHide=1";
-        return false;
-    };
-    $createText(document.title, bar);
+    function init() {
+        imageUrl = 'url(' + imageUrl + ')';
+
+        document.getElementsByTagName("head")[0].appendChild($create('link', { rel: 'stylesheet', type: 'text/css', href: css }));
+        text = text || "Pre-production Environment";
+        document.title = text + ": " + document.title;
+        var host = $create("div", { className: 'Bugx_Test' }).injectInside(document.body);
+        if (document.attachEvent) {
+            //Disable IE text selection
+            host.onselectstart = function() { return false; };
+        }
+        var bar = $create("div").injectInside(host);
+        $create("b", null, { backgroundImage: imageUrl }).injectInside(bar);
+        $create("a", { href: "#" }, { backgroundImage: imageUrl }).injectInside(bar).onclick = function() {
+            host.style.display = 'none';
+            document.cookie = "BugxTestHide=1";
+            return false;
+        };
+        $createText(document.title, bar);
+    }
+    $ready(init);
 }
