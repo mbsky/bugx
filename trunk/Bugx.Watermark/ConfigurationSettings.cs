@@ -30,7 +30,7 @@ namespace Bugx.Watermark
         /// </summary>
         public static bool Enable
         {
-            get { return Settings == null || Convert.ToBoolean(Settings["Enable"], CultureInfo.InvariantCulture); }
+            get { return Settings == null || Settings["Enable"] == null || Convert.ToBoolean(Settings["Enable"], CultureInfo.InvariantCulture); }
         }
 
         /// <summary>
