@@ -42,6 +42,14 @@ namespace Bugx.Watermark
         }
 
         /// <summary>
+        /// Gets a <see cref="NameValueCollection"/> fill with all menu items.
+        /// </summary>
+        public static NameValueCollection MenuItems
+        {
+            get { return (NameValueCollection)ConfigurationManager.GetSection("bugx/watermark.menu") ?? new NameValueCollection(0); }
+        }
+     
+        /// <summary>
         /// Gets a <see cref="NameValueCollection"/> fill with all settings.
         /// </summary>
         private static NameValueCollection Settings

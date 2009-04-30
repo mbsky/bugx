@@ -23,7 +23,9 @@ using System;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: WebResource("Bugx.Watermark.Script.js", "text/javascript")]
 [assembly: WebResource("Bugx.Watermark.Images.png", "image/png")]
+[assembly: WebResource("Bugx.Watermark.Buttons.gif", "image/gif")]
 [assembly: WebResource("Bugx.Watermark.Stylesheet.css", "text/css")]
+
 [assembly: CLSCompliant(true)]
 
 [module: SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Scope = "namespace", Target = "Bugx.Watermark", MessageId = "Bugx")]

@@ -12,6 +12,9 @@
           <add key="Enable" value="true/false"/>
           <add key="Text" value="Pre-production Environment"/>
         </watermark>
+        <watermark.menu>
+          <add key="Google" value="http://www.google.com" />
+        </watermark.menu>
     </bugx>
 
     <system.web>

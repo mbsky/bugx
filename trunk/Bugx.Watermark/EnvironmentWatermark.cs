@@ -11,6 +11,8 @@ namespace Bugx.Watermark
     using System.Web;
     using System.Web.UI;
     using System.Globalization;
+    using System.Text;
+    using System.Collections.Specialized;
 
     /// <summary>
     /// The <see cref="EnvironmentWatermark"/> module add a watermark on all pages.
@@ -50,13 +52,34 @@ namespace Bugx.Watermark
             {
                 var script = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Script.js");
                 var images = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Images.png");
+                var buttons = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Buttons.gif");
                 var css = page.ClientScript.GetWebResourceUrl(typeof(EnvironmentWatermark), "Bugx.Watermark.Stylesheet.css");
                 page.ClientScript.RegisterClientScriptInclude(typeof(EnvironmentWatermark), "ScriptInclude", script);
                 page.ClientScript.RegisterClientScriptBlock(
                     typeof(EnvironmentWatermark), 
                     "Script",
-                    string.Format(CultureInfo.InvariantCulture, "<script type=\"text/javascript\" defer=\"defer\">/*<![CDATA[*/RegisterWatermark('{0}', '{1}', '{2}');/*]]>*/</script>", images, css, ConfigurationSettings.Text.Replace("'", "\\'")),
+                    string.Format(CultureInfo.InvariantCulture, "<script type=\"text/javascript\" defer=\"defer\">/*<![CDATA[*/RegisterWatermark('{0}', '{1}', '{2}', {3}, '{4}');/*]]>*/</script>", images, css, ConfigurationSettings.Text.Replace("'", "\\'"), this.Items, buttons),
                     false);
+            }
+        }
+
+        private string Items
+        {
+            get
+            {
+                StringBuilder result = new StringBuilder("[");
+                NameValueCollection items = ConfigurationSettings.MenuItems;
+                if (items.Count > 0)
+                {
+                    foreach (string key in items.AllKeys)
+                    {
+                        result.AppendFormat("{{Title:'{0}',Url:'{1}'}},", key.Replace("'", "\\'"), items[key].Replace("'", "\\'"));
+                    }
+
+                    result.Length--;
+                }
+
+                return result.Append(']').ToString();
             }
         }
     }
