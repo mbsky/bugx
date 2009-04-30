@@ -57,6 +57,7 @@
     <EmbeddedResource Include="Stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Buttons.gif" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

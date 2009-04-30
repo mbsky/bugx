@@ -21,7 +21,7 @@
     border-color:#fff #808080 #808080 #fff;
     font:normal 8pt/25px tahoma;
 }
-.Bugx_Test b
+.Bugx_Test b.bugx_info
 {
     font:normal 0px/0px arial;
     display:block;
@@ -32,7 +32,7 @@
     background:none no-repeat -48px center;
     float:left;
 }
-.Bugx_Test a
+.Bugx_Test a.bugx_close
 {
     font:normal 0px/0px arial;
     display:block;
@@ -44,11 +44,38 @@
     float:right;
     outline:0;
 }
-.Bugx_Test a:hover
+.Bugx_Test a.bugx_close:hover
 {
     background-position:-16px center;
 }
-.Bugx_Test a:active
+.Bugx_Test a.bugx_close:active
 {
     background-position:-32px center;
 }
+
+/*Buttons*/
+.Bugx_Test a.bugx_btn, .Bugx_Test a.bugx_btn b
+{
+    background:red;
+    height:21px;
+    float:right;
+    display:block;
+    background:url(images/b2.gif) no-repeat;
+    cursor:pointer;
+    color:#000;
+    font:normal 8pt/21px tahoma;
+    text-decoration:none;
+    outline:none;
+    /*IE 6 fix*/
+    white-space:nowrap;
+    *width:0px;
+}
+.Bugx_Test a.bugx_btn            { margin: 2px 5px 0px 0px; }
+.Bugx_Test a.bugx_btn b          { background-position:right -126px; padding:0px 3px; }
+.Bugx_Test a.bugx_btn b b        { background-position:left -63px; background-repeat:repeat-x; padding:0px 10px; }
+.Bugx_Test a.bugx_btn:hover      { background-position:left -21px; }
+.Bugx_Test a.bugx_btn:hover b    { background-position:right -147px; }
+.Bugx_Test a.bugx_btn:hover b b  { background-position:left -84px; }
+.Bugx_Test a.bugx_btn:active     { background-position:left -42px; }
+.Bugx_Test a.bugx_btn:active b   { background-position:right -168px; }
+.Bugx_Test a.bugx_btn:active b b { background-position:left -105px; }
